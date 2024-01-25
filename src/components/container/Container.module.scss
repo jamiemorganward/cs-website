@@ -1,0 +1,15 @@
+@import "../../styles/config.scss";
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 100%;
+  max-width: 1430px;
+
+  @include mobile-l {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

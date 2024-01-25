@@ -1,0 +1,53 @@
+// 01. Media Query Breakpoints
+$mobile-portrait-max: 478px;
+$mobile-landscape-max: 767px;
+$tablet-max: 991px;
+$large-min: 1280px;
+$xlarge-min: 1440px;
+$xxlarge-min: 1920px;
+
+// 02. Colours
+$yellow: #ffd068;
+$red: #f56d4c;
+$error--orange: #ff9525;
+$blue: #8bd1d0;
+$grey--dark: #2e3649;
+$grey: #485570;
+$grey--light: #e7e9eb;
+$grey--transparent: rgba(0, 7, 18, 0.6);
+$white: #fff;
+$purple: #4b3086;
+$black: #17191a;
+$grey--blue: #334055;
+$grey--inactive: #c1c3d0;
+$blue--deep-primary: #113c6c;
+$blue--deep-secondary: #30659a;
+$blue--tetihi: #009fe3;
+$blue--light: #c5d7ea;
+$orange--brick: #cb665f;
+$orange--burnt: #d58458;
+$orange--brick-light: rgba(240, 206, 186, 0.5);
+$green--development: #006c31;
+$yellow--development: #e2ac00;
+$orange--development: #e86209;
+$red--development: #ab1111;
+$blue--development: #1c5982;
+
+$body-background-color: $grey--light;
+$default-font-color: $grey;
+$default-hover-color: $grey--dark;
+
+// 03. Type
+$degular: "degular-text", Helvetica, Arial, sans-serif;
+$body-font-family: $degular;
+$default-font-family: $body-font-family;
+$font-family: $body-font-family;
+$heading-font-family: $degular;
+
+// 04. Grid
+$grid-columns: 12;
+$grid-gutter: 12px;
+$container-width: 1440px;
+$container-gutter-mobile: 25px;
+$container-gutter-tablet: 50px;
+$container-gutter-desktop: 70px;
