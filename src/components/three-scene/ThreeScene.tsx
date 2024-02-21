@@ -64,14 +64,6 @@ export const ThreeScene: React.FC<ThreeSceneProps> = ({ children }) => {
             { z: -17.6776, x: -17.6776 },
             { z: -21.65064, x: -12.5 },
             { z: -24.1481, x: -6.47048 }
-            // { z: 12.5, x: 21.65064 },
-            // { z: 21.65064, x: 12.5 },
-            // { z: 25, x: 0 },
-            // { z: 21.65064, x: -12.5 },
-            // { z: 12.5, x: -21.65064 },
-            // { z: 0, x: -25 },
-            // { z: -12.5, x: -21.65064 },
-            // { z: -21.65064, x: -12.5 }
           ]
           const material = new THREE.MeshBasicMaterial({
             color: 0xffffff
@@ -149,7 +141,7 @@ export const ThreeScene: React.FC<ThreeSceneProps> = ({ children }) => {
             // controls.update()
             camera.rotation.z = 0.05
             camera.rotation.x = 0
-            camera.rotation.y += 0.005
+            camera.rotation.y += 0.001
             renderer.render(scene, camera)
             requestAnimationFrame(renderScene)
           }
