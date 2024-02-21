@@ -89,7 +89,11 @@ export const LampShadeCamera = () => {
               friction: 10
             }
           case 'rotationY':
-            return { mass: 1.3, friction: 35 }
+            return {
+              mass: 1.3,
+              friction: 35,
+              decay: true
+            }
           default:
             return {}
         }
@@ -99,12 +103,13 @@ export const LampShadeCamera = () => {
   )
 
   const runSprings = useCallback(
-    (y: number, dy: number) => {
+    (y: number, dy: number, vxvy: number) => {
       const x = 0 // for now
       api.start((i) => {
         return {
           rotationY: y,
-          immediate: true
+          immediate: true,
+          velocity: vxvy
         }
       })
     },
@@ -128,7 +133,7 @@ export const LampShadeCamera = () => {
       // event.preventDefault()
       if (dy) {
         wheelOffset.current = y * 0.001
-        runSprings(dragOffset.current + y * 0.001, y)
+        runSprings(dragOffset.current + y * 0.001, y, 0)
       }
 
       // api.start({
@@ -143,7 +148,8 @@ export const LampShadeCamera = () => {
       const {
         event,
         offset: [x],
-        direction: [dx]
+        direction: [dx],
+        vxvy
       } = props
       // event.preventDefault()
       if (dx) {
