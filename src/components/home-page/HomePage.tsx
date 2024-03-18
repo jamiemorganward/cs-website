@@ -4,15 +4,8 @@ import { LogoWrapper } from '../logo-wrapper/LogoWrapper'
 import { Container } from '../container/Container'
 import { IntroSection } from '../intro-section/IntroSection'
 import { ThreeScene } from '../three-scene/ThreeScene'
+import { LampShade } from '../lamp-shade/LampShade'
 
 export const HomePage = () => {
-  return (
-    <div>
-      <LogoWrapper />
-      <Container>
-        <IntroSection />
-        <ThreeScene />
-      </Container>
-    </div>
-  )
+  return <LampShade />
 }
