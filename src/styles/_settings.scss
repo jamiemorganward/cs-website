@@ -7,6 +7,8 @@ $xlarge-min: 1440px;
 $xxlarge-min: 1920px;
 
 // 02. Colours
+$black: #17191a;
+$grey: #dcdcdc;
 $yellow: #ffd068;
 $red: #f56d4c;
 $error--orange: #ff9525;
@@ -17,7 +19,6 @@ $grey--light: #e7e9eb;
 $grey--transparent: rgba(0, 7, 18, 0.6);
 $white: #fff;
 $purple: #4b3086;
-$black: #17191a;
 $grey--blue: #334055;
 $grey--inactive: #c1c3d0;
 $blue--deep-primary: #113c6c;
@@ -38,7 +39,7 @@ $default-font-color: $grey;
 $default-hover-color: $grey--dark;
 
 // 03. Type
-$degular: "degular-text", Helvetica, Arial, sans-serif;
+$degular: 'degular', Helvetica, Arial, sans-serif;
 $body-font-family: $degular;
 $default-font-family: $body-font-family;
 $font-family: $body-font-family;

@@ -6,7 +6,7 @@ import Image from 'next/image'
 export const LogoWrapper = () => {
   return (
     <div className={s.logoWrapper}>
-      <Image src={CS} alt="ClickSuite Logo" />
+      <CS alt="ClickSuite Logo" />
     </div>
   )
 }
