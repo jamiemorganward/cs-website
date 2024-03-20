@@ -17,8 +17,6 @@ export type Scalars = {
   /** Represents `true` or `false` values. */
   BooleanType: { input: any; output: any; }
   CustomData: { input: any; output: any; }
-  /** A ISO 8601 compliant date value */
-  Date: { input: any; output: any; }
   /** A ISO 8601 compliant datetime value */
   DateTime: { input: any; output: any; }
   /** Represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). */
@@ -31,9 +29,9 @@ export type Scalars = {
   UploadId: { input: any; output: any; }
 };
 
-/** Block of type Blog Post (blog_post) */
-export type BlogPostRecord = RecordInterface & {
-  __typename?: 'BlogPostRecord';
+/** Record of type About Page (about_page) */
+export type AboutPageRecord = RecordInterface & {
+  __typename?: 'AboutPageRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -47,29 +45,18 @@ export type BlogPostRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
-  excerpt?: Maybe<Scalars['String']['output']>;
-  icon?: Maybe<Scalars['String']['output']>;
   id: Scalars['ItemId']['output'];
-  postUrl?: Maybe<Scalars['String']['output']>;
-  thumbnail?: Maybe<FileField>;
-  title?: Maybe<Scalars['String']['output']>;
 };
 
 
-/** Block of type Blog Post (blog_post) */
-export type BlogPostRecord_SeoMetaTagsArgs = {
+/** Record of type About Page (about_page) */
+export type AboutPageRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-
-/** Block of type Blog Post (blog_post) */
-export type BlogPostRecordExcerptArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Block of type Blog Section (blog_section) */
-export type BlogSectionRecord = RecordInterface & {
-  __typename?: 'BlogSectionRecord';
+/** Record of type Approach Page (approach_page) */
+export type ApproachPageRecord = RecordInterface & {
+  __typename?: 'ApproachPageRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -83,15 +70,12 @@ export type BlogSectionRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
-  blogBackgroundColor?: Maybe<ColorField>;
-  blogHeadline?: Maybe<Scalars['String']['output']>;
-  blogPosts: Array<BlogPostRecord>;
   id: Scalars['ItemId']['output'];
 };
 
 
-/** Block of type Blog Section (blog_section) */
-export type BlogSectionRecord_SeoMetaTagsArgs = {
+/** Record of type Approach Page (approach_page) */
+export type ApproachPageRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -99,186 +83,6 @@ export type BlogSectionRecord_SeoMetaTagsArgs = {
 export type BooleanFilter = {
   /** Search for records with an exact match */
   eq?: InputMaybe<Scalars['BooleanType']['input']>;
-};
-
-export type BurgerModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<BurgerModelFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<BurgerModelFilter>>>;
-  _createdAt?: InputMaybe<CreatedAtFilter>;
-  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
-  _isValid?: InputMaybe<BooleanFilter>;
-  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _publishedAt?: InputMaybe<PublishedAtFilter>;
-  _status?: InputMaybe<StatusFilter>;
-  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  beerMatchPrice?: InputMaybe<FloatFilter>;
-  description?: InputMaybe<TextFilter>;
-  dietaryRequirements?: InputMaybe<JsonFilter>;
-  id?: InputMaybe<ItemIdFilter>;
-  image?: InputMaybe<StringFilter>;
-  kickerberryId?: InputMaybe<IntegerFilter>;
-  name?: InputMaybe<StringFilter>;
-  price?: InputMaybe<FloatFilter>;
-  venue?: InputMaybe<LinkFilter>;
-};
-
-export enum BurgerModelOrderBy {
-  CreatedAtAsc = '_createdAt_ASC',
-  CreatedAtDesc = '_createdAt_DESC',
-  FirstPublishedAtAsc = '_firstPublishedAt_ASC',
-  FirstPublishedAtDesc = '_firstPublishedAt_DESC',
-  IsValidAsc = '_isValid_ASC',
-  IsValidDesc = '_isValid_DESC',
-  PublicationScheduledAtAsc = '_publicationScheduledAt_ASC',
-  PublicationScheduledAtDesc = '_publicationScheduledAt_DESC',
-  PublishedAtAsc = '_publishedAt_ASC',
-  PublishedAtDesc = '_publishedAt_DESC',
-  StatusAsc = '_status_ASC',
-  StatusDesc = '_status_DESC',
-  UnpublishingScheduledAtAsc = '_unpublishingScheduledAt_ASC',
-  UnpublishingScheduledAtDesc = '_unpublishingScheduledAt_DESC',
-  UpdatedAtAsc = '_updatedAt_ASC',
-  UpdatedAtDesc = '_updatedAt_DESC',
-  BeerMatchPriceAsc = 'beerMatchPrice_ASC',
-  BeerMatchPriceDesc = 'beerMatchPrice_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  ImageAsc = 'image_ASC',
-  ImageDesc = 'image_DESC',
-  KickerberryIdAsc = 'kickerberryId_ASC',
-  KickerberryIdDesc = 'kickerberryId_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  PriceAsc = 'price_ASC',
-  PriceDesc = 'price_DESC'
-}
-
-/** Record of type Burger (burger) */
-export type BurgerRecord = RecordInterface & {
-  __typename?: 'BurgerRecord';
-  _createdAt: Scalars['DateTime']['output'];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
-  _isValid: Scalars['BooleanType']['output'];
-  _modelApiKey: Scalars['String']['output'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _updatedAt: Scalars['DateTime']['output'];
-  beerMatchPrice?: Maybe<Scalars['FloatType']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  dietaryRequirements?: Maybe<Scalars['JsonField']['output']>;
-  id: Scalars['ItemId']['output'];
-  image?: Maybe<Scalars['String']['output']>;
-  kickerberryId?: Maybe<Scalars['IntType']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  price?: Maybe<Scalars['FloatType']['output']>;
-  venue?: Maybe<VenueRecord>;
-};
-
-
-/** Record of type Burger (burger) */
-export type BurgerRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
-
-/** Record of type Burger (burger) */
-export type BurgerRecordDescriptionArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type BurgerdModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<BurgerdModelFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<BurgerdModelFilter>>>;
-  _createdAt?: InputMaybe<CreatedAtFilter>;
-  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
-  _isValid?: InputMaybe<BooleanFilter>;
-  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _publishedAt?: InputMaybe<PublishedAtFilter>;
-  _status?: InputMaybe<StatusFilter>;
-  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  id?: InputMaybe<ItemIdFilter>;
-};
-
-export enum BurgerdModelOrderBy {
-  CreatedAtAsc = '_createdAt_ASC',
-  CreatedAtDesc = '_createdAt_DESC',
-  FirstPublishedAtAsc = '_firstPublishedAt_ASC',
-  FirstPublishedAtDesc = '_firstPublishedAt_DESC',
-  IsValidAsc = '_isValid_ASC',
-  IsValidDesc = '_isValid_DESC',
-  PublicationScheduledAtAsc = '_publicationScheduledAt_ASC',
-  PublicationScheduledAtDesc = '_publicationScheduledAt_DESC',
-  PublishedAtAsc = '_publishedAt_ASC',
-  PublishedAtDesc = '_publishedAt_DESC',
-  StatusAsc = '_status_ASC',
-  StatusDesc = '_status_DESC',
-  UnpublishingScheduledAtAsc = '_unpublishingScheduledAt_ASC',
-  UnpublishingScheduledAtDesc = '_unpublishingScheduledAt_DESC',
-  UpdatedAtAsc = '_updatedAt_ASC',
-  UpdatedAtDesc = '_updatedAt_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC'
-}
-
-/** Record of type Burgerd (burgerd) */
-export type BurgerdRecord = RecordInterface & {
-  __typename?: 'BurgerdRecord';
-  _createdAt: Scalars['DateTime']['output'];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
-  _isValid: Scalars['BooleanType']['output'];
-  _modelApiKey: Scalars['String']['output'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _updatedAt: Scalars['DateTime']['output'];
-  id: Scalars['ItemId']['output'];
-};
-
-
-/** Record of type Burgerd (burgerd) */
-export type BurgerdRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
-/** Block of type Button (button) */
-export type ButtonRecord = RecordInterface & {
-  __typename?: 'ButtonRecord';
-  _createdAt: Scalars['DateTime']['output'];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
-  _isValid: Scalars['BooleanType']['output'];
-  _modelApiKey: Scalars['String']['output'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _updatedAt: Scalars['DateTime']['output'];
-  buttonColor?: Maybe<ColorField>;
-  buttonLink?: Maybe<Scalars['String']['output']>;
-  buttonText?: Maybe<Scalars['String']['output']>;
-  id: Scalars['ItemId']['output'];
-};
-
-
-/** Block of type Button (button) */
-export type ButtonRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
 };
 
 export type CollectionMetadata = {
@@ -311,6 +115,31 @@ export type ColorField = {
   red: Scalars['IntType']['output'];
 };
 
+/** Record of type Contact Page (contact_page) */
+export type ContactPageRecord = RecordInterface & {
+  __typename?: 'ContactPageRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+};
+
+
+/** Record of type Contact Page (contact_page) */
+export type ContactPageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter by creation datetime */
 export type CreatedAtFilter = {
   /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
@@ -329,15 +158,9 @@ export type CreatedAtFilter = {
   neq?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-export enum FaviconType {
-  AppleTouchIcon = 'appleTouchIcon',
-  Icon = 'icon',
-  MsApplication = 'msApplication'
-}
-
-/** Block of type Festival CTA Tile (festival_cta_tile) */
-export type FestivalCtaTileRecord = RecordInterface & {
-  __typename?: 'FestivalCtaTileRecord';
+/** Block of type Double Image Block (double_image_block) */
+export type DoubleImageBlockRecord = RecordInterface & {
+  __typename?: 'DoubleImageBlockRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -351,18 +174,22 @@ export type FestivalCtaTileRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
-  dateRange?: Maybe<Scalars['String']['output']>;
   id: Scalars['ItemId']['output'];
-  titleLower?: Maybe<Scalars['String']['output']>;
-  titleUpper?: Maybe<Scalars['String']['output']>;
-  typeOfTile?: Maybe<Scalars['String']['output']>;
+  imageLeft?: Maybe<FileField>;
+  imageRight?: Maybe<FileField>;
 };
 
 
-/** Block of type Festival CTA Tile (festival_cta_tile) */
-export type FestivalCtaTileRecord_SeoMetaTagsArgs = {
+/** Block of type Double Image Block (double_image_block) */
+export type DoubleImageBlockRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
+
+export enum FaviconType {
+  AppleTouchIcon = 'appleTouchIcon',
+  Icon = 'icon',
+  MsApplication = 'msApplication'
+}
 
 export type FileField = FileFieldInterface & {
   __typename?: 'FileField';
@@ -521,22 +348,18 @@ export type FileFieldInterfaceUrlArgs = {
   imgixParams?: InputMaybe<ImgixParams>;
 };
 
-/** Specifies how to filter Floating-point fields */
-export type FloatFilter = {
-  /** Search for records with an exact match */
-  eq?: InputMaybe<Scalars['FloatType']['input']>;
+/** Specifies how to filter Single-file/image fields */
+export type FileFilter = {
+  /** Search for records with an exact match. The specified value must be an Upload ID */
+  eq?: InputMaybe<Scalars['UploadId']['input']>;
   /** Filter records with the specified field defined (i.e. with any value) or not */
   exists?: InputMaybe<Scalars['BooleanType']['input']>;
-  /** Filter records with a value that's strictly greater than the one specified */
-  gt?: InputMaybe<Scalars['FloatType']['input']>;
-  /** Filter records with a value that's greater than or equal to the one specified */
-  gte?: InputMaybe<Scalars['FloatType']['input']>;
-  /** Filter records with a value that's less than the one specified */
-  lt?: InputMaybe<Scalars['FloatType']['input']>;
-  /** Filter records with a value that's less or equal than the one specified */
-  lte?: InputMaybe<Scalars['FloatType']['input']>;
-  /** Exclude records with an exact match */
-  neq?: InputMaybe<Scalars['FloatType']['input']>;
+  /** Filter records that have one of the specified uploads */
+  in?: InputMaybe<Array<InputMaybe<Scalars['UploadId']['input']>>>;
+  /** Exclude records with an exact match. The specified value must be an Upload ID */
+  neq?: InputMaybe<Scalars['UploadId']['input']>;
+  /** Filter records that do not have one of the specified uploads */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']['input']>>>;
 };
 
 export type GlobalSeoField = {
@@ -548,9 +371,9 @@ export type GlobalSeoField = {
   twitterAccount?: Maybe<Scalars['String']['output']>;
 };
 
-/** Block of type Header (header) */
-export type HeaderRecord = RecordInterface & {
-  __typename?: 'HeaderRecord';
+/** Record of type Homepage (home_page) */
+export type HomePageRecord = RecordInterface & {
+  __typename?: 'HomePageRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -564,90 +387,14 @@ export type HeaderRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
-  headerBackgroundImage?: Maybe<FileField>;
-  headerLockup?: Maybe<FileField>;
-  id: Scalars['ItemId']['output'];
-};
-
-
-/** Block of type Header (header) */
-export type HeaderRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
-/** Block of type Header Section (header_section) */
-export type HeaderSectionRecord = RecordInterface & {
-  __typename?: 'HeaderSectionRecord';
-  _createdAt: Scalars['DateTime']['output'];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
-  _isValid: Scalars['BooleanType']['output'];
-  _modelApiKey: Scalars['String']['output'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _updatedAt: Scalars['DateTime']['output'];
-  headerVersion: Array<HeaderRecord>;
-  id: Scalars['ItemId']['output'];
-};
-
-
-/** Block of type Header Section (header_section) */
-export type HeaderSectionRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
-export type HomepageModelIntroCopyField = {
-  __typename?: 'HomepageModelIntroCopyField';
-  blocks: Array<Scalars['String']['output']>;
-  links: Array<Scalars['String']['output']>;
-  value: Scalars['JsonField']['output'];
-};
-
-/** Record of type Homepage (homepage) */
-export type HomepageRecord = RecordInterface & {
-  __typename?: 'HomepageRecord';
-  _createdAt: Scalars['DateTime']['output'];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
-  _isValid: Scalars['BooleanType']['output'];
-  _modelApiKey: Scalars['String']['output'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _updatedAt: Scalars['DateTime']['output'];
-  blog1BackgroundColor?: Maybe<ColorField>;
-  blog1Headline?: Maybe<Scalars['String']['output']>;
-  blog1Posts: Array<BlogPostRecord>;
-  blog2BackgroundColor?: Maybe<ColorField>;
-  blog2Headline?: Maybe<Scalars['String']['output']>;
-  blog2Posts: Array<BlogPostRecord>;
-  buttonContainer: Array<ButtonRecord>;
-  festivalTiles: Array<FestivalCtaTileRecord>;
-  headerHeroImage?: Maybe<FileField>;
   headerLogo?: Maybe<FileField>;
   headline?: Maybe<Scalars['String']['output']>;
   id: Scalars['ItemId']['output'];
-  instaBackgroundColor?: Maybe<ColorField>;
-  instaHeadline?: Maybe<Scalars['String']['output']>;
-  introBackgroundColor?: Maybe<ColorField>;
-  introCopy?: Maybe<HomepageModelIntroCopyField>;
-  sectionContainer: Array<Scalars['String']['output']>;
-  videoBackgroundColor?: Maybe<ColorField>;
-  videoId?: Maybe<Scalars['String']['output']>;
 };
 
 
-/** Record of type Homepage (homepage) */
-export type HomepageRecord_SeoMetaTagsArgs = {
+/** Record of type Homepage (home_page) */
+export type HomePageRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2071,51 +1818,6 @@ export type InUseFilter = {
   eq?: InputMaybe<Scalars['BooleanType']['input']>;
 };
 
-/** Block of type Instagram Section (instagram_section) */
-export type InstagramSectionRecord = RecordInterface & {
-  __typename?: 'InstagramSectionRecord';
-  _createdAt: Scalars['DateTime']['output'];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
-  _isValid: Scalars['BooleanType']['output'];
-  _modelApiKey: Scalars['String']['output'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _updatedAt: Scalars['DateTime']['output'];
-  id: Scalars['ItemId']['output'];
-  instaBackgroundColor?: Maybe<ColorField>;
-  instaHeadline?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** Block of type Instagram Section (instagram_section) */
-export type InstagramSectionRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
-/** Specifies how to filter Integer fields */
-export type IntegerFilter = {
-  /** Search for records with an exact match */
-  eq?: InputMaybe<Scalars['IntType']['input']>;
-  /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']['input']>;
-  /** Filter records with a value that's strictly greater than the one specified */
-  gt?: InputMaybe<Scalars['IntType']['input']>;
-  /** Filter records with a value that's greater than or equal to the one specified */
-  gte?: InputMaybe<Scalars['IntType']['input']>;
-  /** Filter records with a value that's less than the one specified */
-  lt?: InputMaybe<Scalars['IntType']['input']>;
-  /** Filter records with a value that's less or equal than the one specified */
-  lte?: InputMaybe<Scalars['IntType']['input']>;
-  /** Exclude records with an exact match */
-  neq?: InputMaybe<Scalars['IntType']['input']>;
-};
-
 /** Specifies how to filter by ID */
 export type ItemIdFilter = {
   /** Search the record with the specified ID */
@@ -2134,51 +1836,23 @@ export enum ItemStatus {
   Updated = 'updated'
 }
 
-/** Specifies how to filter JSON fields */
-export type JsonFilter = {
-  /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']['input']>;
+export enum MuxThumbnailFormatType {
+  Gif = 'gif',
+  Jpg = 'jpg',
+  Png = 'png'
+}
+
+/** Specifies how to filter by image orientation */
+export type OrientationFilter = {
+  /** Search uploads with the specified orientation */
+  eq?: InputMaybe<UploadOrientation>;
+  /** Exclude uploads with the specified orientation */
+  neq?: InputMaybe<UploadOrientation>;
 };
 
-export type LatLonField = {
-  __typename?: 'LatLonField';
-  latitude: Scalars['FloatType']['output'];
-  longitude: Scalars['FloatType']['output'];
-};
-
-/** Specifies how to filter Geolocation fields */
-export type LatLonFilter = {
-  /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']['input']>;
-  /** Filter records within the specified radius in meters */
-  near?: InputMaybe<LatLonNearFilter>;
-};
-
-export type LatLonNearFilter = {
-  latitude: Scalars['FloatType']['input'];
-  longitude: Scalars['FloatType']['input'];
-  radius: Scalars['FloatType']['input'];
-};
-
-/** Specifies how to filter Single-link fields */
-export type LinkFilter = {
-  /** Search for records with an exact match. The specified value must be a Record ID */
-  eq?: InputMaybe<Scalars['ItemId']['input']>;
-  /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars['BooleanType']['input']>;
-  /** Filter records linked to one of the specified records */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ItemId']['input']>>>;
-  /** Exclude records with an exact match. The specified value must be a Record ID */
-  neq?: InputMaybe<Scalars['ItemId']['input']>;
-  /** Filter records not linked to one of the specified records */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ItemId']['input']>>>;
-};
-
-export type ModularHomepageModelHomepageField = BlogSectionRecord | HeaderSectionRecord | InstagramSectionRecord | TextSectionRecord | TileSectionRecord | VideoSectionRecord;
-
-/** Record of type Modular Homepage (modular_homepage) */
-export type ModularHomepageRecord = RecordInterface & {
-  __typename?: 'ModularHomepageRecord';
+/** Record of type People Page (people_page) */
+export type PeoplePageRecord = RecordInterface & {
+  __typename?: 'PeoplePageRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -2192,36 +1866,174 @@ export type ModularHomepageRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
-  bannerText?: Maybe<Scalars['String']['output']>;
-  cookie?: Maybe<Scalars['String']['output']>;
-  homepage: Array<ModularHomepageModelHomepageField>;
   id: Scalars['ItemId']['output'];
 };
 
 
-/** Record of type Modular Homepage (modular_homepage) */
-export type ModularHomepageRecord_SeoMetaTagsArgs = {
+/** Record of type People Page (people_page) */
+export type PeoplePageRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-
-/** Record of type Modular Homepage (modular_homepage) */
-export type ModularHomepageRecordBannerTextArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+export type PersonModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<PersonModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<PersonModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
 };
 
-export enum MuxThumbnailFormatType {
-  Gif = 'gif',
-  Jpg = 'jpg',
-  Png = 'png'
+export enum PersonModelOrderBy {
+  CreatedAtAsc = '_createdAt_ASC',
+  CreatedAtDesc = '_createdAt_DESC',
+  FirstPublishedAtAsc = '_firstPublishedAt_ASC',
+  FirstPublishedAtDesc = '_firstPublishedAt_DESC',
+  IsValidAsc = '_isValid_ASC',
+  IsValidDesc = '_isValid_DESC',
+  PublicationScheduledAtAsc = '_publicationScheduledAt_ASC',
+  PublicationScheduledAtDesc = '_publicationScheduledAt_DESC',
+  PublishedAtAsc = '_publishedAt_ASC',
+  PublishedAtDesc = '_publishedAt_DESC',
+  StatusAsc = '_status_ASC',
+  StatusDesc = '_status_DESC',
+  UnpublishingScheduledAtAsc = '_unpublishingScheduledAt_ASC',
+  UnpublishingScheduledAtDesc = '_unpublishingScheduledAt_DESC',
+  UpdatedAtAsc = '_updatedAt_ASC',
+  UpdatedAtDesc = '_updatedAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC'
 }
 
-/** Specifies how to filter by image orientation */
-export type OrientationFilter = {
-  /** Search uploads with the specified orientation */
-  eq?: InputMaybe<UploadOrientation>;
-  /** Exclude uploads with the specified orientation */
-  neq?: InputMaybe<UploadOrientation>;
+/** Record of type Person (person) */
+export type PersonRecord = RecordInterface & {
+  __typename?: 'PersonRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+};
+
+
+/** Record of type Person (person) */
+export type PersonRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type ProjectModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<ProjectModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<ProjectModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  alignment?: InputMaybe<StringFilter>;
+  category?: InputMaybe<StringFilter>;
+  client?: InputMaybe<StringFilter>;
+  featuredImage?: InputMaybe<FileFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  platform?: InputMaybe<StringFilter>;
+  projectName?: InputMaybe<StringFilter>;
+  projectUrl?: InputMaybe<StringFilter>;
+  service?: InputMaybe<StringFilter>;
+  slug?: InputMaybe<StringFilter>;
+  year?: InputMaybe<StringFilter>;
+};
+
+export type ProjectModelFlexibleContentField = DoubleImageBlockRecord | QuoteBlockRecord | SingleImageBlockRecord | TextSingleBlockRecord | TextTwoColumnBlockRecord;
+
+export enum ProjectModelOrderBy {
+  CreatedAtAsc = '_createdAt_ASC',
+  CreatedAtDesc = '_createdAt_DESC',
+  FirstPublishedAtAsc = '_firstPublishedAt_ASC',
+  FirstPublishedAtDesc = '_firstPublishedAt_DESC',
+  IsValidAsc = '_isValid_ASC',
+  IsValidDesc = '_isValid_DESC',
+  PublicationScheduledAtAsc = '_publicationScheduledAt_ASC',
+  PublicationScheduledAtDesc = '_publicationScheduledAt_DESC',
+  PublishedAtAsc = '_publishedAt_ASC',
+  PublishedAtDesc = '_publishedAt_DESC',
+  StatusAsc = '_status_ASC',
+  StatusDesc = '_status_DESC',
+  UnpublishingScheduledAtAsc = '_unpublishingScheduledAt_ASC',
+  UnpublishingScheduledAtDesc = '_unpublishingScheduledAt_DESC',
+  UpdatedAtAsc = '_updatedAt_ASC',
+  UpdatedAtDesc = '_updatedAt_DESC',
+  AlignmentAsc = 'alignment_ASC',
+  AlignmentDesc = 'alignment_DESC',
+  CategoryAsc = 'category_ASC',
+  CategoryDesc = 'category_DESC',
+  ClientAsc = 'client_ASC',
+  ClientDesc = 'client_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PlatformAsc = 'platform_ASC',
+  PlatformDesc = 'platform_DESC',
+  ProjectNameAsc = 'projectName_ASC',
+  ProjectNameDesc = 'projectName_DESC',
+  ProjectUrlAsc = 'projectUrl_ASC',
+  ProjectUrlDesc = 'projectUrl_DESC',
+  ServiceAsc = 'service_ASC',
+  ServiceDesc = 'service_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  YearAsc = 'year_ASC',
+  YearDesc = 'year_DESC'
+}
+
+/** Record of type Project (project) */
+export type ProjectRecord = RecordInterface & {
+  __typename?: 'ProjectRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  alignment?: Maybe<Scalars['String']['output']>;
+  category?: Maybe<Scalars['String']['output']>;
+  client?: Maybe<Scalars['String']['output']>;
+  featuredImage?: Maybe<FileField>;
+  flexibleContent: Array<ProjectModelFlexibleContentField>;
+  id: Scalars['ItemId']['output'];
+  platform?: Maybe<Scalars['String']['output']>;
+  projectName?: Maybe<Scalars['String']['output']>;
+  projectUrl?: Maybe<Scalars['String']['output']>;
+  service?: Maybe<Scalars['String']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Project (project) */
+export type ProjectRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 /** Specifies how to filter by publication datetime */
@@ -2246,52 +2058,65 @@ export type PublishedAtFilter = {
 export type Query = {
   __typename?: 'Query';
   /** Returns meta information regarding a record collection */
-  _allBurgerdsMeta: CollectionMetadata;
+  _allPeopleMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
-  _allBurgersMeta: CollectionMetadata;
+  _allProjectsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allRdProjectsMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta: CollectionMetadata;
-  /** Returns meta information regarding a record collection */
-  _allVenuesMeta: CollectionMetadata;
   /** Returns the single instance record */
   _site: Site;
+  /** Returns the single instance record */
+  aboutPage?: Maybe<AboutPageRecord>;
   /** Returns a collection of records */
-  allBurgerds: Array<BurgerdRecord>;
+  allPeople: Array<PersonRecord>;
   /** Returns a collection of records */
-  allBurgers: Array<BurgerRecord>;
+  allProjects: Array<ProjectRecord>;
+  /** Returns a collection of records */
+  allRdProjects: Array<RdProjectRecord>;
   /** Returns a collection of assets */
   allUploads: Array<FileField>;
-  /** Returns a collection of records */
-  allVenues: Array<VenueRecord>;
-  /** Returns a specific record */
-  burger?: Maybe<BurgerRecord>;
-  /** Returns a specific record */
-  burgerd?: Maybe<BurgerdRecord>;
   /** Returns the single instance record */
-  homepage?: Maybe<HomepageRecord>;
+  approachPage?: Maybe<ApproachPageRecord>;
   /** Returns the single instance record */
-  modularHomepage?: Maybe<ModularHomepageRecord>;
+  contactPage?: Maybe<ContactPageRecord>;
+  /** Returns the single instance record */
+  homePage?: Maybe<HomePageRecord>;
+  /** Returns the single instance record */
+  peoplePage?: Maybe<PeoplePageRecord>;
+  /** Returns a specific record */
+  person?: Maybe<PersonRecord>;
+  /** Returns a specific record */
+  project?: Maybe<ProjectRecord>;
+  /** Returns the single instance record */
+  rdPage?: Maybe<RdPageRecord>;
+  /** Returns a specific record */
+  rdProject?: Maybe<RdProjectRecord>;
   /** Returns a specific asset */
   upload?: Maybe<FileField>;
-  /** Returns a specific record */
-  venue?: Maybe<VenueRecord>;
   /** Returns the single instance record */
-  woapSetting?: Maybe<WoapSettingRecord>;
+  workPage?: Maybe<WorkPageRecord>;
 };
 
 
 /** The query root for this schema */
-export type Query_AllBurgerdsMetaArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<BurgerdModelFilter>;
+export type Query_AllPeopleMetaArgs = {
+  filter?: InputMaybe<PersonModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
 
 /** The query root for this schema */
-export type Query_AllBurgersMetaArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<BurgerModelFilter>;
+export type Query_AllProjectsMetaArgs = {
+  filter?: InputMaybe<ProjectModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type Query_AllRdProjectsMetaArgs = {
+  filter?: InputMaybe<RdProjectModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2304,14 +2129,6 @@ export type Query_AllUploadsMetaArgs = {
 
 
 /** The query root for this schema */
-export type Query_AllVenuesMetaArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<VenueModelFilter>;
-  locale?: InputMaybe<SiteLocale>;
-};
-
-
-/** The query root for this schema */
 export type Query_SiteArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
@@ -2319,23 +2136,41 @@ export type Query_SiteArgs = {
 
 
 /** The query root for this schema */
-export type QueryAllBurgerdsArgs = {
+export type QueryAboutPageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<BurgerdModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type QueryAllPeopleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PersonModelFilter>;
   first?: InputMaybe<Scalars['IntType']['input']>;
   locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<BurgerdModelOrderBy>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<PersonModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
 
 /** The query root for this schema */
-export type QueryAllBurgersArgs = {
+export type QueryAllProjectsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<BurgerModelFilter>;
+  filter?: InputMaybe<ProjectModelFilter>;
   first?: InputMaybe<Scalars['IntType']['input']>;
   locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<BurgerModelOrderBy>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<ProjectModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+export type QueryAllRdProjectsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<RdProjectModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<RdProjectModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
@@ -2352,45 +2187,64 @@ export type QueryAllUploadsArgs = {
 
 
 /** The query root for this schema */
-export type QueryAllVenuesArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<VenueModelFilter>;
-  first?: InputMaybe<Scalars['IntType']['input']>;
-  locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<VenueModelOrderBy>>>;
-  skip?: InputMaybe<Scalars['IntType']['input']>;
-};
-
-
-/** The query root for this schema */
-export type QueryBurgerArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<BurgerModelFilter>;
-  locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<BurgerModelOrderBy>>>;
-};
-
-
-/** The query root for this schema */
-export type QueryBurgerdArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<BurgerdModelFilter>;
-  locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<BurgerdModelOrderBy>>>;
-};
-
-
-/** The query root for this schema */
-export type QueryHomepageArgs = {
+export type QueryApproachPageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
 };
 
 
 /** The query root for this schema */
-export type QueryModularHomepageArgs = {
+export type QueryContactPageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type QueryHomePageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type QueryPeoplePageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type QueryPersonArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PersonModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<PersonModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+export type QueryProjectArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ProjectModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ProjectModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+export type QueryRdPageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type QueryRdProjectArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<RdProjectModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<RdProjectModelOrderBy>>>;
 };
 
 
@@ -2404,17 +2258,127 @@ export type QueryUploadArgs = {
 
 
 /** The query root for this schema */
-export type QueryVenueArgs = {
+export type QueryWorkPageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<VenueModelFilter>;
   locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<VenueModelOrderBy>>>;
+};
+
+export type QuoteBlockModelQuoteField = {
+  __typename?: 'QuoteBlockModelQuoteField';
+  blocks: Array<Scalars['String']['output']>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
+/** Block of type Quote Block (quote_block) */
+export type QuoteBlockRecord = RecordInterface & {
+  __typename?: 'QuoteBlockRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  quote?: Maybe<QuoteBlockModelQuoteField>;
+  quotee?: Maybe<Scalars['String']['output']>;
 };
 
 
-/** The query root for this schema */
-export type QueryWoapSettingArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+/** Block of type Quote Block (quote_block) */
+export type QuoteBlockRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type R&D Page (rd_page) */
+export type RdPageRecord = RecordInterface & {
+  __typename?: 'RdPageRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+};
+
+
+/** Record of type R&D Page (rd_page) */
+export type RdPageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type RdProjectModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<RdProjectModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<RdProjectModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+};
+
+export enum RdProjectModelOrderBy {
+  CreatedAtAsc = '_createdAt_ASC',
+  CreatedAtDesc = '_createdAt_DESC',
+  FirstPublishedAtAsc = '_firstPublishedAt_ASC',
+  FirstPublishedAtDesc = '_firstPublishedAt_DESC',
+  IsValidAsc = '_isValid_ASC',
+  IsValidDesc = '_isValid_DESC',
+  PublicationScheduledAtAsc = '_publicationScheduledAt_ASC',
+  PublicationScheduledAtDesc = '_publicationScheduledAt_DESC',
+  PublishedAtAsc = '_publishedAt_ASC',
+  PublishedAtDesc = '_publishedAt_DESC',
+  StatusAsc = '_status_ASC',
+  StatusDesc = '_status_DESC',
+  UnpublishingScheduledAtAsc = '_unpublishingScheduledAt_ASC',
+  UnpublishingScheduledAtDesc = '_unpublishingScheduledAt_DESC',
+  UpdatedAtAsc = '_updatedAt_ASC',
+  UpdatedAtDesc = '_updatedAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC'
+}
+
+/** Record of type R&D project (rd_project) */
+export type RdProjectRecord = RecordInterface & {
+  __typename?: 'RdProjectRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+};
+
+
+/** Record of type R&D project (rd_project) */
+export type RdProjectRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2481,6 +2445,33 @@ export type SeoField = {
   noIndex?: Maybe<Scalars['BooleanType']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   twitterCard?: Maybe<Scalars['String']['output']>;
+};
+
+/** Block of type Single Image Block (single_image_block) */
+export type SingleImageBlockRecord = RecordInterface & {
+  __typename?: 'SingleImageBlockRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  fullwidth: Scalars['BooleanType']['output'];
+  id: Scalars['ItemId']['output'];
+  image?: Maybe<FileField>;
+};
+
+
+/** Block of type Single Image Block (single_image_block) */
+export type SingleImageBlockRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 export type Site = {
@@ -2554,30 +2545,16 @@ export type Tag = {
   tag: Scalars['String']['output'];
 };
 
-/** Specifies how to filter text fields */
-export type TextFilter = {
-  /** Filter records with the specified field defined (i.e. with any value) or not [DEPRECATED] */
-  exists?: InputMaybe<Scalars['BooleanType']['input']>;
-  /** Filter records with the specified field set as blank (null or empty string) */
-  isBlank?: InputMaybe<Scalars['BooleanType']['input']>;
-  /** Filter records with the specified field present (neither null, nor empty string) */
-  isPresent?: InputMaybe<Scalars['BooleanType']['input']>;
-  /** Filter records based on a regular expression */
-  matches?: InputMaybe<StringMatchesFilter>;
-  /** Exclude records based on a regular expression */
-  notMatches?: InputMaybe<StringMatchesFilter>;
-};
-
-export type TextSectionModelCopyField = {
-  __typename?: 'TextSectionModelCopyField';
+export type TextSingleBlockModelTextSingleField = {
+  __typename?: 'TextSingleBlockModelTextSingleField';
   blocks: Array<Scalars['String']['output']>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
 
-/** Block of type Text Section (text_section) */
-export type TextSectionRecord = RecordInterface & {
-  __typename?: 'TextSectionRecord';
+/** Block of type Text Single Block (text_single_block) */
+export type TextSingleBlockRecord = RecordInterface & {
+  __typename?: 'TextSingleBlockRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -2591,22 +2568,34 @@ export type TextSectionRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
-  buttonContainer: Array<ButtonRecord>;
-  copy?: Maybe<TextSectionModelCopyField>;
-  headline?: Maybe<Scalars['String']['output']>;
   id: Scalars['ItemId']['output'];
-  textBackgroundColour?: Maybe<ColorField>;
+  textBlockAlignment?: Maybe<Scalars['String']['output']>;
+  textSingle?: Maybe<TextSingleBlockModelTextSingleField>;
 };
 
 
-/** Block of type Text Section (text_section) */
-export type TextSectionRecord_SeoMetaTagsArgs = {
+/** Block of type Text Single Block (text_single_block) */
+export type TextSingleBlockRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-/** Block of type Tile Section (tile_section) */
-export type TileSectionRecord = RecordInterface & {
-  __typename?: 'TileSectionRecord';
+export type TextTwoColumnBlockModelTextLeftColumnField = {
+  __typename?: 'TextTwoColumnBlockModelTextLeftColumnField';
+  blocks: Array<Scalars['String']['output']>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
+export type TextTwoColumnBlockModelTextRightColumnField = {
+  __typename?: 'TextTwoColumnBlockModelTextRightColumnField';
+  blocks: Array<Scalars['String']['output']>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
+/** Block of type Text Two Column Block (text_two_column_block) */
+export type TextTwoColumnBlockRecord = RecordInterface & {
+  __typename?: 'TextTwoColumnBlockRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -2620,13 +2609,14 @@ export type TileSectionRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
-  festivalTiles: Array<FestivalCtaTileRecord>;
   id: Scalars['ItemId']['output'];
+  textLeftColumn?: Maybe<TextTwoColumnBlockModelTextLeftColumnField>;
+  textRightColumn?: Maybe<TextTwoColumnBlockModelTextRightColumnField>;
 };
 
 
-/** Block of type Tile Section (tile_section) */
-export type TileSectionRecord_SeoMetaTagsArgs = {
+/** Block of type Text Two Column Block (text_two_column_block) */
+export type TextTwoColumnBlockRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2954,13 +2944,34 @@ export type UploadUpdatedAtFilter = {
 
 export type UploadVideoField = {
   __typename?: 'UploadVideoField';
+  alt?: Maybe<Scalars['String']['output']>;
+  blurUpThumb?: Maybe<Scalars['String']['output']>;
+  blurhash?: Maybe<Scalars['String']['output']>;
   duration?: Maybe<Scalars['Int']['output']>;
   framerate?: Maybe<Scalars['Int']['output']>;
+  height: Scalars['IntType']['output'];
   mp4Url?: Maybe<Scalars['String']['output']>;
   muxAssetId: Scalars['String']['output'];
   muxPlaybackId: Scalars['String']['output'];
   streamingUrl: Scalars['String']['output'];
+  thumbhash?: Maybe<Scalars['String']['output']>;
   thumbnailUrl: Scalars['String']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+  width: Scalars['IntType']['output'];
+};
+
+
+export type UploadVideoFieldAltArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+export type UploadVideoFieldBlurUpThumbArgs = {
+  imgixParams?: InputMaybe<ImgixParams>;
+  punch?: Scalars['Float']['input'];
+  quality?: Scalars['Int']['input'];
+  size?: Scalars['Int']['input'];
 };
 
 
@@ -2972,6 +2983,12 @@ export type UploadVideoFieldMp4UrlArgs = {
 
 export type UploadVideoFieldThumbnailUrlArgs = {
   format?: InputMaybe<MuxThumbnailFormatType>;
+};
+
+
+export type UploadVideoFieldTitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 /** Specifies how to filter by width */
@@ -2990,137 +3007,15 @@ export type UploadWidthFilter = {
   neq?: InputMaybe<Scalars['IntType']['input']>;
 };
 
-export type VenueModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<VenueModelFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<VenueModelFilter>>>;
-  _createdAt?: InputMaybe<CreatedAtFilter>;
-  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
-  _isValid?: InputMaybe<BooleanFilter>;
-  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _publishedAt?: InputMaybe<PublishedAtFilter>;
-  _status?: InputMaybe<StatusFilter>;
-  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  address1?: InputMaybe<StringFilter>;
-  address2?: InputMaybe<StringFilter>;
-  contactPerson?: InputMaybe<StringFilter>;
-  coordinates?: InputMaybe<LatLonFilter>;
-  description?: InputMaybe<TextFilter>;
-  facebook?: InputMaybe<StringFilter>;
-  id?: InputMaybe<ItemIdFilter>;
-  image?: InputMaybe<StringFilter>;
-  instagram?: InputMaybe<StringFilter>;
-  kickerberryId?: InputMaybe<IntegerFilter>;
-  name?: InputMaybe<StringFilter>;
-  phone?: InputMaybe<StringFilter>;
-  postcode?: InputMaybe<StringFilter>;
-  suburb?: InputMaybe<StringFilter>;
-  tiktok?: InputMaybe<StringFilter>;
-  website?: InputMaybe<StringFilter>;
-};
-
-export enum VenueModelOrderBy {
-  CreatedAtAsc = '_createdAt_ASC',
-  CreatedAtDesc = '_createdAt_DESC',
-  FirstPublishedAtAsc = '_firstPublishedAt_ASC',
-  FirstPublishedAtDesc = '_firstPublishedAt_DESC',
-  IsValidAsc = '_isValid_ASC',
-  IsValidDesc = '_isValid_DESC',
-  PublicationScheduledAtAsc = '_publicationScheduledAt_ASC',
-  PublicationScheduledAtDesc = '_publicationScheduledAt_DESC',
-  PublishedAtAsc = '_publishedAt_ASC',
-  PublishedAtDesc = '_publishedAt_DESC',
-  StatusAsc = '_status_ASC',
-  StatusDesc = '_status_DESC',
-  UnpublishingScheduledAtAsc = '_unpublishingScheduledAt_ASC',
-  UnpublishingScheduledAtDesc = '_unpublishingScheduledAt_DESC',
-  UpdatedAtAsc = '_updatedAt_ASC',
-  UpdatedAtDesc = '_updatedAt_DESC',
-  Address1Asc = 'address1_ASC',
-  Address1Desc = 'address1_DESC',
-  Address2Asc = 'address2_ASC',
-  Address2Desc = 'address2_DESC',
-  ContactPersonAsc = 'contactPerson_ASC',
-  ContactPersonDesc = 'contactPerson_DESC',
-  FacebookAsc = 'facebook_ASC',
-  FacebookDesc = 'facebook_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  ImageAsc = 'image_ASC',
-  ImageDesc = 'image_DESC',
-  InstagramAsc = 'instagram_ASC',
-  InstagramDesc = 'instagram_DESC',
-  KickerberryIdAsc = 'kickerberryId_ASC',
-  KickerberryIdDesc = 'kickerberryId_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  PhoneAsc = 'phone_ASC',
-  PhoneDesc = 'phone_DESC',
-  PostcodeAsc = 'postcode_ASC',
-  PostcodeDesc = 'postcode_DESC',
-  SuburbAsc = 'suburb_ASC',
-  SuburbDesc = 'suburb_DESC',
-  TiktokAsc = 'tiktok_ASC',
-  TiktokDesc = 'tiktok_DESC',
-  WebsiteAsc = 'website_ASC',
-  WebsiteDesc = 'website_DESC'
-}
-
-/** Record of type Venue (venue) */
-export type VenueRecord = RecordInterface & {
-  __typename?: 'VenueRecord';
-  _createdAt: Scalars['DateTime']['output'];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
-  _isValid: Scalars['BooleanType']['output'];
-  _modelApiKey: Scalars['String']['output'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _updatedAt: Scalars['DateTime']['output'];
-  address1?: Maybe<Scalars['String']['output']>;
-  address2?: Maybe<Scalars['String']['output']>;
-  contactPerson?: Maybe<Scalars['String']['output']>;
-  coordinates?: Maybe<LatLonField>;
-  description?: Maybe<Scalars['String']['output']>;
-  facebook?: Maybe<Scalars['String']['output']>;
-  id: Scalars['ItemId']['output'];
-  image?: Maybe<Scalars['String']['output']>;
-  instagram?: Maybe<Scalars['String']['output']>;
-  kickerberryId?: Maybe<Scalars['IntType']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  phone?: Maybe<Scalars['String']['output']>;
-  postcode?: Maybe<Scalars['String']['output']>;
-  suburb?: Maybe<Scalars['String']['output']>;
-  tiktok?: Maybe<Scalars['String']['output']>;
-  website?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** Record of type Venue (venue) */
-export type VenueRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
-
-/** Record of type Venue (venue) */
-export type VenueRecordDescriptionArgs = {
-  markdown?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
 export enum VideoMp4Res {
   High = 'high',
   Low = 'low',
   Medium = 'medium'
 }
 
-/** Block of type Video Section (video_section) */
-export type VideoSectionRecord = RecordInterface & {
-  __typename?: 'VideoSectionRecord';
+/** Record of type Work Page (work_page) */
+export type WorkPageRecord = RecordInterface & {
+  __typename?: 'WorkPageRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -3135,74 +3030,11 @@ export type VideoSectionRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
-  videoBackgroundColour?: Maybe<ColorField>;
-  videoId?: Maybe<Scalars['String']['output']>;
 };
 
 
-/** Block of type Video Section (video_section) */
-export type VideoSectionRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
-/** Record of type Woap Settings (woap_setting) */
-export type WoapSettingRecord = RecordInterface & {
-  __typename?: 'WoapSettingRecord';
-  _createdAt: Scalars['DateTime']['output'];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
-  _isValid: Scalars['BooleanType']['output'];
-  _modelApiKey: Scalars['String']['output'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _updatedAt: Scalars['DateTime']['output'];
-  burgerEndDate?: Maybe<Scalars['Date']['output']>;
-  burgerEventTypeId?: Maybe<Scalars['IntType']['output']>;
-  burgerRatingEndDate?: Maybe<Scalars['Date']['output']>;
-  burgerRatingPeriodIsDifferent?: Maybe<Scalars['BooleanType']['output']>;
-  burgerRatingStartDate?: Maybe<Scalars['Date']['output']>;
-  burgerStartDate?: Maybe<Scalars['Date']['output']>;
-  buttonTextBeforeGeneralSale?: Maybe<Scalars['String']['output']>;
-  buttonTextBeforePreSale?: Maybe<Scalars['String']['output']>;
-  buttonTextDuringGeneralSale?: Maybe<Scalars['String']['output']>;
-  buttonTextDuringPreSale?: Maybe<Scalars['String']['output']>;
-  buttonTextPostSeason?: Maybe<Scalars['String']['output']>;
-  cocktailEndDate?: Maybe<Scalars['Date']['output']>;
-  cocktailEventTypeId?: Maybe<Scalars['IntType']['output']>;
-  cocktailRatingEndDate?: Maybe<Scalars['Date']['output']>;
-  cocktailRatingPeriodIsDifferent?: Maybe<Scalars['BooleanType']['output']>;
-  cocktailRatingStartDate?: Maybe<Scalars['Date']['output']>;
-  cocktailStartDate?: Maybe<Scalars['Date']['output']>;
-  dineEndDate?: Maybe<Scalars['Date']['output']>;
-  dineEventTypeId?: Maybe<Scalars['IntType']['output']>;
-  dineRatingEndDate?: Maybe<Scalars['Date']['output']>;
-  dineRatingPeriodIsDifferent?: Maybe<Scalars['BooleanType']['output']>;
-  dineRatingStartDate?: Maybe<Scalars['Date']['output']>;
-  dineStartDate?: Maybe<Scalars['Date']['output']>;
-  eventsEndDate?: Maybe<Scalars['Date']['output']>;
-  eventsEventTypeId?: Maybe<Scalars['IntType']['output']>;
-  eventsStartDate?: Maybe<Scalars['Date']['output']>;
-  festivalEndDate?: Maybe<Scalars['Date']['output']>;
-  festivalStartDate?: Maybe<Scalars['Date']['output']>;
-  generalSaleEndDate?: Maybe<Scalars['Date']['output']>;
-  generalSaleStartDate?: Maybe<Scalars['Date']['output']>;
-  id: Scalars['ItemId']['output'];
-  presaleEndDate?: Maybe<Scalars['Date']['output']>;
-  presaleStartDate?: Maybe<Scalars['Date']['output']>;
-  showBurgerListingsOnBurgerPage?: Maybe<Scalars['BooleanType']['output']>;
-  showCocktailListingsOnCocktailPage?: Maybe<Scalars['BooleanType']['output']>;
-  showDineListingsOnDinePage?: Maybe<Scalars['BooleanType']['output']>;
-  showEventListingsOnEventsPage?: Maybe<Scalars['BooleanType']['output']>;
-};
-
-
-/** Record of type Woap Settings (woap_setting) */
-export type WoapSettingRecord_SeoMetaTagsArgs = {
+/** Record of type Work Page (work_page) */
+export type WorkPageRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -3215,7 +3047,48 @@ export type FocalPoint = {
 export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomePageQuery = { __typename?: 'Query', homepage?: { __typename?: 'HomepageRecord', headline?: string | null, headerLogo?: { __typename?: 'FileField', url: string } | null } | null };
+export type HomePageQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePageRecord', headline?: string | null, headerLogo?: { __typename?: 'FileField', url: string } | null } | null };
+
+export type ProjectFragment = { __typename?: 'ProjectRecord', category?: string | null, client?: string | null, id: any, slug?: string | null, platform?: string | null, projectName?: string | null, projectUrl?: string | null, year?: string | null, service?: string | null, alignment?: string | null, featuredImage?: { __typename?: 'FileField', responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, src: string, sizes: string, base64?: string | null, height: any, title?: string | null, width: any } | null } | null, flexibleContent: Array<(
+    { __typename?: 'DoubleImageBlockRecord' }
+    & { ' $fragmentRefs'?: { 'DoubleImageFragment': DoubleImageFragment } }
+  ) | (
+    { __typename?: 'QuoteBlockRecord' }
+    & { ' $fragmentRefs'?: { 'QuoteFragment': QuoteFragment } }
+  ) | (
+    { __typename?: 'SingleImageBlockRecord' }
+    & { ' $fragmentRefs'?: { 'SingleImageFragment': SingleImageFragment } }
+  ) | (
+    { __typename?: 'TextSingleBlockRecord' }
+    & { ' $fragmentRefs'?: { 'TextSingleFragment': TextSingleFragment } }
+  ) | (
+    { __typename?: 'TextTwoColumnBlockRecord' }
+    & { ' $fragmentRefs'?: { 'TextTwoColumnFragment': TextTwoColumnFragment } }
+  )> } & { ' $fragmentName'?: 'ProjectFragment' };
+
+export type DoubleImageFragment = { __typename?: 'DoubleImageBlockRecord', id: any, imageRight?: { __typename?: 'FileField', alt?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, src: string, sizes: string, base64?: string | null, height: any, title?: string | null, width: any } | null } | null, imageLeft?: { __typename?: 'FileField', alt?: string | null, url: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, src: string, sizes: string, base64?: string | null, height: any, title?: string | null, width: any } | null } | null } & { ' $fragmentName'?: 'DoubleImageFragment' };
+
+export type TextTwoColumnFragment = { __typename?: 'TextTwoColumnBlockRecord', id: any, textRightColumn?: { __typename?: 'TextTwoColumnBlockModelTextRightColumnField', blocks: Array<string>, links: Array<string>, value: any } | null, textLeftColumn?: { __typename?: 'TextTwoColumnBlockModelTextLeftColumnField', blocks: Array<string>, links: Array<string>, value: any } | null } & { ' $fragmentName'?: 'TextTwoColumnFragment' };
+
+export type TextSingleFragment = { __typename?: 'TextSingleBlockRecord', id: any, textBlockAlignment?: string | null, textSingle?: { __typename?: 'TextSingleBlockModelTextSingleField', blocks: Array<string>, links: Array<string>, value: any } | null } & { ' $fragmentName'?: 'TextSingleFragment' };
+
+export type SingleImageFragment = { __typename?: 'SingleImageBlockRecord', id: any, fullwidth: any, image?: { __typename?: 'FileField', responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, src: string, sizes: string, base64?: string | null, height: any, title?: string | null, width: any } | null } | null } & { ' $fragmentName'?: 'SingleImageFragment' };
+
+export type QuoteFragment = { __typename?: 'QuoteBlockRecord', id: any, quotee?: string | null, quote?: { __typename?: 'QuoteBlockModelQuoteField', value: any, links: Array<string>, blocks: Array<string> } | null } & { ' $fragmentName'?: 'QuoteFragment' };
+
+export type GetAllProjectsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export const HomePageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HomePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homepage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"headline"}},{"kind":"Field","name":{"kind":"Name","value":"headerLogo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]} as unknown as DocumentNode<HomePageQuery, HomePageQueryVariables>;
+export type GetAllProjectsQuery = { __typename?: 'Query', allProjects: Array<(
+    { __typename?: 'ProjectRecord' }
+    & { ' $fragmentRefs'?: { 'ProjectFragment': ProjectFragment } }
+  )> };
+
+export const DoubleImageFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DoubleImage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"DoubleImageBlockRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imageRight"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"imageLeft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]} as unknown as DocumentNode<DoubleImageFragment, unknown>;
+export const TextTwoColumnFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TextTwoColumn"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextTwoColumnBlockRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"textRightColumn"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blocks"}},{"kind":"Field","name":{"kind":"Name","value":"links"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textLeftColumn"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blocks"}},{"kind":"Field","name":{"kind":"Name","value":"links"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}}]} as unknown as DocumentNode<TextTwoColumnFragment, unknown>;
+export const TextSingleFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TextSingle"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextSingleBlockRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"textBlockAlignment"}},{"kind":"Field","name":{"kind":"Name","value":"textSingle"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blocks"}},{"kind":"Field","name":{"kind":"Name","value":"links"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}}]} as unknown as DocumentNode<TextSingleFragment, unknown>;
+export const SingleImageFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SingleImage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SingleImageBlockRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"fullwidth"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]}}]}}]} as unknown as DocumentNode<SingleImageFragment, unknown>;
+export const QuoteFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Quote"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"QuoteBlockRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"quote"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}},{"kind":"Field","name":{"kind":"Name","value":"links"}},{"kind":"Field","name":{"kind":"Name","value":"blocks"}}]}},{"kind":"Field","name":{"kind":"Name","value":"quotee"}}]}}]} as unknown as DocumentNode<QuoteFragment, unknown>;
+export const ProjectFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Project"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"category"}},{"kind":"Field","name":{"kind":"Name","value":"client"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"platform"}},{"kind":"Field","name":{"kind":"Name","value":"projectName"}},{"kind":"Field","name":{"kind":"Name","value":"projectUrl"}},{"kind":"Field","name":{"kind":"Name","value":"year"}},{"kind":"Field","name":{"kind":"Name","value":"service"}},{"kind":"Field","name":{"kind":"Name","value":"alignment"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"flexibleContent"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DoubleImage"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextTwoColumn"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextSingle"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"SingleImage"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"Quote"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DoubleImage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"DoubleImageBlockRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imageRight"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"imageLeft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TextTwoColumn"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextTwoColumnBlockRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"textRightColumn"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blocks"}},{"kind":"Field","name":{"kind":"Name","value":"links"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textLeftColumn"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blocks"}},{"kind":"Field","name":{"kind":"Name","value":"links"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TextSingle"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextSingleBlockRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"textBlockAlignment"}},{"kind":"Field","name":{"kind":"Name","value":"textSingle"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blocks"}},{"kind":"Field","name":{"kind":"Name","value":"links"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SingleImage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SingleImageBlockRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"fullwidth"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Quote"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"QuoteBlockRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"quote"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}},{"kind":"Field","name":{"kind":"Name","value":"links"}},{"kind":"Field","name":{"kind":"Name","value":"blocks"}}]}},{"kind":"Field","name":{"kind":"Name","value":"quotee"}}]}}]} as unknown as DocumentNode<ProjectFragment, unknown>;
+export const HomePageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HomePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"headline"}},{"kind":"Field","name":{"kind":"Name","value":"headerLogo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]} as unknown as DocumentNode<HomePageQuery, HomePageQueryVariables>;
+export const GetAllProjectsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getAllProjects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allProjects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Project"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"DoubleImage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"DoubleImageBlockRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imageRight"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"imageLeft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TextTwoColumn"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextTwoColumnBlockRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"textRightColumn"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blocks"}},{"kind":"Field","name":{"kind":"Name","value":"links"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textLeftColumn"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blocks"}},{"kind":"Field","name":{"kind":"Name","value":"links"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TextSingle"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextSingleBlockRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"textBlockAlignment"}},{"kind":"Field","name":{"kind":"Name","value":"textSingle"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blocks"}},{"kind":"Field","name":{"kind":"Name","value":"links"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SingleImage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SingleImageBlockRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"fullwidth"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Quote"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"QuoteBlockRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"quote"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}},{"kind":"Field","name":{"kind":"Name","value":"links"}},{"kind":"Field","name":{"kind":"Name","value":"blocks"}}]}},{"kind":"Field","name":{"kind":"Name","value":"quotee"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Project"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectRecord"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"category"}},{"kind":"Field","name":{"kind":"Name","value":"client"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"platform"}},{"kind":"Field","name":{"kind":"Name","value":"projectName"}},{"kind":"Field","name":{"kind":"Name","value":"projectUrl"}},{"kind":"Field","name":{"kind":"Name","value":"year"}},{"kind":"Field","name":{"kind":"Name","value":"service"}},{"kind":"Field","name":{"kind":"Name","value":"alignment"}},{"kind":"Field","name":{"kind":"Name","value":"featuredImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"responsiveImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"src"}},{"kind":"Field","name":{"kind":"Name","value":"sizes"}},{"kind":"Field","name":{"kind":"Name","value":"base64"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"flexibleContent"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DoubleImage"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextTwoColumn"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextSingle"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"SingleImage"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"Quote"}}]}}]}}]} as unknown as DocumentNode<GetAllProjectsQuery, GetAllProjectsQueryVariables>;

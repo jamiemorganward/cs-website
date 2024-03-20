@@ -1,0 +1,13 @@
+@import '../../styles/config';
+
+.page-title-wrapper {
+  width: 100%;
+  margin: 0 3rem;
+}
+
+.page-title {
+  color: $black;
+  font-size: 196px;
+  font-family: $heading-font-family;
+  font-weight: 500;
+}
