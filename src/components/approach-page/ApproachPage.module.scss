@@ -2,4 +2,26 @@
 
 .card-wrapper {
   display: flex;
+  position: relative;
+  justify-content: center;
+  height: 90vh;
+  align-items: flex-end;
+}
+
+.card-one-wrapper,
+.card-two-wrapper,
+.card-three-wrapper {
+  position: absolute;
+}
+
+.card-one-wrapper {
+  z-index: 3;
+}
+.card-two-wrapper {
+  z-index: 2;
+  transform: translate3d(200px, 50px, 0);
+}
+.card-three-wrapper {
+  z-index: 1;
+  transform: translate3d(-200px, 50px, 0);
 }
