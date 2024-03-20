@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
 import '@/styles/main.scss'
+import { Header } from '@/components/header/Header'
+import { Footer } from '@/components/footer/Footer'
 export const metadata: Metadata = {
   title: 'Home',
   description: 'Welcome to Next.js'
@@ -14,7 +16,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={{ overscrollBehavior: 'none' }}>{children}</body>
+      <head>
+        <link rel="stylesheet" href="https://use.typekit.net/blj5pkg.css" />
+      </head>
+      <body style={{ overscrollBehavior: 'none' }}>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   )
 }
