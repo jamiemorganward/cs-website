@@ -3,6 +3,10 @@
 .page-title-wrapper {
   width: 100%;
   margin: 0 3rem;
+
+  @include mobile-l {
+    margin: 0 1rem;
+  }
 }
 
 .page-title {
@@ -10,4 +14,8 @@
   font-size: 196px;
   font-family: $heading-font-family;
   font-weight: 500;
+
+  @include mobile-l {
+    font-size: 87.275px;
+  }
 }

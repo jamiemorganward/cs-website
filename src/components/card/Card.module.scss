@@ -1,0 +1,33 @@
+@import '@/styles/config';
+
+.card {
+  border-radius: 4px;
+  border: 1px solid $grey--mid;
+  background-color: $white;
+  padding: 32px 16px;
+  width: 100%;
+  max-width: 500px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-title,
+.title-right {
+  margin-bottom: 0;
+}
+.title-right {
+  color: $grey--mid;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+}
