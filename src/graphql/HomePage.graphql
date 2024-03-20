@@ -1,5 +1,5 @@
 query HomePage {
-  homepage {
+  homePage {
     headline
     headerLogo {
       url

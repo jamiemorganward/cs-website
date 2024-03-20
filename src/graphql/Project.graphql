@@ -1,0 +1,109 @@
+fragment Project on ProjectRecord {
+  category
+  client
+  id
+  slug
+  platform
+  projectName
+  projectUrl
+  year
+  service
+  alignment
+  featuredImage {
+    responsiveImage {
+      alt
+      src
+      sizes
+      base64
+      height
+      title
+      width
+    }
+  }
+  flexibleContent {
+    ...DoubleImage
+    ...TextTwoColumn
+    ...TextSingle
+    ...SingleImage
+    ...Quote
+  }
+}
+
+fragment DoubleImage on DoubleImageBlockRecord {
+  id
+  imageRight {
+    alt
+    responsiveImage {
+      alt
+      src
+      sizes
+      base64
+      height
+      title
+      width
+    }
+  }
+  imageLeft {
+    alt
+    responsiveImage {
+      alt
+      src
+      sizes
+      base64
+      height
+      title
+      width
+    }
+    url
+  }
+}
+
+fragment TextTwoColumn on TextTwoColumnBlockRecord {
+  id
+  textRightColumn {
+    blocks
+    links
+    value
+  }
+  textLeftColumn {
+    blocks
+    links
+    value
+  }
+}
+
+fragment TextSingle on TextSingleBlockRecord {
+  id
+  textBlockAlignment
+  textSingle {
+    blocks
+    links
+    value
+  }
+}
+
+fragment SingleImage on SingleImageBlockRecord {
+  id
+  fullwidth
+  image {
+    responsiveImage {
+      alt
+      src
+      sizes
+      base64
+      height
+      title
+      width
+    }
+  }
+}
+
+fragment Quote on QuoteBlockRecord {
+  id
+  quote {
+    value
+    links
+    blocks
+  }
+  quotee
+}
