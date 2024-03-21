@@ -4,7 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export const Project = ({ data }: { data: ProjectRecord }) => {
-  console.log(data)
   return (
     <div className={s.projectWrapper}>
       <Link href={`/work/${data.slug}`}>
