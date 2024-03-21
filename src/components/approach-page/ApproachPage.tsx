@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import s from './ApproachPage.module.scss'
 import Lottie from 'react-lottie'
 import { PageTitle } from '../page-title/PageTitle'
@@ -14,11 +14,14 @@ import { ScrollTrigger } from 'gsap/all'
 export const ApproachPage = () => {
   gsap.registerPlugin(ScrollTrigger)
 
+  const pageRef = useRef<HTMLDivElement | null>(null)
   const textRef = useRef<HTMLDivElement | null>(null)
   const cardOne = useRef<HTMLDivElement | null>(null)
   const cardTwo = useRef<HTMLDivElement | null>(null)
   const cardThree = useRef<HTMLDivElement | null>(null)
   const allCards = useRef<HTMLDivElement | null>(null)
+
+  const [pin, setPin] = useState(true)
 
   const functionOptions = {
     loop: true,
@@ -68,19 +71,24 @@ export const ApproachPage = () => {
       rotate: 270,
       duration: 1
     })
-    tl.to(cardThree.current, { rotate: 0, scale: 1.1 }, '>-1')
+    tl.to(
+      cardThree.current,
+      { rotate: 0, scale: 1.1, onComplete: () => setPin(false) },
+      '>-1'
+    )
     tl.to(cardThree.current, {
       yPercent: -350,
       xPercent: 500,
       rotate: 170,
       duration: 1
     })
-    tl.to(textRef.current, { filter: 'blur(0px)' }, '>-1')
+    tl.to(textRef.current, { filter: 'blur(0px)' }, '<')
 
     ScrollTrigger.create({
+      trigger: allCards.current,
       animation: tl,
       start: 'top top',
-      end: '+=300%',
+      end: '+=6000',
       markers: true,
       scrub: 1.5,
       pin: allCards.current
@@ -88,10 +96,11 @@ export const ApproachPage = () => {
   }, [])
 
   return (
-    <div className={s.approachPage}>
+    <div className={s.approachPage} ref={pageRef}>
       <div className={s.titleWrapper} ref={textRef}>
         <PageTitle title="Approach" />
       </div>
+
       <div className={s.cardWrapper} ref={allCards}>
         <div className={s.cardOneWrapper} ref={cardOne}>
           <Card
@@ -121,7 +130,32 @@ export const ApproachPage = () => {
           </Card>
         </div>
       </div>
-      <div className={s.blackSection}></div>
+      <div className={s.postProjectWrapper}>
+        <PageTitle title="Post Project" dark />
+        <div className={s.postProjectCards}>
+          <Card
+            titleRight="04"
+            title="Long Term Partnership"
+            textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
+          >
+            <div className={s.cardContent}></div>
+          </Card>
+          <Card
+            titleRight="05"
+            title="On-going Project Support"
+            textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
+          >
+            <div className={s.cardContent}></div>
+          </Card>
+          <Card
+            titleRight="06"
+            title="Growth Support"
+            textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
+          >
+            <div className={s.cardContent}></div>
+          </Card>
+        </div>
+      </div>
     </div>
   )
 }

@@ -18,4 +18,8 @@
   @include tablet {
     font-size: 136px;
   }
+
+  &.dark {
+    color: $white;
+  }
 }
