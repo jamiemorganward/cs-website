@@ -2,10 +2,17 @@
 
 .page-title-wrapper {
   width: 100%;
+<<<<<<< HEAD
   margin: 0 3rem;
 
   @include mobile-l {
     margin: 0 1rem;
+=======
+  padding: 0 $side-gaps-desktop;
+
+  @include tablet {
+    padding: 5rem $side-gaps-tablet 0;
+>>>>>>> main
   }
 }
 
@@ -15,7 +22,12 @@
   font-family: $heading-font-family;
   font-weight: 500;
 
+<<<<<<< HEAD
   @include mobile-l {
     font-size: 87.275px;
+=======
+  @include tablet {
+    font-size: 136px;
+>>>>>>> main
   }
 }
