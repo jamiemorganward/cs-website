@@ -12,14 +12,25 @@ export const Header = () => {
   const windowSize = useWindowSize()
   const isMobile = windowSize.width && windowSize.width < 991
   const [open, setOpen] = useState<boolean>(false)
+  const [sticky, setSticky] = useState<boolean>()
+
+  const stickyMagic = () => {
+    if (window.scrollY > 100) {
+      setSticky(true)
+    } else {
+      setSticky(false)
+    }
+  }
+
+  window.addEventListener('scroll', stickyMagic)
 
   if (isMobile === undefined) return <></>
 
   return (
     <header
-      className={`${s.headerWrapper} ${isMobile ? s.mobile : ''} ${
+      className={`${s.headerWrapper} ${isMobile ? s.mobile : s.desktop} ${
         open ? s.open : ''
-      }`}
+      } ${sticky ? s.sticky : ''}`}
     >
       <div className={s.container}>
         <div className={s.headerInner}>
@@ -30,7 +41,7 @@ export const Header = () => {
             {isMobile ? (
               <HamburgerButton open={open} onClick={() => setOpen(!open)} />
             ) : (
-              <DesktopMenu />
+              <DesktopMenu sticky={sticky} />
             )}
           </div>
           {isMobile && <MobileMenu open={open} />}

@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import s from './HamburgerButton.module.scss'
 export const HamburgerButton = ({
   open,
@@ -7,8 +6,6 @@ export const HamburgerButton = ({
   open: boolean
   onClick: () => void
 }) => {
-  const [isOpen, setOpen] = useState<boolean>(false)
-
   return (
     <button
       className={`${s.hamburgerMenu} ${open ? s.open : ''}`}
