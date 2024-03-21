@@ -18,7 +18,10 @@ const config: IGraphQLConfig = {
       generates: {
         'src/graphql/generated/': {
           preset: 'client',
-          plugins: []
+          plugins: [],
+          presetConfig: {
+            fragmentMasking: false // HERE
+          }
         }
       }
     }
