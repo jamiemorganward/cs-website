@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import '@/styles/main.scss'
 import { Header } from '@/components/header/Header'
 import { Footer } from '@/components/footer/Footer'
+import { PageInfoContextProvider } from '@/lib/contexts/PageInfoContext'
 export const metadata: Metadata = {
   title: 'Home',
   description: 'Welcome to Next.js'
@@ -20,9 +21,11 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://use.typekit.net/blj5pkg.css" />
       </head>
       <body style={{ overscrollBehavior: 'none' }}>
-        <Header />
-        {children}
-        <Footer />
+        <PageInfoContextProvider>
+          <Header />
+          {children}
+          <Footer />
+        </PageInfoContextProvider>
       </body>
     </html>
   )
