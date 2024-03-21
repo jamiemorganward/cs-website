@@ -2,7 +2,11 @@
 
 .page-title-wrapper {
   width: 100%;
-  margin: 0 3rem;
+  padding: 0 $side-gaps-desktop;
+
+  @include tablet {
+    padding: 5rem $side-gaps-tablet 0;
+  }
 }
 
 .page-title {
@@ -10,4 +14,8 @@
   font-size: 196px;
   font-family: $heading-font-family;
   font-weight: 500;
+
+  @include tablet {
+    font-size: 136px;
+  }
 }

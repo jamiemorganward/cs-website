@@ -1,11 +1,24 @@
-import { getClient } from '@/lib/serverClient'
+'use client'
+import { GetProjectQuery } from '@/graphql/generated/graphql'
+import { useContext, useEffect } from 'react'
+import { PageInfoContext } from '@/lib/contexts/PageInfoContext'
 
-export default async function ProjectPage() {
-  const client = getClient()
-  const data = await client.query
+export const ProjectPage = ({ data }: { data: GetProjectQuery }) => {
+  const ctx = useContext(PageInfoContext)
+
+  useEffect(() => {
+    ctx.setProjectName(`${data.project?.projectName}`)
+    return () => {
+      // isUnmounted
+      ctx.setProjectName('')
+    }
+  }, [data])
+
+  // To do: pass on data.data.project and figure out typing issue
+  console.log(data.project)
   return (
     <>
-      <main></main>
+      <main>{data?.project?.projectName}</main>
     </>
   )
 }

@@ -1,0 +1,46 @@
+@import '../../../styles/config';
+
+.hamburger-menu {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & span {
+    position: absolute;
+    transition: all 0.35s ease-out;
+    height: 1px;
+    background-color: #17191a;
+    width: 22px;
+  }
+
+  & .barTop {
+    transform: rotate(0deg);
+    top: calc(50% - 4px);
+  }
+  & .barCenter {
+    top: 50%;
+  }
+  & .barBottom {
+    transform: rotate(0deg);
+    bottom: calc(50% - 5px);
+  }
+
+  &.open {
+    & .barTop {
+      transform: rotate(45deg);
+      top: 50%;
+    }
+    & .barCenter {
+      display: none;
+    }
+    & .barBottom {
+      transform: rotate(-45deg);
+      top: 50%;
+    }
+  }
+}

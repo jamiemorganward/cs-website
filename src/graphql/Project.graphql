@@ -1,3 +1,9 @@
+query GetProject($slug: String) {
+  project(filter: { slug: { eq: $slug } }) {
+    ...Project
+  }
+}
+
 fragment Project on ProjectRecord {
   category
   client
