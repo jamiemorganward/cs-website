@@ -52,7 +52,7 @@ export const ApproachPage = () => {
       yPercent: -20
     })
     tl.to(textRef.current, { filter: 'blur(12px)' }, '>-0.25')
-    tl.to(cardTwo.current, { rotate: 10, translateX: '15px' }, '>-0.5')
+    tl.to(cardTwo.current, { rotate: 10, translateX: '15px' }, '>-0.25')
     tl.to(cardThree.current, { rotate: -10, translateX: '-15px' }, '>-0.5')
     tl.to(cardOne.current, { scale: 1.1 }, '>-0.5')
     tl.to(cardOne.current, {
@@ -121,6 +121,7 @@ export const ApproachPage = () => {
           </Card>
         </div>
       </div>
+      <div className={s.blackSection}></div>
     </div>
   )
 }

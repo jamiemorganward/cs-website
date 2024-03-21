@@ -1,14 +1,11 @@
 @import '@/styles/config';
 
-.approach-page {
-  height: 100vh;
-}
-
 .card-wrapper {
+  position: absolute;
   display: flex;
   position: relative;
   justify-content: center;
-  height: 100vh;
+  height: 105vh;
   align-items: flex-end;
   width: 100%;
 }
@@ -34,4 +31,9 @@
 .card-three-wrapper {
   z-index: 1;
   transform: translate3d(-200px, 50px, 0);
+}
+.black-section {
+  width: 100%;
+  height: 100vh;
+  background-color: #000;
 }
