@@ -1,11 +1,21 @@
 @import '@/styles/config';
 
+.approach-page {
+  height: 100vh;
+}
+
 .card-wrapper {
   display: flex;
   position: relative;
   justify-content: center;
-  height: 90vh;
+  height: 100vh;
   align-items: flex-end;
+  width: 100%;
+}
+
+.title-wrapper {
+  top: 8rem;
+  position: fixed;
 }
 
 .card-one-wrapper,

@@ -13,6 +13,8 @@ import { ScrollTrigger } from 'gsap/all'
 
 export const ApproachPage = () => {
   gsap.registerPlugin(ScrollTrigger)
+
+  const textRef = useRef<HTMLDivElement | null>(null)
   const cardOne = useRef<HTMLDivElement | null>(null)
   const cardTwo = useRef<HTMLDivElement | null>(null)
   const cardThree = useRef<HTMLDivElement | null>(null)
@@ -46,32 +48,50 @@ export const ApproachPage = () => {
   useGSAP(() => {
     const tl = gsap.timeline()
 
-    tl.to(allCards.current, { yPercent: -20 })
-    tl.to(cardTwo.current, { rotate: 20, translateX: -20, scale: 0.8 }, '>-0.5')
-    tl.to(
-      cardThree.current,
-      { rotate: -20, translateX: 20, scale: 0.8 },
-      '>-0.5'
-    )
+    tl.to(allCards.current, {
+      yPercent: -20
+    })
+    tl.to(textRef.current, { filter: 'blur(12px)' }, '>-0.25')
+    tl.to(cardTwo.current, { rotate: 10, translateX: '15px' }, '>-0.5')
+    tl.to(cardThree.current, { rotate: -10, translateX: '-15px' }, '>-0.5')
     tl.to(cardOne.current, { scale: 1.1 }, '>-0.5')
-    tl.to(cardOne.current, { yPercent: -200, xPercent: -500, rotate: 78 })
-    tl.to(cardTwo.current, { rotate: 0, scale: 1.1 }, '>+0.5')
-    tl.to(cardTwo.current, { yPercent: -200, xPercent: 500, rotate: 360 })
-    tl.to(cardThree.current, { rotate: 0, scale: 1.1 }, '>+0.5')
+    tl.to(cardOne.current, {
+      yPercent: -200,
+      xPercent: 500,
+      rotate: 78,
+      duration: 1
+    })
+    tl.to(cardTwo.current, { rotate: 0, scale: 1.1, duration: 0.5 }, '>-1')
+    tl.to(cardTwo.current, {
+      yPercent: -200,
+      xPercent: -500,
+      rotate: 270,
+      duration: 1
+    })
+    tl.to(cardThree.current, { rotate: 0, scale: 1.1 }, '>-1')
+    tl.to(cardThree.current, {
+      yPercent: -350,
+      xPercent: 500,
+      rotate: 170,
+      duration: 1
+    })
+    tl.to(textRef.current, { filter: 'blur(0px)' }, '>-1')
 
     ScrollTrigger.create({
       animation: tl,
       start: 'top top',
-      end: 'bottom bottom',
+      end: '+=300%',
       markers: true,
-      scrub: 1,
-      pin: true
+      scrub: 1.5,
+      pin: allCards.current
     })
   }, [])
 
   return (
     <div className={s.approachPage}>
-      <PageTitle title="Approach" />
+      <div className={s.titleWrapper} ref={textRef}>
+        <PageTitle title="Approach" />
+      </div>
       <div className={s.cardWrapper} ref={allCards}>
         <div className={s.cardOneWrapper} ref={cardOne}>
           <Card
