@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import s from './ApproachPage.module.scss'
 import Lottie from 'react-lottie'
 import { PageTitle } from '../page-title/PageTitle'
@@ -20,8 +20,8 @@ export const ApproachPage = () => {
   const cardTwo = useRef<HTMLDivElement | null>(null)
   const cardThree = useRef<HTMLDivElement | null>(null)
   const allCards = useRef<HTMLDivElement | null>(null)
-
-  const [pin, setPin] = useState(true)
+  const postProRef = useRef<HTMLDivElement | null>(null)
+  const [isTop, setIsTop] = useState(false)
 
   const functionOptions = {
     loop: true,
@@ -71,11 +71,7 @@ export const ApproachPage = () => {
       rotate: 270,
       duration: 1
     })
-    tl.to(
-      cardThree.current,
-      { rotate: 0, scale: 1.1, onComplete: () => setPin(false) },
-      '>-1'
-    )
+    tl.to(cardThree.current, { rotate: 0, scale: 1.1 }, '>-1')
     tl.to(cardThree.current, {
       yPercent: -350,
       xPercent: 500,
@@ -91,8 +87,27 @@ export const ApproachPage = () => {
       end: '+=6000',
       markers: true,
       scrub: 1.5,
-      pin: allCards.current
+      pin: allCards.current,
+      pinSpacing: false
     })
+  }, [])
+
+  useEffect(() => {
+    const elementWatcher = (e: Event) => {
+      if (
+        postProRef.current &&
+        postProRef.current?.getBoundingClientRect().top <= 0
+      ) {
+        setIsTop(true)
+      } else {
+        setIsTop(false)
+      }
+    }
+    window.addEventListener('scroll', elementWatcher)
+
+    return () => {
+      window.removeEventListener('scroll', elementWatcher)
+    }
   }, [])
 
   return (
@@ -130,8 +145,13 @@ export const ApproachPage = () => {
           </Card>
         </div>
       </div>
-      <div className={s.postProjectWrapper}>
-        <PageTitle title="Post Project" dark />
+      <div className={s.spacer}></div>
+      <div className={s.spacerReveal}></div>
+      <div
+        className={s.postProjectWrapper}
+        ref={postProRef}
+        style={{ backgroundAttachment: isTop ? 'initial' : 'fixed' }}
+      >
         <div className={s.postProjectCards}>
           <Card
             titleRight="04"
