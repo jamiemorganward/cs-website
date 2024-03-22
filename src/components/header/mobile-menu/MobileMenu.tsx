@@ -1,9 +1,28 @@
 import s from './MobileMenu.module.scss'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { client } from '@/lib/datocms'
+import {
+  GetLatestProjectDocument,
+  ProjectThumbFragment
+} from '@/graphql/generated/graphql'
+import { useEffect, useState } from 'react'
 
 export const MobileMenu = ({ open }: { open: boolean }) => {
   const pathname = usePathname()
+
+  const [latestProject, setLatestProject] = useState<ProjectThumbFragment>()
+
+  const getLatestProject = async () => {
+    const data = await client.query({
+      query: GetLatestProjectDocument
+    })
+    setLatestProject(data.data.allProjects[0])
+  }
+
+  useEffect(() => {
+    getLatestProject()
+  }, [])
 
   const isActive = (href: string) => pathname === href
 
@@ -48,10 +67,18 @@ export const MobileMenu = ({ open }: { open: boolean }) => {
         </nav>
       </div>
       <div className={s.bottomSection}>
-        <div className={s.latest}>
-          <div className={s.projectThumb}></div>
-          Latest Project
-        </div>
+        {latestProject && (
+          <a className={s.latest} href={`${latestProject.projectUrl}`}>
+            <div className={s.projectThumb}>
+              <img
+                src={`${latestProject.featuredImage?.responsiveImage?.src}`}
+              />
+            </div>
+            Latest Project:
+            <br />
+            <span>{latestProject.projectName}</span>
+          </a>
+        )}
         <div className={s.contact}>
           <Link href={'mailto: hello@clicksuite.co.nz'}>
             hello@clicksuite.co.nz
