@@ -4,6 +4,28 @@ query GetProject($slug: String) {
   }
 }
 
+query GetLatestProject {
+  allProjects(first: "1", orderBy: _createdAt_DESC) {
+    ...ProjectThumb
+  }
+}
+
+fragment ProjectThumb on ProjectRecord {
+  projectName
+  projectUrl
+  featuredImage {
+    responsiveImage {
+      alt
+      src
+      sizes
+      base64
+      height
+      title
+      width
+    }
+  }
+}
+
 fragment Project on ProjectRecord {
   category
   client
