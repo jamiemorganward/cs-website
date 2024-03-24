@@ -1,12 +1,11 @@
-import { ProjectFragment, ProjectRecord } from '@/graphql/generated/graphql'
+import { ProjectRecord } from '@/graphql/generated/graphql'
 import s from './Project.module.scss'
-import Image from 'next/image'
 import Link from 'next/link'
 
 export const Project = ({ data }: { data: ProjectRecord }) => {
   return (
     <div className={s.projectWrapper}>
-      <Link href={`/work/${data.slug}`}>
+      <Link href={`/work${data.slug}`}>
         <div className={s.projectInfoWrapper}>
           <div>{data.projectName}</div>
           <div>{data.client}</div>
