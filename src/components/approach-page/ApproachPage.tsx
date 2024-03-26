@@ -12,7 +12,7 @@ export const ApproachPage = () => {
 
   return (
     <>
-      {windowSize.width > 991 && <ApproachPageDesktop />}
+      {windowSize.width >= 991 && <ApproachPageDesktop />}
       {windowSize.width < 991 && <ApproachPageMobile />}
     </>
   )

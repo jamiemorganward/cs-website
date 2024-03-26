@@ -6,10 +6,12 @@ import Function from '@/lottie-files/function.json'
 import Fun from '@/lottie-files/fun.json'
 import Form from '@/lottie-files/form.json'
 import { PageTitle } from '@/components/page-title/PageTitle'
+import { useWindowSize } from '@/utils/useWindowSize'
 
 export const ApproachPageMobile = () => {
   const postProRef = useRef<HTMLDivElement | null>(null)
   const [isTop, setIsTop] = useState(false)
+  const windowSize = useWindowSize()
 
   useEffect(() => {
     const elementWatcher = (e: Event) => {
@@ -54,6 +56,8 @@ export const ApproachPageMobile = () => {
     }
   }
 
+  if (!windowSize.width) return <></>
+
   return (
     <div className={s.approachPageMobileWrapper}>
       <div className={s.headerWrapper}>
@@ -93,7 +97,18 @@ export const ApproachPageMobile = () => {
         ref={postProRef}
         style={{
           backgroundAttachment: isTop ? 'initial' : 'fixed',
-          backgroundPositionY: isTop ? '2rem' : '10rem'
+          backgroundPositionY:
+            isTop && windowSize.width > 600
+              ? '5.5rem'
+              : isTop && windowSize.width < 478
+              ? '2.85rem'
+              : isTop && windowSize.width < 600
+              ? '3.75rem'
+              : windowSize.width < 478
+              ? '7.25rem'
+              : windowSize.width > 600
+              ? '10rem'
+              : '8rem'
         }}
       >
         <div className={s.postProjectCards}>

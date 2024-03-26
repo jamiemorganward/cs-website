@@ -23,7 +23,7 @@
   background-color: #000;
   position: relative;
   overflow: hidden;
-  background-image: url('../../../assets/svgs/post-project.svg');
+  background-image: url('../../../assets/svgs/post-project-text/post-project-medium.svg');
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position-y: 2rem;
@@ -31,8 +31,16 @@
   z-index: 6;
   padding: 0 $side-gaps-mobile;
   @include tablet {
-    background-size: 70%;
     background-position-y: 10rem;
+    background-position-x: 2rem;
+  }
+  @media screen and (max-width: 600px) {
+    background-image: url('../../../assets/svgs/post-project-text/post-project-small.svg');
+    background-position-y: 8.5rem;
+  }
+
+  @include mobile-p {
+    background-position-x: 1rem;
   }
 }
 
@@ -43,13 +51,17 @@
 }
 
 .post-project-cards {
-  padding-top: 18rem;
+  padding-top: 28rem;
   display: flex;
   flex-direction: column;
   gap: 3rem;
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
+
+  @media screen and (max-width: 600px) {
+    padding-top: 20rem;
+  }
 }
 
 .card-content {
