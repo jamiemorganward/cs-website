@@ -1,0 +1,19 @@
+@import '../../styles/config';
+
+.footer {
+  width: 100%;
+  background-color: $white;
+  padding: 1rem $side-gaps-desktop;
+
+  & .top-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  & .interactive-bit {
+    background-color: $grey;
+    margin: 1rem 0;
+    height: 300px;
+  }
+}

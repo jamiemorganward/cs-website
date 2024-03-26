@@ -1,7 +1,7 @@
 import s from './DesktopMenu.module.scss'
 import { MenuItem } from './menu-item/MenuItem'
 
-export const DesktopMenu = ({ sticky }: { sticky: boolean | undefined }) => {
+export const DesktopMenu = ({ sticky }: { sticky?: boolean | undefined }) => {
   return (
     <div className={s.menuWrapper}>
       <nav className={`${s.menu} ${sticky ? s.sticky : ''}`}>
