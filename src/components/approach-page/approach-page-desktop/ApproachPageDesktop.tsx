@@ -85,7 +85,6 @@ export const ApproachPageDesktop = () => {
       animation: tl,
       start: 'top top',
       end: '+=6000',
-      markers: true,
       scrub: 1.5,
       pin: allCards.current,
       pinSpacing: false
