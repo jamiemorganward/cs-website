@@ -1,0 +1,69 @@
+@import '@/styles/config';
+
+.header-wrapper {
+  position: fixed;
+  background: linear-gradient(to bottom, #fff 80%, transparent 100%);
+  z-index: 5;
+  @include mobile-p {
+    background: linear-gradient(to bottom, #fff 90%, transparent 100%);
+  }
+}
+.card-wrapper {
+  padding: 16rem $side-gaps-mobile 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 18rem;
+}
+
+.post-project-wrapper {
+  width: 100%;
+  height: 100vh;
+  background-color: #000;
+  position: relative;
+  overflow: hidden;
+  background-image: url('../../../assets/svgs/post-project-text/post-project-medium.svg');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position-y: 2rem;
+  background-position-x: 3rem;
+  z-index: 6;
+  padding: 0 $side-gaps-mobile;
+  @include tablet {
+    background-position-y: 10rem;
+    background-position-x: 2rem;
+  }
+  @media screen and (max-width: 600px) {
+    background-image: url('../../../assets/svgs/post-project-text/post-project-small.svg');
+    background-position-y: 8.5rem;
+  }
+
+  @include mobile-p {
+    background-position-x: 1rem;
+  }
+}
+
+.post-project-title {
+  position: sticky;
+  top: 8rem;
+  text-overflow: clip;
+}
+
+.post-project-cards {
+  padding-top: 28rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (max-width: 600px) {
+    padding-top: 20rem;
+  }
+}
+
+.card-content {
+  height: 200px;
+}
