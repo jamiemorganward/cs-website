@@ -1,11 +1,15 @@
 @import '../../styles/config';
 
 .page-title-wrapper {
-  width: 100%;
+  width: 100vw;
   padding: 0 $side-gaps-desktop;
 
   @include tablet {
     padding: 5rem $side-gaps-tablet 0;
+  }
+
+  @include mobile-p {
+    padding: 4rem $side-gaps-mobile 0;
   }
 }
 
@@ -17,6 +21,10 @@
 
   @include tablet {
     font-size: 136px;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 95px;
   }
 
   &.dark {
