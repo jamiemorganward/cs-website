@@ -1,0 +1,95 @@
+@import '../../../../styles/config';
+
+.link {
+  padding: 4px 14px;
+  display: flex;
+  align-items: center;
+  height: 36px;
+  border: 1px solid rgba($grey, 0.3);
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.35s ease-out;
+  position: relative;
+
+  &.active {
+    border: 1px solid rgba($grey, 1);
+  }
+
+  & * {
+    transition: all 0.35s ease-out;
+  }
+
+  & .link-text {
+    position: relative;
+    bottom: 1px;
+    color: rgba($black, 0.4);
+    z-index: 2;
+  }
+
+  &.active .link-text {
+    color: rgba($black, 1);
+  }
+
+  & .link-bg {
+    backdrop-filter: blur(2px);
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    background-color: rgba(#efefef, 0.2);
+    z-index: -4;
+  }
+  &.active .link-bg {
+    background-color: rgba(#efefef, 0.7);
+  }
+
+  & .submenu-pill {
+    background-color: $black;
+    color: $white;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0px 8px 3px 10px;
+    border-radius: 20px;
+    position: relative;
+    right: -9px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    z-index: 2;
+
+    & .close {
+      display: inline-block;
+      width: 13px;
+      height: 13px;
+      position: relative;
+      top: 1px;
+      margin-left: 0.5rem;
+
+      & svg {
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+}
+
+.sticky.link {
+  padding: 2px 12px;
+  height: 28px;
+  font-size: 12px;
+
+  & .link-inner {
+    bottom: 1px;
+  }
+
+  & .submenu-pill {
+    padding: 0px 6px 3px 10px;
+    font-size: 12px;
+  }
+}
