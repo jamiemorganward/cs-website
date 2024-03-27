@@ -5,7 +5,7 @@ import { LogoWrapper } from '../logo-wrapper/LogoWrapper'
 import { useWindowSize } from '@/utils/useWindowSize'
 import { DesktopMenu } from './desktop-menu/DesktopMenu'
 import { MobileMenu } from './mobile-menu/MobileMenu'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { HamburgerButton } from './hamburger-button/HamburgerButton'
 
 export const Header = () => {
@@ -21,8 +21,11 @@ export const Header = () => {
       setSticky(false)
     }
   }
-
-  window.addEventListener('scroll', stickyMagic)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', stickyMagic)
+    }
+  }, [])
 
   if (isMobile === undefined) return <></>
 

@@ -1,0 +1,47 @@
+@import '../../styles/config';
+
+.header {
+  width: 100%;
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  position: static;
+  transition: all 0.5s ease-out;
+  padding-top: 85px;
+  z-index: 10;
+
+  @include tablet {
+    transition: none;
+    position: relative;
+    top: 85px;
+  }
+
+  &.scrolled {
+    position: fixed;
+    top: 0;
+  }
+}
+
+.page-title {
+  transform-origin: top left;
+  width: 100%;
+  color: $black;
+  font-size: 196px;
+  line-height: 1em;
+  font-family: $heading-font-family;
+  font-weight: 500;
+  transition: all 0.35s ease-out;
+  padding: 0 $side-gaps-desktop;
+
+  @include tablet {
+    font-size: 136px;
+  }
+
+  .scrolled & {
+    font-size: 130px;
+
+    @include tablet {
+      font-size: 100px;
+    }
+  }
+}
