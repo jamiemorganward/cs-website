@@ -1,0 +1,16 @@
+@import '../../../styles/config';
+
+.wrapper {
+  max-width: 716px;
+  margin: 0 auto;
+
+  &.left {
+    margin-left: 0;
+    width: 55%;
+  }
+
+  &.right {
+    margin-right: 0;
+    width: 45%;
+  }
+}

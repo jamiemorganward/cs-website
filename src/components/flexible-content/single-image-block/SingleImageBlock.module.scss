@@ -1,0 +1,13 @@
+@import '../../../styles/config';
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 960px;
+
+  &.fullwidth {
+    width: 100%;
+  }
+}

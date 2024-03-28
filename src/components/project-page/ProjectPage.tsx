@@ -1,7 +1,10 @@
 'use client'
+import s from './ProjectPage.module.scss'
 import { GetProjectQuery } from '@/graphql/generated/graphql'
 import { useContext, useEffect } from 'react'
 import { PageInfoContext } from '@/lib/contexts/PageInfoContext'
+import { ProjectIntro } from './project-intro/ProjectIntro'
+import { FlexibleContent } from '../flexible-content/FlexibleContent'
 
 export const ProjectPage = ({ data }: { data: GetProjectQuery }) => {
   const ctx = useContext(PageInfoContext)
@@ -15,11 +18,23 @@ export const ProjectPage = ({ data }: { data: GetProjectQuery }) => {
   }, [data])
 
   // To do: pass on data.data.project and figure out typing issue
-  console.log(data.project)
   return (
     <>
-      <main style={{ height: '2000px', backgroundColor: 'red' }}>
-        {data?.project?.projectName}
+      <main>
+        <ProjectIntro
+          title={`${data.project?.projectName}`}
+          client={`${data.project?.client}`}
+          category={`${data.project?.category}`}
+          service={`${data.project?.service}`}
+          platform={`${data.project?.platform}`}
+          link={`${data.project?.projectUrl}`}
+          year={`${data.project?.year}`}
+        />
+        <div className={s.flexContentWrapper}>
+          {data.project?.flexibleContent.map((slice, i) => {
+            return <FlexibleContent key={i} data={slice} />
+          })}
+        </div>
       </main>
     </>
   )

@@ -1,0 +1,58 @@
+@import '../../../styles/config';
+
+.project-intro {
+  padding: 0 $side-gaps-desktop 75px;
+}
+
+.project-title {
+  padding: 100px 0 150px 0;
+  & h1 {
+    font-size: 56px;
+    font-weight: 600;
+    color: $black;
+  }
+}
+
+.project-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  & .attributes-table,
+  & .url {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 12px;
+    width: auto;
+  }
+
+  & .row {
+    display: flex;
+    flex-wrap: nowrap;
+
+    & .label,
+    & .value {
+      font-size: 18px;
+    }
+
+    & .label {
+      // background-color: red;
+      width: 100px;
+      color: #a8a8a8;
+      font-weight: 600;
+    }
+
+    & .value {
+      color: $black;
+    }
+  }
+
+  & .url {
+    a {
+      text-decoration: none;
+      color: $black;
+      font-weight: 500;
+    }
+  }
+}
