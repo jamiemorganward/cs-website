@@ -25,7 +25,8 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
 
   return (
     <div>
-      {/* <PageHeader title="Work" categories={categories} /> */}
+      <PageHeader title="Work" categories={categories} />
+      {/* <div style={{ height: '2000px' }}></div> */}
       <ProjectScroller data={data} />
     </div>
   )
