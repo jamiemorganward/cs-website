@@ -13,6 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+    "fragment Partner on PartnershipRecord {\n  client\n  mainImage {\n    alt\n    url\n  }\n  yearStarted\n}\n\nquery AboutPage {\n  aboutPage {\n    cardSection {\n      title\n      subtitle\n      textContent\n    }\n    longStandingPartnerships {\n      ...Partner\n    }\n  }\n}": types.PartnerFragmentDoc,
     "query HomePage {\n  homePage {\n    headline\n    headerLogo {\n      url\n    }\n  }\n}": types.HomePageDocument,
     "query GetProject($slug: String) {\n  project(filter: {slug: {eq: $slug}}) {\n    ...Project\n  }\n}\n\nquery GetLatestProject {\n  allProjects(first: \"1\", orderBy: _createdAt_DESC) {\n    ...ProjectThumb\n  }\n}\n\nfragment ProjectThumb on ProjectRecord {\n  projectName\n  projectUrl\n  featuredImage {\n    responsiveImage {\n      alt\n      src\n      sizes\n      base64\n      height\n      title\n      width\n    }\n  }\n}\n\nfragment Project on ProjectRecord {\n  category\n  client\n  id\n  slug\n  platform\n  projectName\n  projectUrl\n  year\n  service\n  alignment\n  featuredImage {\n    responsiveImage {\n      alt\n      src\n      sizes\n      base64\n      height\n      title\n      width\n    }\n  }\n  flexibleContent {\n    ...DoubleImage\n    ...TextTwoColumn\n    ...TextSingle\n    ...SingleImage\n    ...Quote\n  }\n}\n\nfragment DoubleImage on DoubleImageBlockRecord {\n  id\n  imageRight {\n    alt\n    responsiveImage {\n      alt\n      src\n      sizes\n      base64\n      height\n      title\n      width\n    }\n  }\n  imageLeft {\n    alt\n    responsiveImage {\n      alt\n      src\n      sizes\n      base64\n      height\n      title\n      width\n    }\n    url\n  }\n}\n\nfragment TextTwoColumn on TextTwoColumnBlockRecord {\n  id\n  textRightColumn {\n    blocks\n    links\n    value\n  }\n  textLeftColumn {\n    blocks\n    links\n    value\n  }\n}\n\nfragment TextSingle on TextSingleBlockRecord {\n  id\n  textBlockAlignment\n  textSingle {\n    blocks\n    links\n    value\n  }\n}\n\nfragment SingleImage on SingleImageBlockRecord {\n  id\n  fullwidth\n  image {\n    responsiveImage {\n      alt\n      src\n      sizes\n      base64\n      height\n      title\n      width\n    }\n  }\n}\n\nfragment Quote on QuoteBlockRecord {\n  id\n  quote {\n    value\n    links\n    blocks\n  }\n  quotee\n}": types.GetProjectDocument,
     "query getAllProjects {\n  allProjects {\n    ...Project\n  }\n}": types.GetAllProjectsDocument,
@@ -32,6 +33,10 @@ const documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "fragment Partner on PartnershipRecord {\n  client\n  mainImage {\n    alt\n    url\n  }\n  yearStarted\n}\n\nquery AboutPage {\n  aboutPage {\n    cardSection {\n      title\n      subtitle\n      textContent\n    }\n    longStandingPartnerships {\n      ...Partner\n    }\n  }\n}"): (typeof documents)["fragment Partner on PartnershipRecord {\n  client\n  mainImage {\n    alt\n    url\n  }\n  yearStarted\n}\n\nquery AboutPage {\n  aboutPage {\n    cardSection {\n      title\n      subtitle\n      textContent\n    }\n    longStandingPartnerships {\n      ...Partner\n    }\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -1,1 +1,42 @@
 @import '@/styles/config';
+
+.card-section {
+  display: flex;
+  gap: 3rem;
+  padding: 6rem 3rem 0 3rem;
+
+  @include tablet {
+    padding: 4rem 2rem 0 2rem;
+    flex-direction: column;
+  }
+
+  @include mobile-p {
+    padding: 3rem 1rem 0 1rem;
+  }
+}
+.card-spacer {
+  height: 200px;
+}
+
+.partnerships {
+  padding: 8rem 3rem 0 3rem;
+
+  @include tablet {
+    padding: 4rem 2rem 0 2rem;
+    flex-direction: column;
+  }
+
+  @include mobile-p {
+    padding: 3rem 1rem 0 1rem;
+  }
+
+  h2 {
+    padding-bottom: 4rem;
+  }
+}
+
+.dividing-line {
+  width: 100%;
+  height: 1px;
+  background-color: #dcdcdc;
+}

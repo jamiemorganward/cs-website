@@ -37,6 +37,9 @@
   z-index: -1;
   position: absolute;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .mobile-copied {
   display: none;
@@ -49,13 +52,12 @@
   }
 }
 .copied {
-  opacity: 0;
   font-size: 88.5px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   text-decoration-line: underline;
-  position: absolute;
+
   z-index: 2;
 
   @include tablet {
@@ -72,6 +74,6 @@
   align-items: center;
   gap: 1rem;
   position: absolute;
-  bottom: -5rem;
+  bottom: -15rem;
   z-index: 3;
 }

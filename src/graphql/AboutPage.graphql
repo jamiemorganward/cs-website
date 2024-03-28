@@ -1,0 +1,21 @@
+fragment Partner on PartnershipRecord {
+  client
+  mainImage {
+    alt
+    url
+  }
+  yearStarted
+}
+
+query AboutPage {
+  aboutPage {
+    cardSection {
+      title
+      subtitle
+      textContent
+    }
+    longStandingPartnerships {
+      ...Partner
+    }
+  }
+}
