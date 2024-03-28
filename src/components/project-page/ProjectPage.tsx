@@ -18,7 +18,9 @@ export const ProjectPage = ({ data }: { data: GetProjectQuery }) => {
   console.log(data.project)
   return (
     <>
-      <main>{data?.project?.projectName}</main>
+      <main style={{ height: '2000px', backgroundColor: 'red' }}>
+        {data?.project?.projectName}
+      </main>
     </>
   )
 }

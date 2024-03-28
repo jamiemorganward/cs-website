@@ -10,9 +10,20 @@ query GetLatestProject {
   }
 }
 
+fragment ProjectOnWorkPage on ProjectRecord {
+  ...ProjectThumb
+  category
+  client
+  slug
+  year
+  service
+  alignment
+}
+
 fragment ProjectThumb on ProjectRecord {
   projectName
   projectUrl
+  category
   featuredImage {
     responsiveImage {
       alt
