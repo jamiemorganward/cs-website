@@ -1,19 +1,33 @@
+'use client'
 import { GetAllProjectsQuery } from '@/graphql/generated/graphql'
 import s from './WorkPage.module.scss'
-import { Project } from '../project/Project'
-import { PageTitle } from '../page-title/PageTitle'
+import { useEffect, useState } from 'react'
+import { PageHeader } from '../page-header/PageHeader'
+import { ProjectScroller } from './project-scroller/ProjectScroller'
 
 export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
+  const [categories, setAllCategories] = useState<string[]>([])
+
+  const getAllCategories = () => {
+    let tempCats: string[] = []
+    data.allProjects.map((project) => {
+      tempCats.push(`${project.category}`)
+    })
+
+    setAllCategories(tempCats)
+  }
+
+  useEffect(() => {
+    getAllCategories()
+  }, [])
+
   if (!data) return <></>
 
   return (
-    <>
-      <PageTitle title="Work" />
-      <div className={s.workWrapper}>
-        {data.allProjects.map((project: any, i: number) => {
-          return <Project key={i} data={project} />
-        })}
-      </div>
-    </>
+    <div>
+      <PageHeader title="Work" categories={categories} />
+      {/* <div style={{ height: '2000px' }}></div> */}
+      <ProjectScroller data={data} />
+    </div>
   )
 }

@@ -7,14 +7,15 @@
   overflow: hidden;
   position: sticky;
   top: 0;
+  z-index: 20;
 
   &.mobile {
-    height: 70px;
+    height: 85px;
     position: fixed;
     top: 0;
     left: 0;
     background-color: $white;
-    z-index: 10;
+    z-index: 20;
   }
 
   &.open.mobile {

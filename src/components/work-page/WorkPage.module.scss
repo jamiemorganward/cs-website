@@ -1,7 +1,14 @@
 @import '../../styles/config';
 
-.work-wrapper {
+.work-list-wrapper {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  // position: fixed;
+  // position: relative;
+  // top: 650px;
+
+  & .single-Project {
+    display: block;
+  }
 }
