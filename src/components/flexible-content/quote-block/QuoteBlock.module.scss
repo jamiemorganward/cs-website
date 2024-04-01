@@ -12,6 +12,10 @@
   line-height: 130%;
   text-transform: capitalize;
 
+  @include mobile-p {
+    font-size: 32px;
+  }
+
   & p::before {
     content: '“';
     display: inline;

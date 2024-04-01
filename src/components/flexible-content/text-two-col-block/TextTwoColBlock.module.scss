@@ -2,9 +2,10 @@
 
 .wrapper {
   display: flex;
-  gap: 60px;
+  gap: 70px;
 
   @include tablet {
     flex-direction: column;
+    gap: 30px;
   }
 }

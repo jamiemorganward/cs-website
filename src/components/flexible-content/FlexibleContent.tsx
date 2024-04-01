@@ -6,8 +6,6 @@ import { TextSingleBlock } from './text-single-block/TextSingleBlock'
 import { TextTwoColBlock } from './text-two-col-block/TextTwoColBlock'
 
 export const FlexibleContent = ({ data }: { data: any }) => {
-  console.log(data)
-
   if (data.__typename === 'DoubleImageBlockRecord') {
     return (
       <Segment>

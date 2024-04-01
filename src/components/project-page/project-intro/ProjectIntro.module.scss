@@ -2,6 +2,14 @@
 
 .project-intro {
   padding: 0 $side-gaps-desktop 75px;
+
+  @include tablet {
+    padding: 0 $side-gaps-tablet 75px;
+  }
+
+  @include mobile-l {
+    padding: 0 $side-gaps-mobile 50px;
+  }
 }
 
 .project-title {
@@ -17,6 +25,11 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+
+  @include mobile-l {
+    gap: 2rem;
+    flex-direction: column;
+  }
 
   & .attributes-table,
   & .url {

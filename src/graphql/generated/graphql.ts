@@ -1910,8 +1910,10 @@ export type PartnershipRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   client?: Maybe<Scalars['String']['output']>;
+  featuredImage?: Maybe<FileField>;
   id: Scalars['ItemId']['output'];
-  mainImage?: Maybe<FileField>;
+  imageAlignment?: Maybe<Scalars['String']['output']>;
+  service?: Maybe<Scalars['String']['output']>;
   yearStarted?: Maybe<Scalars['IntType']['output']>;
 };
 
