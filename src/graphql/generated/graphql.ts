@@ -45,7 +45,10 @@ export type AboutPageRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
+  cardSection: Array<CardRecord>;
   id: Scalars['ItemId']['output'];
+  longStandingPartnerships: Array<PartnershipRecord>;
+  timeline: Array<Scalars['String']['output']>;
 };
 
 
@@ -83,6 +86,40 @@ export type ApproachPageRecord_SeoMetaTagsArgs = {
 export type BooleanFilter = {
   /** Search for records with an exact match */
   eq?: InputMaybe<Scalars['BooleanType']['input']>;
+};
+
+/** Block of type Card (card) */
+export type CardRecord = RecordInterface & {
+  __typename?: 'CardRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  subtitle?: Maybe<Scalars['String']['output']>;
+  textContent?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Block of type Card (card) */
+export type CardRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Block of type Card (card) */
+export type CardRecordTextContentArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type CollectionMetadata = {
@@ -1854,6 +1891,36 @@ export type OrientationFilter = {
   eq?: InputMaybe<UploadOrientation>;
   /** Exclude uploads with the specified orientation */
   neq?: InputMaybe<UploadOrientation>;
+};
+
+/** Block of type Partnership (partnership) */
+export type PartnershipRecord = RecordInterface & {
+  __typename?: 'PartnershipRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  client?: Maybe<Scalars['String']['output']>;
+  featuredImage?: Maybe<FileField>;
+  id: Scalars['ItemId']['output'];
+  imageAlignment?: Maybe<Scalars['String']['output']>;
+  service?: Maybe<Scalars['String']['output']>;
+  yearStarted?: Maybe<Scalars['IntType']['output']>;
+};
+
+
+/** Block of type Partnership (partnership) */
+export type PartnershipRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 /** Record of type People Page (people_page) */

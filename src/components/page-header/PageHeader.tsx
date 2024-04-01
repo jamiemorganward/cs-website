@@ -1,6 +1,9 @@
 import s from './PageHeader.module.scss'
 import { FilterBar } from '../filter-bar/FilterBar'
 import { useEffect, useRef, useState } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
 
 export const PageHeader = ({
   title,
@@ -14,6 +17,27 @@ export const PageHeader = ({
   const headerInnerRef = useRef<HTMLDivElement | null>(null)
   const filterRef = useRef<HTMLDivElement | null>(null)
   const [scrolled, setScrolled] = useState<boolean | null>(false)
+
+  // cannot get this to work with gsap
+
+  // gsap.registerPlugin(ScrollTrigger)
+  // gsap.registerPlugin(useGSAP)
+
+  // useGSAP(() => {
+  //   ScrollTrigger.create({
+  //     scrub: true,
+  //     pin: true,
+  //     trigger: headerRef.current,
+  //     start: 'top 10%',
+  //     // end: '+=50000vh',
+  //     end: document.body.scrollHeight,
+  //     markers: true,
+  //     pinSpacing: true,
+  //     anticipatePin: 2
+  //   })
+  // }, [headerRef])
+
+  // doing this instead of gsap (for now?)
 
   const stickyMagic = () => {
     if (window.scrollY > 85) {

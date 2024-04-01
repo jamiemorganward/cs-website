@@ -1,0 +1,11 @@
+@import '../../../styles/config';
+
+.wrapper {
+  display: flex;
+  gap: 70px;
+
+  @include tablet {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
