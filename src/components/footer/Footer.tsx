@@ -2,6 +2,7 @@
 import { DesktopMenu } from '../header/desktop-menu/DesktopMenu'
 import s from './Footer.module.scss'
 import LogoText from '../../assets/svgs/logo-text.svg'
+import { HeartAnimation } from '../heart-animation/HeartAnimation'
 
 export const Footer = () => {
   return (
@@ -14,7 +15,9 @@ export const Footer = () => {
           <DesktopMenu />
         </div>
       </div>
-      <div className={s.interactiveBit}></div>
+      <div className={s.interactiveBit}>
+        <HeartAnimation />
+      </div>
     </div>
   )
 }

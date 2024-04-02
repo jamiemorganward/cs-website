@@ -1,9 +1,4 @@
-'use client'
-import { useRef, useState } from 'react'
 import s from './PageTitle.module.scss'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useGSAP } from '@gsap/react'
 
 export const PageTitle = ({
   title,
