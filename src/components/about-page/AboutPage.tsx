@@ -1,14 +1,39 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import s from './AboutPage.module.scss'
 import { PageTitle } from '../page-title/PageTitle'
 import { EmailSelection } from './email-selection/EmailSelection'
-import { AboutPageQuery, AboutPageRecord } from '@/graphql/generated/graphql'
+import { AboutPageQuery } from '@/graphql/generated/graphql'
 import { Card } from '../card/Card'
 import { Project } from '../project/Project'
 
 export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
+  const partnershipsRef = useRef<HTMLDivElement | null>(null)
+  const finalElementRef = useRef<HTMLDivElement | null>(null)
+  const [fixed, setFixed] = useState(true)
+
+  const watchMe = () => {
+    if (partnershipsRef.current && finalElementRef.current) {
+      if (finalElementRef.current?.getBoundingClientRect().top <= 200) {
+        setFixed(false)
+      } else {
+        setFixed(true)
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (partnershipsRef && partnershipsRef.current) {
+      window.addEventListener('scroll', watchMe)
+    }
+
+    return () => {
+      window.removeEventListener('scroll', watchMe)
+    }
+  }, [])
+
   if (!data) return <></>
+
   return (
     <div className={s.aboutPage}>
       <div className={s.headerWrapper}>
@@ -28,34 +53,32 @@ export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
             )
           })}
       </div>
-      <div className={s.partnerships}>
+      <div className={s.partnerships} ref={partnershipsRef}>
         <h2 className={s.partnershipTitle}>Long Standing Partnerships</h2>
       </div>
-      {data.longStandingPartnerships &&
-        data.longStandingPartnerships.map((partner, i) => {
-          if (!partner.featuredMedia) return
-          return (
-            <div
-              className={s.stickyWrapper}
-              key={i}
-              style={
-                i < data.longStandingPartnerships.length - 1
-                  ? { position: 'sticky', top: 0 }
-                  : { position: 'relative' }
-              }
-            >
-              <Project
-                key={i}
-                name={`${partner.client}`}
-                client={`${partner.client}`}
-                service={`${partner.service}`}
-                year={`${partner.yearStarted}`}
-                media={partner.featuredMedia}
-              />
-            </div>
-          )
-        })}
+      <div
+        className={s.daddyWrapper}
+        style={{ position: 'relative', paddingBottom: '253px' }}
+      >
+        {data.longStandingPartnerships &&
+          data.longStandingPartnerships.map((partner, i) => {
+            if (!partner.featuredMedia) return
+            return (
+              <div className={s.stickyWrapper} key={i}>
+                {i === 0 && <></>}
 
+                <Project
+                  key={i}
+                  name={`${partner.client}`}
+                  client={`${partner.client}`}
+                  service={`${partner.service}`}
+                  year={`${partner.yearStarted}`}
+                  media={partner.featuredMedia}
+                />
+              </div>
+            )
+          })}
+      </div>
       <EmailSelection />
     </div>
   )
