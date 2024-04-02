@@ -1,0 +1,42 @@
+@import '../../styles/config';
+
+.contact-info-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 $side-gaps-desktop 10rem;
+
+  @include tablet {
+    padding: 0 $side-gaps-tablet;
+    flex-wrap: wrap;
+  }
+  @include mobile-p {
+    padding: 0 $side-gaps-mobile;
+  }
+}
+
+.contact-info-block {
+  @include tablet {
+    width: 50%;
+    margin: 1.5rem 0;
+  }
+
+  @include mobile-p {
+    width: 100%;
+  }
+}
+
+.title {
+  font-size: 32px;
+  margin-bottom: 1rem;
+
+  @include tablet {
+    margin-bottom: 10px;
+  }
+}
+
+a {
+  color: $black;
+  font-weight: 500;
+  font-size: 18px;
+}
