@@ -5,7 +5,7 @@ import { PageTitle } from '../page-title/PageTitle'
 import { EmailSelection } from './email-selection/EmailSelection'
 import { AboutPageQuery, AboutPageRecord } from '@/graphql/generated/graphql'
 import { Card } from '../card/Card'
-import { Partner } from './partner/Partner'
+import { Project } from '../project/Project'
 
 export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
   if (!data) return <></>
@@ -30,12 +30,21 @@ export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
       </div>
       <div className={s.partnerships}>
         <h2 className={s.partnershipTitle}>Long Standing Partnerships</h2>
-        <div className={s.dividingLine}></div>
-        {data.longStandingPartnerships &&
-          data.longStandingPartnerships.map((partner, i) => {
-            return <Partner key={i} partner={partner} />
-          })}
       </div>
+      {data.longStandingPartnerships &&
+        data.longStandingPartnerships.map((partner, i) => {
+          return (
+            <Project
+              key={i}
+              name={`${partner.client}`}
+              client={`${partner.client}`}
+              service={`${partner.service}`}
+              year={`${partner.yearStarted}`}
+              video={partner.featuredVideo}
+            />
+          )
+        })}
+
       <EmailSelection />
     </div>
   )

@@ -37,7 +37,16 @@ export const ProjectScroller = ({ data }: { data: GetAllProjectsQuery }) => {
             className={s.projectOuterWrapper}
             ref={(el) => (projectRefs.current[i] = el)}
           >
-            <Project data={project} />
+            <Project
+              name={project.projectName}
+              service={project.service}
+              client={project.client}
+              image={project.featuredImage}
+              slug={project.slug}
+              year={project.year}
+              category={project.category}
+              alignment={project.alignment}
+            />
           </div>
         )
       })}

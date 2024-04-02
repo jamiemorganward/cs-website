@@ -1,9 +1,5 @@
 import { AboutPage } from '@/components/about-page/AboutPage'
-import {
-  AboutPageDocument,
-  AboutPageQuery,
-  AboutPageRecord
-} from '@/graphql/generated/graphql'
+import { AboutPageDocument, AboutPageQuery } from '@/graphql/generated/graphql'
 import { getClient } from '@/lib/serverClient'
 import React from 'react'
 

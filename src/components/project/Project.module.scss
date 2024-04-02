@@ -11,8 +11,8 @@
 
 .project-info-wrapper {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 40vw 1fr max-content;
   border-top: 1px solid #dcdcdc;
 
   & .project-name,
@@ -40,4 +40,9 @@
 
 .fullwidth {
   width: 100%;
+}
+
+mux-player {
+  /* Hide all controls at once */
+  --controls: none;
 }
