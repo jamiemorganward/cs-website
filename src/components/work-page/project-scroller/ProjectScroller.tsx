@@ -41,7 +41,7 @@ export const ProjectScroller = ({ data }: { data: GetAllProjectsQuery }) => {
               name={project.projectName}
               service={project.service}
               client={project.client}
-              image={project.featuredImage}
+              media={project.featuredMedia}
               slug={project.slug}
               year={project.year}
               category={project.category}

@@ -1,12 +1,9 @@
 'use client'
-import {
-  ImageFragment,
-  ProjectRecord,
-  VideoFragment
-} from '@/graphql/generated/graphql'
+import { FeaturedMediaFragment } from '@/graphql/generated/graphql'
 import s from './Project.module.scss'
 import Link from 'next/link'
-import Image from 'next/image'
+// import Image from 'next/image'
+import { Image } from 'react-datocms'
 import MuxPlayer from '@mux/mux-player-react'
 import { useEffect, useRef } from 'react'
 
@@ -16,19 +13,17 @@ export const Project = ({
   client,
   service,
   alignment,
-  image,
   projectUrl,
   year,
   category,
-  video
+  media
 }: {
   slug?: string
   name: string
   client: string
   service: string
   alignment?: string
-  image?: ImageFragment
-  video?: VideoFragment | null
+  media: FeaturedMediaFragment
   projectUrl?: string
   year?: string
   category?: string
@@ -41,18 +36,22 @@ export const Project = ({
         <div className={s.client}>{client}</div>
         <div className={s.service}>{service}</div>
       </div>
-      {image && (
-        <img
+      {media && media?.responsiveImage && (
+        <Image
           className={`${s.featuredImage}
         ${alignment === 'left' ? s.left : ''}
         ${alignment === 'right' ? s.right : ''}
         ${alignment === 'fullwidth' ? s.fullwidth : ''}`}
-          src={`${image?.responsiveImage?.src}`}
-          alt={`${image?.responsiveImage?.alt}`}
+          data={media.responsiveImage}
         />
       )}
-      {video?.video && (
-        <MuxPlayer src={video.video.streamingUrl} autoPlay="any" loop />
+      {media && media.video && (
+        <MuxPlayer
+          src={media.video.streamingUrl}
+          autoPlay="any"
+          loop
+          className={`${s.featuredImage} ${s.fullWidth}`}
+        />
       )}
     </Link>
   )

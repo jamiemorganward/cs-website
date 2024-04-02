@@ -12,11 +12,15 @@ fragment Video on FileField {
   }
 }
 
+fragment FeaturedMedia on FileField {
+  ...Video
+  ...Image
+}
+
 fragment Partner on PartnershipRecord {
   client
   featuredMedia {
-    ...Video
-    ...Image
+    ...FeaturedMedia
   }
   service
   imageAlignment

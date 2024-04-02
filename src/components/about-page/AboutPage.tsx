@@ -33,15 +33,26 @@ export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
       </div>
       {data.longStandingPartnerships &&
         data.longStandingPartnerships.map((partner, i) => {
+          if (!partner.featuredMedia) return
           return (
-            <Project
+            <div
+              className={s.stickyWrapper}
               key={i}
-              name={`${partner.client}`}
-              client={`${partner.client}`}
-              service={`${partner.service}`}
-              year={`${partner.yearStarted}`}
-              video={partner.featuredVideo}
-            />
+              style={
+                i < data.longStandingPartnerships.length - 1
+                  ? { position: 'sticky', top: 0 }
+                  : { position: 'relative' }
+              }
+            >
+              <Project
+                key={i}
+                name={`${partner.client}`}
+                client={`${partner.client}`}
+                service={`${partner.service}`}
+                year={`${partner.yearStarted}`}
+                media={partner.featuredMedia}
+              />
+            </div>
           )
         })}
 
