@@ -8,7 +8,13 @@ import {
 } from '@/graphql/generated/graphql'
 import { useEffect, useState } from 'react'
 
-export const MobileMenu = ({ open }: { open: boolean }) => {
+export const MobileMenu = ({
+  open,
+  onClose
+}: {
+  open: boolean
+  onClose?: () => void
+}) => {
   const pathname = usePathname()
 
   const [latestProject, setLatestProject] = useState<ProjectThumbFragment>()
@@ -37,30 +43,35 @@ export const MobileMenu = ({ open }: { open: boolean }) => {
               pathname.includes('/work') ? s.active : ''
             }`}
             href={'/work'}
+            onClick={onClose}
           >
             Work
           </Link>
           <Link
             className={`${s.link} ${isActive('/people') ? s.active : ''}`}
             href={'/people'}
+            onClick={onClose}
           >
             People
           </Link>
           <Link
             className={`${s.link} ${isActive('/about') ? s.active : ''}`}
             href={'/about'}
+            onClick={onClose}
           >
             About
           </Link>
           <Link
             className={`${s.link} ${isActive('/rd') ? s.active : ''}`}
             href={'/rd'}
+            onClick={onClose}
           >
             Playground
           </Link>
           <Link
             className={`${s.link} ${isActive('/contact') ? s.active : ''}`}
             href={'/contact'}
+            onClick={onClose}
           >
             Contact
           </Link>
@@ -71,7 +82,7 @@ export const MobileMenu = ({ open }: { open: boolean }) => {
           <a className={s.latest} href={`${latestProject.projectUrl}`}>
             <div className={s.projectThumb}>
               <img
-                src={`${latestProject.featuredImage?.responsiveImage?.src}`}
+                src={`${latestProject.featuredMedia?.responsiveImage?.src}`}
               />
             </div>
             Latest Project:

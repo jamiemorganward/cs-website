@@ -47,7 +47,9 @@ export const Header = () => {
               <DesktopMenu sticky={sticky} />
             )}
           </div>
-          {isMobile && <MobileMenu open={open} />}
+          {isMobile && (
+            <MobileMenu open={open} onClose={() => setOpen(false)} />
+          )}
         </div>
       </div>
     </header>

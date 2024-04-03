@@ -16,8 +16,8 @@ export const Project = ({ data }: { data: ProjectRecord }) => {
         ${data.alignment === 'left' ? s.left : ''}
         ${data.alignment === 'right' ? s.right : ''}
         ${data.alignment === 'fullwidth' ? s.fullwidth : ''}`}
-        src={`${data.featuredImage?.responsiveImage?.src}`}
-        alt={`${data.featuredImage?.responsiveImage?.alt}`}
+        src={`${data.featuredMedia?.responsiveImage?.src}`}
+        alt={`${data.featuredMedia?.responsiveImage?.alt}`}
       />
     </Link>
   )
