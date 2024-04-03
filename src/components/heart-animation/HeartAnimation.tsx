@@ -18,18 +18,18 @@ export const HeartAnimation = () => {
       setColumns(Math.floor((windowSize.width ? windowSize.width : 0) / 17))
     }
 
-    if (windowSize.width && windowSize.width > 991) {
-      // setNoOfHearts(1848)
-      setNoOfHearts(10)
-    } else if (
-      windowSize.width &&
-      windowSize.width < 991 &&
-      windowSize.width > 767
-    ) {
-      setNoOfHearts(900)
-    } else {
-      setNoOfHearts(500)
-    }
+    // if (windowSize.width && windowSize.width > 991) {
+    //   // setNoOfHearts(1848)
+    //   setNoOfHearts(10)
+    // } else if (
+    //   windowSize.width &&
+    //   windowSize.width < 991 &&
+    //   windowSize.width > 767
+    // ) {
+    //   setNoOfHearts(900)
+    // } else {
+    //   setNoOfHearts(500)
+    // }
 
     let hearts: number[] = []
 
@@ -48,77 +48,110 @@ export const HeartAnimation = () => {
   // animation
 
   const triggerRef = useRef<HTMLDivElement | null>(null)
-  const [triggerRect, setTriggerRect] = useState<DOMRect | undefined>(
-    triggerRef.current?.getBoundingClientRect()
-  )
   const heartsRef = useRef<Array<HTMLDivElement | null>>([])
 
   useEffect(() => {
     let rectMaxDistance = 0
 
-    heartsRef.current.map((heart, i) => {
-      const growTween = gsap.to(heart, {
-        scale: 2,
-        transformOrigin: '50% 50%',
-        ease: 'none',
-        paused: true
-      })
+    // heartsRef.current.map((heart, i) => {
+    //   const growTween = gsap.to(heart, {
+    //     scale: 2,
+    //     transformOrigin: '50% 50%',
+    //     ease: 'none',
+    //     paused: true
+    //   })
 
-      let rect = heart?.getBoundingClientRect()
-      if (rect && triggerRect) {
-        let rectRight = rect.left + rect.width
-        let rectBottom = rect.top + rect.height
-        let rectCenterX = rect.left + rect.width / 2
-        let rectCenterY = rect.top + rect.height / 2
-        let rectMaxX = rect.right - rectCenterX
-        let rectMaxY = rectCenterY - triggerRect.top
-        rectMaxDistance = Math.sqrt(
-          Math.pow(rectMaxX, 2) + Math.pow(rectMaxY, 2)
-        )
-      }
+    //   let rect = heart?.getBoundingClientRect()
+    //   const triggerRect = triggerRef.current?.getBoundingClientRect()
+    //   if (rect && triggerRect) {
+    //     let rectRight = rect.left + rect.width
+    //     let rectBottom = rect.top + rect.height
+    //     let rectCenterX = rect.left + rect.width / 2
+    //     let rectCenterY = rect.top + rect.height / 2
+    //     let rectMaxX = rect.right - rectCenterX
+    //     let rectMaxY = rectCenterY - triggerRect.top
+    //     rectMaxDistance = Math.sqrt(
+    //       Math.pow(rectMaxX, 2) + Math.pow(rectMaxY, 2)
+    //     )
+    //   }
 
-      // Change progress back to 0 on leave
-      let out = (e: MouseEvent) => {
-        // console.log('out')
-        gsap.from(growTween, {
-          progress: 0,
-          duration: 0.2,
-          overwrite: 'auto'
-        })
-      }
+    //   // Change progress back to 0 on leave
+    //   let out = (e: MouseEvent) => {
+    //     // console.log('out')
+    //     gsap.from(growTween, {
+    //       progress: 0,
+    //       duration: 0.2,
+    //       overwrite: 'auto'
+    //     })
+    //   }
+    // })
 
-      const moveEvent = (e: MouseEvent) => {
-        // If hovering the element, set progress to 1
-        if (rect) {
-          const inRect =
-            e.pageX > rect.left &&
-            e.pageX < rect.right &&
-            e.pageY > rect.top &&
-            e.pageY < rect.bottom
-          let progress = 1
+    let needForRAF = true
 
-          if (!inRect) {
-            // Circular distance from center of heart
-            const dist = Math.sqrt(
-              Math.pow(e.pageX - rect.right, 2) +
-                Math.pow(e.pageY - rect.top, 2)
+    const moveEvent = (e: MouseEvent) => {
+      const calculateFrame = () => {
+        heartsRef.current.map((heart, i) => {
+          let rect = heart?.getBoundingClientRect()
+          const triggerRect = triggerRef.current?.getBoundingClientRect()
+          if (rect && triggerRect) {
+            Math.floor(
+              Math.sqrt(
+                Math.pow(e.pageX - (rect.left + rect.width / 2), 2) +
+                  Math.pow(e.pageY - (rect.top + rect.height / 2), 2)
+              )
             )
 
-            progress = 1 - dist / rectMaxDistance
-          }
+            // let rectRight = rect.left + rect.width
+            // let rectBottom = rect.top + rect.height
+            // let rectCenterX = rect.left + rect.width / 2
+            // let rectCenterY = rect.top + rect.height / 2
+            // let rectMaxX = rect.right - rectCenterX
+            // let rectMaxY = rectCenterY - triggerRect.top
+            rectMaxDistance = 100
 
-          // Update tween's progress
-          gsap.from(growTween, {
-            progress: progress,
-            duration: 0.2,
-            overwrite: 'auto'
-          })
-        }
+            // // If hovering the element, set progress to 1
+            if (rect) {
+              //   const inRect =
+              //     e.pageX > rect.left &&
+              //     e.pageX < rect.right &&
+              //     e.pageY > rect.top &&
+              //     e.pageY < rect.bottom
+              let progress = 1
+
+              //   if (!inRect) {
+              //     // Circular distance from center of heart
+              const dist = Math.floor(
+                Math.sqrt(
+                  Math.pow(e.pageX - (rect.left + rect.width / 2), 2) +
+                    Math.pow(e.pageY - (rect.top + rect.height / 2), 2)
+                )
+              )
+
+              progress = 1 - dist / rectMaxDistance
+              //   }
+
+              // Update tween's progress
+              // tl.progress(0.5)
+              // tl.pause()
+              gsap.set(heart, {
+                scale: 1 + Math.max(0, progress),
+                transformOrigin: '50% 50%',
+                ease: 'none'
+              })
+            }
+          }
+        })
+        needForRAF = true
       }
 
-      triggerRef.current?.addEventListener('mousemove', moveEvent)
-      triggerRef.current?.addEventListener('mouseleave', out)
-    })
+      if (needForRAF) {
+        needForRAF = false // no need to call rAF up until next frame
+        requestAnimationFrame(calculateFrame) // request 60fps animation
+      }
+    }
+
+    triggerRef.current?.addEventListener('mousemove', moveEvent)
+    // triggerRef.current?.addEventListener('mouseleave', out)
   }, [triggerRef.current])
 
   if (!windowSize.width || typeof windowSize.width === 'undefined') return <></>

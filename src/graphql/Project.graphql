@@ -24,7 +24,7 @@ fragment ProjectThumb on ProjectRecord {
   projectName
   projectUrl
   category
-  featuredImage {
+  featuredMedia {
     responsiveImage {
       alt
       src
@@ -48,7 +48,7 @@ fragment Project on ProjectRecord {
   year
   service
   alignment
-  featuredImage {
+  featuredMedia {
     responsiveImage {
       alt
       src
