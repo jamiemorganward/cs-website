@@ -7,13 +7,15 @@
   padding: 0 $side-gaps-desktop;
   text-decoration: none;
   background-color: $white;
+  max-height: 90vh;
+  overflow: hidden;
 }
 
 .project-info-wrapper {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid #dcdcdc;
+  display: grid;
+  grid-template-columns: 40vw 1fr max-content;
+  border-top: 1px solid #0000000a;
 
   & .project-name,
   & .client,
@@ -38,6 +40,12 @@
   align-self: flex-start;
 }
 
-.fullwidth {
+.full-width {
   width: 100%;
+}
+
+mux-player {
+  /* Hide all controls at once */
+  --controls: none;
+  height: 70%;
 }

@@ -1,0 +1,50 @@
+@import '@/styles/config';
+
+.card-section {
+  display: flex;
+  gap: 3rem;
+  padding: 6rem 2rem 0 2rem;
+
+  @include tablet {
+    padding: 4rem 2rem 0 2rem;
+    flex-direction: column;
+  }
+
+  @include mobile-p {
+    padding: 3rem 1rem 0 1rem;
+  }
+}
+.card-spacer {
+  height: 200px;
+}
+
+.partnerships {
+  padding: 8rem 2rem 0 2rem;
+
+  @include tablet {
+    padding: 4rem 2rem 0 2rem;
+    flex-direction: column;
+  }
+
+  @include mobile-p {
+    padding: 3rem 1rem 0 1rem;
+  }
+
+  h2 {
+    padding-bottom: 4rem;
+  }
+
+  @include tablet {
+    top: 1rem;
+  }
+}
+
+.sticky-wrapper {
+  position: sticky;
+  // top: 285px;
+  top: 5rem;
+
+  // &:first-child {
+  //   top: 0;
+  // }
+}

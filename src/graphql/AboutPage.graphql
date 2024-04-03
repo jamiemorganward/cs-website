@@ -1,0 +1,41 @@
+fragment Video on FileField {
+  video {
+    streamingUrl
+    mp4High: mp4Url(res: high)
+    mp4Med: mp4Url(res: medium)
+    mp4Low: mp4Url(res: low)
+    duration
+    framerate
+    thumbJpg: thumbnailUrl(format: jpg)
+    thumbPng: thumbnailUrl(format: png)
+    thumbGif: thumbnailUrl(format: gif)
+  }
+}
+
+fragment FeaturedMedia on FileField {
+  ...Video
+  ...Image
+}
+
+fragment Partner on PartnershipRecord {
+  client
+  featuredMedia {
+    ...FeaturedMedia
+  }
+  service
+  imageAlignment
+  yearStarted
+}
+
+query AboutPage {
+  aboutPage {
+    cardSection {
+      title
+      subtitle
+      textContent
+    }
+    longStandingPartnerships {
+      ...Partner
+    }
+  }
+}

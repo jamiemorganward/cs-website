@@ -71,7 +71,7 @@ export const MobileMenu = ({ open }: { open: boolean }) => {
           <a className={s.latest} href={`${latestProject.projectUrl}`}>
             <div className={s.projectThumb}>
               <img
-                src={`${latestProject.featuredImage?.responsiveImage?.src}`}
+                src={`${latestProject.featuredMedia?.responsiveImage?.src}`}
               />
             </div>
             Latest Project:
