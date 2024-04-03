@@ -16,7 +16,8 @@ export const Project = ({
   projectUrl,
   year,
   category,
-  media
+  media,
+  noLine
 }: {
   slug?: string
   name: string
@@ -27,6 +28,7 @@ export const Project = ({
   projectUrl?: string
   year?: string
   category?: string
+  noLine?: boolean
 }) => {
   useEffect(() => {}, [])
   return (

@@ -56,10 +56,7 @@ export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
       <div className={s.partnerships} ref={partnershipsRef}>
         <h2 className={s.partnershipTitle}>Long Standing Partnerships</h2>
       </div>
-      <div
-        className={s.daddyWrapper}
-        style={{ position: 'relative', paddingBottom: '253px' }}
-      >
+      <div className={s.daddyWrapper} style={{ position: 'relative' }}>
         {data.longStandingPartnerships &&
           data.longStandingPartnerships.map((partner, i) => {
             if (!partner.featuredMedia) return
