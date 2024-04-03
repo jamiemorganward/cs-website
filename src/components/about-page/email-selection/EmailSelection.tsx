@@ -12,7 +12,6 @@ export const EmailSelection = () => {
   const [isCopied, setIsCopied] = useState(false)
   const circleRef = useRef<HTMLDivElement | null>(null)
   const copiedRef = useRef<HTMLParagraphElement | null>(null)
-  const eyeRef = useRef<HTMLDivElement | null>(null)
   const mobileCopied = useRef<HTMLDivElement | null>(null)
   const [diameter, setDiameter] = useState<number>(0)
   const windowSize = useWindowSize()
@@ -31,27 +30,20 @@ export const EmailSelection = () => {
     }
   }
 
-  const animateIn = () => {
-    const tl = gsap.timeline({ paused: true })
-    tl.to(circleRef.current, { zIndex: 1 })
-    tl.to(
-      circleRef.current,
-      {
-        width: diameter,
-        height: diameter,
-        duration: 1,
-        ease: 'circ.inOut'
-      },
-      '<'
-    )
-    tl.to(copiedRef.current, { opacity: 1, duration: 1 }, '<= .2')
-    tl.to(mobileCopied.current, { opacity: 1, duration: 1 }, '<')
-    tl.to(eyeRef.current, { translateY: '-15rem' }, '<')
-
-    if (circleRef.current && copiedRef.current) {
-      tl.play()
-    }
-  }
+  const tl = gsap.timeline({ paused: true })
+  tl.to(circleRef.current, { zIndex: 1 })
+  tl.to(
+    circleRef.current,
+    {
+      width: diameter,
+      height: diameter,
+      duration: 2,
+      ease: 'circ.inOut'
+    },
+    '<'
+  )
+  tl.to(copiedRef.current, { opacity: 1, duration: 2 }, '<= .2')
+  tl.to(mobileCopied.current, { opacity: 1, duration: 2 }, '<')
 
   const backItUp = () => {
     let colour = getABackground()
@@ -84,15 +76,15 @@ export const EmailSelection = () => {
   useEffect(() => {
     if (isCopied) {
       navigator.clipboard.writeText('hello@clicksuite.co.nz')
-      animateIn()
     }
   }, [isCopied])
 
   return (
     <div
-      className={s.emailSelection}
+      className={`${s.emailSelection} ${isCopied && s.copiedEmailSelection}`}
       onClick={() => setIsCopied(true)}
-      style={isCopied ? { cursor: 'auto' } : undefined}
+      onMouseDown={() => tl.play()}
+      onMouseUp={() => tl.reverse()}
     >
       <p className={s.email}>hello@clicksuite.co.nz</p>
 
@@ -108,10 +100,6 @@ export const EmailSelection = () => {
         <p className={s.copied} ref={copiedRef}>
           Copied!
         </p>
-      </div>
-      <div className={s.eyeWrapper} ref={eyeRef}>
-        <LeftEye width="10vw" height="10vw" />
-        <RightEye width="10vw" height="10vw" />
       </div>
     </div>
   )
