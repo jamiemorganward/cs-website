@@ -112,7 +112,7 @@ export const ApproachPageDesktop = () => {
   return (
     <div className={s.approachPage} ref={pageRef}>
       <div className={s.titleWrapper} ref={textRef}>
-        <PageTitle title="Approach" />
+        <PageTitle title="Approach" animate={false} />
       </div>
 
       <div className={s.cardWrapper} ref={allCards}>

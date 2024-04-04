@@ -10,6 +10,7 @@ export const FilterBar = ({ filterItems }: { filterItems: string[] }) => {
         return (
           // To do: add filtering logic
           <Link className={s.filterItem} key={i} href={''}>
+            <div className={s.circle}></div>
             {item}
           </Link>
         )

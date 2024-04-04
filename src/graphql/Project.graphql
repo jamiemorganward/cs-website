@@ -25,15 +25,20 @@ fragment ProjectThumb on ProjectRecord {
   projectUrl
   category
   featuredMedia {
-    responsiveImage {
-      alt
-      src
-      sizes
-      base64
-      height
-      title
-      width
-    }
+    ...Image
+    ...Video
+  }
+}
+
+fragment Image on FileField {
+  responsiveImage {
+    alt
+    src
+    sizes
+    base64
+    height
+    title
+    width
   }
 }
 
@@ -49,15 +54,8 @@ fragment Project on ProjectRecord {
   service
   alignment
   featuredMedia {
-    responsiveImage {
-      alt
-      src
-      sizes
-      base64
-      height
-      title
-      width
-    }
+    ...Image
+    ...Video
   }
   flexibleContent {
     ...DoubleImage
