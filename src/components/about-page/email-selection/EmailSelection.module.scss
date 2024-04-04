@@ -10,6 +10,10 @@
   justify-content: center;
   cursor: url('../../../assets/svgs/cursors/copy.svg'), auto;
   position: relative;
+
+  &.copied-email-selection {
+    cursor: url('../../../assets/svgs/cursors/copied.svg'), auto;
+  }
 }
 
 .email {
