@@ -45,6 +45,7 @@ export const Project = ({
         ${alignment === 'right' ? s.right : ''}
         ${alignment === 'fullwidth' ? s.fullwidth : ''}`}
           data={media.responsiveImage}
+          objectFit="cover"
         />
       )}
       {media && media.video && (
