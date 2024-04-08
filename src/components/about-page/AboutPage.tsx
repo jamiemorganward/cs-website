@@ -71,6 +71,7 @@ export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
                   service={`${partner.service}`}
                   year={`${partner.yearStarted}`}
                   media={partner.featuredMedia}
+                  noLink
                 />
               </div>
             )

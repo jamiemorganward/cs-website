@@ -5,11 +5,13 @@ import { useEffect, useRef, useState } from 'react'
 import { PageTitle } from '../page-title/PageTitle'
 import { FilterBar } from '../filter-bar/FilterBar'
 import { Project } from '../project/Project'
+import { useWindowSize } from '@/utils/useWindowSize'
 
 export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
   const [categories, setAllCategories] = useState<string[]>([])
   const filterRef = useRef<HTMLDivElement | null>(null)
-  const [fixFilters, setFixFilters] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  const windowSize = useWindowSize()
 
   const getAllCategories = () => {
     let tempCats: string[] = []
@@ -24,44 +26,31 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
     getAllCategories()
   }, [])
 
-  const watchFilters = () => {
-    if (
-      filterRef.current &&
-      filterRef.current?.getBoundingClientRect().top <= 80
-    ) {
-      setFixFilters(true)
+  useEffect(() => {
+    if (windowSize.width && windowSize.width < 991) {
+      setIsMobile(true)
     } else {
-      setFixFilters(false)
+      setIsMobile(false)
     }
-  }
+  }, [windowSize.width])
 
   useEffect(() => {
-    if (filterRef && filterRef.current) {
-      window.addEventListener('scroll', watchFilters)
-    }
-
-    return () => {
-      window.removeEventListener('scroll', watchFilters)
+    if (windowSize.width && windowSize.width > 991) {
+      setIsMobile(true)
     }
   }, [])
 
-  if (!data) return <></>
+  if (!data || !windowSize.width) return <></>
 
   return (
     <div>
-      {/* <div className={`${s.header}`}> */}
       <div className={s.titleWrapper}>
         <PageTitle title="Work" />
       </div>
-      <div
-        className={s.filterSticky}
-        ref={filterRef}
-        style={{ position: 'sticky' }}
-        // style={fixFilters ? { position: 'fixed' } : undefined}
-      >
+      <div className={s.filterSticky} ref={filterRef}>
         <FilterBar filterItems={categories} />
       </div>
-      {/* </div> */}
+
       {data.allProjects.map((project: any, i: number) => {
         return (
           <div key={i} className={s.projectOuterWrapper}>

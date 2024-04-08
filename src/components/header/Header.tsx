@@ -10,7 +10,7 @@ import { HamburgerButton } from './hamburger-button/HamburgerButton'
 
 export const Header = () => {
   const windowSize = useWindowSize()
-  const isMobile = windowSize.width && windowSize.width < 991
+  const [isMobile, setIsMobile] = useState(false)
   const [open, setOpen] = useState<boolean>(false)
   const [sticky, setSticky] = useState<boolean>()
 
@@ -26,6 +26,14 @@ export const Header = () => {
       window.addEventListener('scroll', stickyMagic)
     }
   }, [])
+
+  useEffect(() => {
+    if (windowSize.width && windowSize.width < 991) {
+      setIsMobile(true)
+    } else {
+      setIsMobile(false)
+    }
+  }, [windowSize.width])
 
   if (isMobile === undefined) return <></>
 

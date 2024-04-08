@@ -17,7 +17,8 @@ export const Project = ({
   year,
   category,
   media,
-  noLine
+  noLine,
+  noLink
 }: {
   slug?: string
   name: string
@@ -29,33 +30,65 @@ export const Project = ({
   year?: string
   category?: string
   noLine?: boolean
+  noLink?: boolean
 }) => {
   useEffect(() => {}, [])
   return (
-    <Link className={s.projectWrapper} href={`/work${slug}`}>
-      <div className={s.projectInfoWrapper}>
-        <div className={s.projectName}>{name}</div>
-        <div className={s.client}>{client}</div>
-        <div className={s.service}>{service}</div>
-      </div>
-      {media && media?.responsiveImage && (
-        <Image
-          className={`${s.featuredImage}
+    <>
+      {!noLink && (
+        <Link className={s.projectWrapper} href={`/work${slug}`}>
+          <div className={s.projectInfoWrapper}>
+            <div className={s.projectName}>{name}</div>
+            <div className={s.client}>{client}</div>
+            <div className={s.service}>{service}</div>
+          </div>
+          {media && media?.responsiveImage && (
+            <Image
+              className={`${s.featuredImage}
+        ${alignment === 'left' && s.left}
+        ${alignment === 'right' && s.right}
+        ${alignment === 'fullwidth' && s.fullwidth}`}
+              data={media.responsiveImage}
+              objectFit="cover"
+            />
+          )}
+          {media && media.video && (
+            <MuxPlayer
+              src={media.video.streamingUrl}
+              autoPlay="any"
+              loop
+              className={`${s.featuredImage} ${s.fullWidth}`}
+            />
+          )}
+        </Link>
+      )}
+      {noLink && (
+        <div className={s.projectWrapper}>
+          <div className={s.projectInfoWrapper}>
+            <div className={s.projectName}>{name}</div>
+            <div className={s.client}>{client}</div>
+            <div className={s.service}>{service}</div>
+          </div>
+          {media && media?.responsiveImage && (
+            <Image
+              className={`${s.featuredImage}
         ${alignment === 'left' ? s.left : ''}
         ${alignment === 'right' ? s.right : ''}
         ${alignment === 'fullwidth' ? s.fullwidth : ''}`}
-          data={media.responsiveImage}
-          objectFit="cover"
-        />
+              data={media.responsiveImage}
+              objectFit="cover"
+            />
+          )}
+          {media && media.video && (
+            <MuxPlayer
+              src={media.video.streamingUrl}
+              autoPlay="any"
+              loop
+              className={`${s.featuredImage} ${s.fullWidth}`}
+            />
+          )}
+        </div>
       )}
-      {media && media.video && (
-        <MuxPlayer
-          src={media.video.streamingUrl}
-          autoPlay="any"
-          loop
-          className={`${s.featuredImage} ${s.fullWidth}`}
-        />
-      )}
-    </Link>
+    </>
   )
 }
