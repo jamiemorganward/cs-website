@@ -3,7 +3,6 @@ import { FeaturedMediaFragment } from '@/graphql/generated/graphql'
 import s from './Project.module.scss'
 import Link from 'next/link'
 // import Image from 'next/image'
-import { Image } from 'react-datocms'
 import MuxPlayer from '@mux/mux-player-react'
 import { useEffect, useRef } from 'react'
 
@@ -32,24 +31,22 @@ export const Project = ({
   noLine?: boolean
   noLink?: boolean
 }) => {
-  useEffect(() => {}, [])
   return (
     <>
       {!noLink && (
         <Link className={s.projectWrapper} href={`/work${slug}`}>
-          <div className={s.projectInfoWrapper}>
+          <div className={`${s.projectInfoWrapper}`}>
             <div className={s.projectName}>{name}</div>
             <div className={s.client}>{client}</div>
             <div className={s.service}>{service}</div>
           </div>
           {media && media?.responsiveImage && (
-            <Image
+            <img
               className={`${s.featuredImage}
         ${alignment === 'left' && s.left}
         ${alignment === 'right' && s.right}
-        ${alignment === 'fullwidth' && s.fullwidth}`}
-              data={media.responsiveImage}
-              objectFit="cover"
+        ${alignment === 'fullwidth' && s.fullWidth}`}
+              src={media.responsiveImage.src}
             />
           )}
           {media && media.video && (
@@ -70,13 +67,12 @@ export const Project = ({
             <div className={s.service}>{service}</div>
           </div>
           {media && media?.responsiveImage && (
-            <Image
+            <img
               className={`${s.featuredImage}
         ${alignment === 'left' ? s.left : ''}
         ${alignment === 'right' ? s.right : ''}
         ${alignment === 'fullwidth' ? s.fullwidth : ''}`}
-              data={media.responsiveImage}
-              objectFit="cover"
+              src={media.responsiveImage.src}
             />
           )}
           {media && media.video && (

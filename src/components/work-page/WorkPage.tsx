@@ -45,7 +45,7 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
   return (
     <div>
       <div className={s.titleWrapper}>
-        <PageTitle title="Work" />
+        <PageTitle title="Work" animate={false} />
       </div>
       <div className={s.filterSticky} ref={filterRef}>
         <FilterBar filterItems={categories} />

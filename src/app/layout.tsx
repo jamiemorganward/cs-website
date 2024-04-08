@@ -24,7 +24,7 @@ export default function RootLayout({
         <PageInfoContextProvider>
           <Header />
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </PageInfoContextProvider>
       </body>
     </html>
