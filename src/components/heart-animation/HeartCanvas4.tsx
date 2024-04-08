@@ -24,6 +24,12 @@ export const HeartCanvas4 = () => {
     if (!canvasRef.current) {
       return
     }
+    function easeOutExpo(x: number): number {
+      return x === 1 ? 1 : 1 - Math.pow(2, -10 * x)
+    }
+    function getBaseLog(x: number, y: number) {
+      return Math.log(y) / Math.log(x)
+    }
     const canvas = canvasRef.current
     const ctx = canvas?.getContext('2d')
 
@@ -74,20 +80,20 @@ export const HeartCanvas4 = () => {
       }
 
       // draw single heart
-      drawHeart = () => {
+      drawHeart = (i: number) => {
         if (ctx) {
           ctx.beginPath()
           // console.log(this.x, this.y, this.width, 0, 2 * Math.PI)
           ctx.arc(this.x, this.y, this.width, 0, 2 * Math.PI)
 
-          ctx.fillStyle = this.color
+          ctx.fillStyle = i === 850 ? '#ff0000' : this.color
           ctx.fill()
         }
-        this.update()
+        this.update(i)
       }
 
       // define change on hover
-      update = () => {
+      update = (i: index) => {
         // console.log(this.width, this.maxWidth)
         // if (
         //   mouseX - this.x < 80 &&
@@ -119,8 +125,18 @@ export const HeartCanvas4 = () => {
             // this.x += 1
             // this.y += 1
           }
-          this.x = this.center.x + (this.x - mouseX) / 2
-          this.y = this.center.y + (this.y - mouseY) / 2
+          if (i === 850) {
+            console.log(getBaseLog(100, this.center.y - mouseY))
+          }
+          // console.log(this.x - mouseX, easeOutExpo(this.x - mouseX))
+          this.x =
+            this.center.x +
+            (this.center.x - mouseX) *
+              getBaseLog(10, Math.abs(this.center.x - mouseX))
+          this.y =
+            this.center.y +
+            (this.center.y - mouseY) *
+              getBaseLog(10, Math.abs(this.center.y - mouseY))
         }
       }
     }
@@ -143,8 +159,8 @@ export const HeartCanvas4 = () => {
       if (ctx) {
         ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
 
-        heartArray.forEach((heart) => {
-          heart.drawHeart()
+        heartArray.forEach((heart, i) => {
+          heart.drawHeart(i)
         })
       }
     }
