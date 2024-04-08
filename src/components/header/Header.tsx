@@ -14,18 +14,18 @@ export const Header = () => {
   const [open, setOpen] = useState<boolean>(false)
   const [sticky, setSticky] = useState<boolean>()
 
-  const stickyMagic = () => {
-    if (window.scrollY > 100) {
-      setSticky(true)
-    } else {
-      setSticky(false)
-    }
-  }
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', stickyMagic)
-    }
-  }, [])
+  // const stickyMagic = () => {
+  //   if (window.scrollY > 100) {
+  //     setSticky(true)
+  //   } else {
+  //     setSticky(false)
+  //   }
+  // }
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     window.addEventListener('scroll', stickyMagic)
+  //   }
+  // }, [])
 
   useEffect(() => {
     if (windowSize.width && windowSize.width < 991) {
@@ -38,26 +38,29 @@ export const Header = () => {
   if (isMobile === undefined) return <></>
 
   return (
-    <header
-      className={`${s.headerWrapper} ${isMobile ? s.mobile : s.desktop} ${
-        open ? s.open : ''
-      } ${sticky ? s.sticky : ''}`}
-    >
-      <div className={s.container}>
-        <div className={s.headerInner}>
-          <div className={s.topSection}>
-            <Link href={'/'}>
-              <LogoWrapper />
-            </Link>
-            {isMobile ? (
-              <HamburgerButton open={open} onClick={() => setOpen(!open)} />
-            ) : (
-              <DesktopMenu sticky={sticky} />
-            )}
+    <>
+      <header
+        className={`${s.headerWrapper} ${isMobile ? s.mobile : s.desktop} ${
+          open ? s.open : ''
+        } ${sticky ? s.sticky : ''}`}
+      >
+        <div className={s.container}>
+          <div className={s.headerInner}>
+            <div className={s.topSection}>
+              <Link href={'/'}>
+                <LogoWrapper />
+              </Link>
+              {isMobile ? (
+                <HamburgerButton open={open} onClick={() => setOpen(!open)} />
+              ) : (
+                <DesktopMenu sticky={sticky} />
+              )}
+            </div>
+            {isMobile && <MobileMenu open={open} />}
           </div>
-          {isMobile && <MobileMenu open={open} />}
         </div>
-      </div>
-    </header>
+      </header>
+      <div className={`${s.background} ${open && s.open}`}></div>
+    </>
   )
 }
