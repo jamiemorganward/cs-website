@@ -1,0 +1,23 @@
+fragment Person on PersonRecord {
+  id
+  name
+  jobTitle
+  headshot {
+    ...Image
+    ...Video
+  }
+  inOfficeVideo {
+    ...Image
+    ...Video
+  }
+  outOfOfficeVideo {
+    ...Image
+    ...Video
+  }
+}
+
+query GetAllPeople {
+  allPeople {
+    ...Person
+  }
+}
