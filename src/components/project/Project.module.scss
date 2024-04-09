@@ -10,7 +10,7 @@
   height: calc(100vh - 10rem);
   overflow: hidden;
 
-  @include tablet {
+  @include mobile-l {
     padding: 0 1rem;
     height: 40vh;
   }
