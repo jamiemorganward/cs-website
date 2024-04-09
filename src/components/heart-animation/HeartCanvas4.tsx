@@ -65,10 +65,17 @@ export const HeartCanvas4 = () => {
       maxWidth: number
       minWidth: number
       center: { x: number; y: number }
+      colorArray: string[]
     }
 
     class Heart {
-      constructor(x: number, y: number, width: number, color?: string) {
+      constructor(
+        x: number,
+        y: number,
+        width: number,
+        color?: string,
+        colorArray?: string[]
+      ) {
         this.x = x
         this.y = y
         this.center = { x, y }
@@ -77,6 +84,7 @@ export const HeartCanvas4 = () => {
         this.minWidth = width
 
         this.color = '#000000'
+        this.colorArray = ['FFC10C', '#F60', '#9190FF']
       }
 
       // draw single heart
@@ -86,7 +94,8 @@ export const HeartCanvas4 = () => {
           // console.log(this.x, this.y, this.width, 0, 2 * Math.PI)
           ctx.arc(this.x, this.y, this.width, 0, 2 * Math.PI)
 
-          ctx.fillStyle = i === 850 ? '#ff0000' : this.color
+          // ctx.fillStyle = i === 850 ? '#ff0000' : this.color
+          ctx.fillStyle
           ctx.fill()
         }
         this.update(i)
@@ -120,23 +129,26 @@ export const HeartCanvas4 = () => {
                 this.maxWidth,
               10
             )
+            // this.x = 100 * Math.sin(1)
+            // this.y = 100 * Math.sin(1)
+            // console.log(this.x, this.y)
           } else if (this.width > this.minWidth) {
             this.width -= 1
             // this.x += 1
             // this.y += 1
           }
           if (i === 850) {
-            console.log(getBaseLog(100, this.center.y - mouseY))
+            // console.log(getBaseLog(100, this.center.y - mouseY))
           }
           // console.log(this.x - mouseX, easeOutExpo(this.x - mouseX))
           this.x =
             this.center.x +
             (this.center.x - mouseX) *
-              getBaseLog(10, Math.abs(this.center.x - mouseX))
+              getBaseLog(500, Math.abs(this.center.x - mouseX))
           this.y =
             this.center.y +
             (this.center.y - mouseY) *
-              getBaseLog(10, Math.abs(this.center.y - mouseY))
+              getBaseLog(500, Math.abs(this.center.y - mouseY))
         }
       }
     }
