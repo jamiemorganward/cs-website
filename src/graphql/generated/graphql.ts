@@ -1965,6 +1965,7 @@ export type PersonModelFilter = {
   jobTitle?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
   outOfOfficeVideo?: InputMaybe<FileFilter>;
+  position?: InputMaybe<PositionFilter>;
 };
 
 export enum PersonModelOrderBy {
@@ -1989,7 +1990,9 @@ export enum PersonModelOrderBy {
   JobTitleAsc = 'jobTitle_ASC',
   JobTitleDesc = 'jobTitle_DESC',
   NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC'
+  NameDesc = 'name_DESC',
+  PositionAsc = 'position_ASC',
+  PositionDesc = 'position_DESC'
 }
 
 /** Record of type Person (person) */
@@ -2014,12 +2017,29 @@ export type PersonRecord = RecordInterface & {
   jobTitle?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   outOfOfficeVideo?: Maybe<FileField>;
+  position?: Maybe<Scalars['IntType']['output']>;
 };
 
 
 /** Record of type Person (person) */
 export type PersonRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
+};
+
+/** Specifies how to filter by position (sorted and tree-like collections) */
+export type PositionFilter = {
+  /** Search for records with an exact match */
+  eq?: InputMaybe<Scalars['IntType']['input']>;
+  /** Filter records with a value that's strictly greater than the one specified */
+  gt?: InputMaybe<Scalars['IntType']['input']>;
+  /** Filter records with a value that's greater than or equal to the one specified */
+  gte?: InputMaybe<Scalars['IntType']['input']>;
+  /** Filter records with a value that's less than the one specified */
+  lt?: InputMaybe<Scalars['IntType']['input']>;
+  /** Filter records with a value that's less or equal than the one specified */
+  lte?: InputMaybe<Scalars['IntType']['input']>;
+  /** Exclude records with an exact match */
+  neq?: InputMaybe<Scalars['IntType']['input']>;
 };
 
 export type ProjectModelFilter = {
