@@ -1,10 +1,12 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import s from './PersonCard.module.scss'
 import { PersonFragment } from '@/graphql/generated/graphql'
 import MuxPlayer from '@mux/mux-player-react'
 import { DateTime } from 'luxon'
 import { useWindowSize } from '@/utils/useWindowSize'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
 
 export const PersonCard = ({
   person,
@@ -16,6 +18,7 @@ export const PersonCard = ({
   const [isHover, setIsHover] = useState(false)
   const [online, setOnline] = useState(false)
   const windowSize = useWindowSize()
+  const circleRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     const currentTime = DateTime.now().toFormat('HH:mm')
@@ -25,6 +28,15 @@ export const PersonCard = ({
       setOnline(true)
     }
   }, [])
+
+  useGSAP(() => {
+    const tl = gsap.timeline({ repeat: -1, yoyo: true })
+    if (circleRef.current) {
+      tl.to(circleRef.current, { scale: 1.2, duration: 1 })
+    }
+
+    tl.play()
+  }, [{ circleRef }])
 
   if (!windowSize.width) return <></>
 
@@ -72,7 +84,7 @@ export const PersonCard = ({
         )}
         {isHover && online && (
           <div className={s.onlineBadge}>
-            <div className={s.greenCircle}></div>
+            <div className={s.greenCircle} ref={circleRef}></div>
             <p className={s.online}>Online</p>
           </div>
         )}
