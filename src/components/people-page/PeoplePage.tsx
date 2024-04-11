@@ -11,7 +11,7 @@ export const PeoplePage = ({ data }: { data: GetAllPeopleQuery }) => {
     { top: 8, right: 0, bottom: 0, left: 0 },
     { top: 0, right: 0, bottom: 0, left: 10 },
     { top: 6, right: 10, bottom: 0, left: 5 },
-    { top: 0, right: 0, bottom: 0, left: 16 }
+    { top: 0, right: 14, bottom: 0, left: 16 }
   ]
   return (
     <div className={s.peoplePageWrapper}>
