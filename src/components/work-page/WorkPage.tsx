@@ -11,6 +11,7 @@ import { PageTitle } from '../page-title/PageTitle'
 import { FilterBar } from '../filter-bar/FilterBar'
 import { Project } from '../project/Project'
 import { useWindowSize } from '@/utils/useWindowSize'
+import { ReactLenis, useLenis } from '@studio-freight/react-lenis'
 
 export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
   const [categories, setAllCategories] = useState<string[]>([])
@@ -66,31 +67,33 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
       <div className={s.titleWrapper}>
         <PageTitle title="Work" />
       </div>
-      <div className={s.filterSticky} ref={filterRef}>
-        <FilterBar
-          filterItems={categories}
-          filters={filters}
-          setFilters={(e: string) => addOrRemove(e)}
-        />
-      </div>
+      <ReactLenis root>
+        <div className={s.filterSticky} ref={filterRef}>
+          <FilterBar
+            filterItems={categories}
+            filters={filters}
+            setFilters={(e: string) => addOrRemove(e)}
+          />
+        </div>
 
-      {localProjects.map((project: any, i: number) => {
-        return (
-          <div key={i} className={s.projectOuterWrapper}>
-            <Project
-              noLine
-              name={project.projectName}
-              service={project.service}
-              client={project.client}
-              media={project.featuredMedia}
-              slug={project.slug}
-              year={project.year}
-              category={project.category}
-              alignment={project.alignment}
-            />
-          </div>
-        )
-      })}
+        {localProjects.map((project: any, i: number) => {
+          return (
+            <div key={i} className={s.projectOuterWrapper}>
+              <Project
+                noLine
+                name={project.projectName}
+                service={project.service}
+                client={project.client}
+                media={project.featuredMedia}
+                slug={project.slug}
+                year={project.year}
+                category={project.category}
+                alignment={project.alignment}
+              />
+            </div>
+          )
+        })}
+      </ReactLenis>
     </div>
   )
 }
