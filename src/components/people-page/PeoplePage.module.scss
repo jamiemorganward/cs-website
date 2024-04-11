@@ -11,8 +11,12 @@
   padding: 2rem;
   @include tablet {
     padding: 1rem;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin-top: 4rem;
     gap: 2rem;
+  }
+
+  @media screen and (max-width: 800px) {
+    justify-content: space-between;
   }
 }
