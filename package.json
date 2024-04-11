@@ -17,6 +17,8 @@
     "@mux/mux-player-react": "^2.4.1",
     "@react-spring/three": "^9.7.3",
     "@react-three/fiber": "^8.15.16",
+    "@studio-freight/lenis": "^1.0.42",
+    "@studio-freight/react-lenis": "^0.0.47",
     "@types/luxon": "^3.4.2",
     "@use-gesture/react": "^10.3.0",
     "graphql": "^16.8.1",
