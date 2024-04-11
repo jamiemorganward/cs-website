@@ -17,7 +17,7 @@ export const ApproachPageMobile = () => {
     const elementWatcher = (e: Event) => {
       if (
         postProRef.current &&
-        postProRef.current?.getBoundingClientRect().top <= 70
+        postProRef.current?.getBoundingClientRect().top <= 0
       ) {
         setIsTop(true)
       } else {
@@ -98,18 +98,20 @@ export const ApproachPageMobile = () => {
         style={{
           backgroundAttachment: isTop ? 'initial' : 'fixed',
           backgroundPositionY:
-            isTop && windowSize.width > 600
-              ? '5.5rem'
-              : isTop && windowSize.width < 478
-              ? '2.85rem'
-              : isTop && windowSize.width < 600
-              ? '3.75rem'
-              : windowSize.width < 478
-              ? '7.25rem'
+            windowSize.width < 478
+              ? '5.7rem'
               : windowSize.width > 600
-              ? '10rem'
-              : '8rem'
+              ? '7.5rem'
+              : '6.75rem'
         }}
+        // Saving for later if needed
+        // isTop && windowSize.width > 600
+        // ? '5.5rem'
+        // : isTop && windowSize.width < 478
+        // ? '2.85rem'
+        // : isTop && windowSize.width < 600
+        // ? '3.75rem'
+        // :
       >
         <div className={s.postProjectCards}>
           <Card
