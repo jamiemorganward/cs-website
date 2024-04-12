@@ -1,0 +1,22 @@
+@import '@/styles/config';
+
+.person-card-wrapper {
+  position: relative;
+  z-index: 1;
+  margin-top: 8rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4rem;
+  padding: 2rem;
+  @include tablet {
+    padding: 1rem;
+    justify-content: flex-start;
+    margin-top: 4rem;
+    gap: 2rem;
+  }
+
+  @media screen and (max-width: 800px) {
+    justify-content: space-between;
+  }
+}

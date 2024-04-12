@@ -1,84 +1,99 @@
 'use client'
-import { GetAllProjectsQuery } from '@/graphql/generated/graphql'
+import {
+  GetAllProjectsQuery,
+  ProjectFragment,
+  ProjectOnWorkPageFragment,
+  ProjectRecord
+} from '@/graphql/generated/graphql'
 import s from './WorkPage.module.scss'
 import { useEffect, useRef, useState } from 'react'
 import { PageTitle } from '../page-title/PageTitle'
 import { FilterBar } from '../filter-bar/FilterBar'
 import { Project } from '../project/Project'
+import { useWindowSize } from '@/utils/useWindowSize'
+import { ReactLenis, useLenis } from '@studio-freight/react-lenis'
 
 export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
   const [categories, setAllCategories] = useState<string[]>([])
+  const [localProjects, setLocalProjects] = useState<
+    Array<ProjectOnWorkPageFragment>
+  >([])
+  const [filters, setFilters] = useState<string[]>([])
   const filterRef = useRef<HTMLDivElement | null>(null)
-  const [fixFilters, setFixFilters] = useState(false)
+  const windowSize = useWindowSize()
 
-  const getAllCategories = () => {
+  const organise = () => {
     let tempCats: string[] = []
     data.allProjects.map((project) => {
       tempCats.push(`${project.category}`)
     })
-
     setAllCategories(tempCats)
+    setLocalProjects(data.allProjects)
   }
 
   useEffect(() => {
-    getAllCategories()
+    organise()
   }, [])
 
-  const watchFilters = () => {
-    if (
-      filterRef.current &&
-      filterRef.current?.getBoundingClientRect().top <= 80
-    ) {
-      setFixFilters(true)
+  const addOrRemove = (e: string) => {
+    if (!filters.includes(e)) {
+      setFilters([...filters, e])
     } else {
-      setFixFilters(false)
+      let _filters = filters.filter((item) => item !== e)
+      setFilters(_filters)
     }
   }
 
   useEffect(() => {
-    if (filterRef && filterRef.current) {
-      window.addEventListener('scroll', watchFilters)
-    }
+    const _projects: ProjectOnWorkPageFragment[] = []
 
-    return () => {
-      window.removeEventListener('scroll', watchFilters)
+    data.allProjects.map((project) => {
+      if (project.category && filters.includes(project.category)) {
+        _projects.push(project)
+      } else {
+        return
+      }
+    })
+    setLocalProjects(_projects)
+    if (filters.length < 1) {
+      setLocalProjects(data.allProjects)
     }
-  }, [])
+  }, [filters])
 
-  if (!data) return <></>
+  if (!localProjects || !windowSize.width) return <></>
 
   return (
     <div>
-      {/* <div className={`${s.header}`}> */}
       <div className={s.titleWrapper}>
         <PageTitle title="Work" />
       </div>
-      <div
-        className={s.filterSticky}
-        ref={filterRef}
-        style={{ position: 'sticky' }}
-        // style={fixFilters ? { position: 'fixed' } : undefined}
-      >
-        <FilterBar filterItems={categories} />
-      </div>
-      {/* </div> */}
-      {data.allProjects.map((project: any, i: number) => {
-        return (
-          <div key={i} className={s.projectOuterWrapper}>
-            <Project
-              noLine
-              name={project.projectName}
-              service={project.service}
-              client={project.client}
-              media={project.featuredMedia}
-              slug={project.slug}
-              year={project.year}
-              category={project.category}
-              alignment={project.alignment}
-            />
-          </div>
-        )
-      })}
+      <ReactLenis root>
+        <div className={s.filterSticky} ref={filterRef}>
+          <FilterBar
+            filterItems={categories}
+            filters={filters}
+            setFilters={(e: string) => addOrRemove(e)}
+          />
+        </div>
+
+        {localProjects.map((project: any, i: number) => {
+          return (
+            <div key={i} className={s.projectOuterWrapper}>
+              <Project
+                noLine
+                name={project.projectName}
+                service={project.service}
+                client={project.client}
+                media={project.featuredMedia}
+                slug={project.slug}
+                year={project.year}
+                category={project.category}
+                alignment={project.alignment}
+              />
+            </div>
+          )
+        })}
+      </ReactLenis>
     </div>
   )
 }
