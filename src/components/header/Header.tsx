@@ -32,6 +32,7 @@ export const Header = () => {
       setIsMobile(true)
     } else {
       setIsMobile(false)
+      setOpen(false)
     }
   }, [windowSize.width])
 
@@ -56,7 +57,9 @@ export const Header = () => {
                 <DesktopMenu sticky={sticky} />
               )}
             </div>
-            {isMobile && <MobileMenu open={open} />}
+            {isMobile && (
+              <MobileMenu open={open} changedPath={() => setOpen(false)} />
+            )}
           </div>
         </div>
       </header>
