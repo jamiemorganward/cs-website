@@ -15,7 +15,7 @@
     "@apollo/experimental-nextjs-app-support": "^0.6.0",
     "@gsap/react": "^2.1.0",
     "@mux/mux-player-react": "^2.4.1",
-    "@react-spring/three": "^9.7.3",
+    "@react-three/drei": "^9.105.2",
     "@react-three/fiber": "^8.15.16",
     "@studio-freight/lenis": "^1.0.42",
     "@studio-freight/react-lenis": "^0.0.47",
