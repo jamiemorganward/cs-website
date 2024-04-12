@@ -1,0 +1,9 @@
+query ApproachPage {
+  approachPage {
+    postProjectCards {
+      title
+      subtitle
+      textContent
+    }
+  }
+}

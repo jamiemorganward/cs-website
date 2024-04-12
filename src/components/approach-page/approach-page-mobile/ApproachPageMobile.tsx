@@ -7,8 +7,13 @@ import Fun from '@/lottie-files/fun.json'
 import Form from '@/lottie-files/form.json'
 import { PageTitle } from '@/components/page-title/PageTitle'
 import { useWindowSize } from '@/utils/useWindowSize'
+import { ApproachPageQuery } from '@/graphql/generated/graphql'
 
-export const ApproachPageMobile = () => {
+export const ApproachPageMobile = ({
+  data
+}: {
+  data: ApproachPageQuery['approachPage']
+}) => {
   const postProRef = useRef<HTMLDivElement | null>(null)
   const [isTop, setIsTop] = useState(false)
   const windowSize = useWindowSize()
