@@ -8,12 +8,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: url('../../../assets/svgs/cursors/copy.svg'), auto;
+  cursor: none;
   position: relative;
-
-  &.copied-email-selection {
-    cursor: url('../../../assets/svgs/cursors/copied.svg'), auto;
-  }
 }
 
 .email {
@@ -32,7 +28,24 @@
     z-index: 3;
   }
 }
-
+.cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 80px;
+  width: 80px;
+  border: 1px solid #000;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+  p {
+    transform: rotate(5deg);
+    font-size: 14px;
+  }
+}
 .circle {
   background-color: #9190ff;
   height: 2px;
