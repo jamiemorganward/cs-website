@@ -12,7 +12,7 @@ export const ProjectPage = ({ data }: { data: GetProjectQuery }) => {
   const ctx = useContext(PageInfoContext)
 
   useEffect(() => {
-    ctx.setProjectName(`${data.project?.projectName}`)
+    ctx.setProjectName(`${data.project?.client}`)
     return () => {
       // isUnmounted
       ctx.setProjectName('')
