@@ -148,7 +148,7 @@ export const EmailSelection = () => {
       ref={containerRef}
     >
       <div className={s.cursor} ref={cursorRef}>
-        <p> {isCopied ? 'Copied!' : 'Copy Email'}</p>
+        <p> {isCopied ? 'Copied!' : 'Hold To Copy'}</p>
       </div>
       <p className={s.email}>hello@clicksuite.co.nz</p>
 
