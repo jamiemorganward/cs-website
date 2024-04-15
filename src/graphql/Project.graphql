@@ -18,6 +18,9 @@ fragment ProjectOnWorkPage on ProjectRecord {
   year
   service
   alignment
+  themeColour {
+    hex
+  }
 }
 
 fragment ProjectThumb on ProjectRecord {
@@ -53,6 +56,9 @@ fragment Project on ProjectRecord {
   year
   service
   alignment
+  themeColour {
+    hex
+  }
   featuredMedia {
     ...Image
     ...Video
@@ -70,27 +76,13 @@ fragment DoubleImage on DoubleImageBlockRecord {
   id
   imageRight {
     alt
-    responsiveImage {
-      alt
-      src
-      sizes
-      base64
-      height
-      title
-      width
-    }
+    ...Video
+    ...Image
   }
   imageLeft {
     alt
-    responsiveImage {
-      alt
-      src
-      sizes
-      base64
-      height
-      title
-      width
-    }
+    ...Video
+    ...Image
     url
   }
 }
@@ -123,15 +115,9 @@ fragment SingleImage on SingleImageBlockRecord {
   id
   fullwidth
   image {
-    responsiveImage {
-      alt
-      src
-      sizes
-      base64
-      height
-      title
-      width
-    }
+    url
+    ...Video
+    ...Image
   }
 }
 

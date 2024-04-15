@@ -58,5 +58,17 @@
 mux-player {
   /* Hide all controls at once */
   --controls: none;
-  height: 70%;
+  max-height: 750px;
+  max-width: 1175px;
+}
+
+.video-wrapper {
+  height: 85%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media screen and (max-width: 1600px) {
+    height: 80%;
+  }
 }

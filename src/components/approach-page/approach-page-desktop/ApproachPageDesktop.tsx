@@ -10,8 +10,13 @@ import Form from '@/lottie-files/form.json'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/all'
+import { ApproachPageQuery } from '@/graphql/generated/graphql'
 
-export const ApproachPageDesktop = () => {
+export const ApproachPageDesktop = ({
+  data
+}: {
+  data: ApproachPageQuery['approachPage']
+}) => {
   gsap.registerPlugin(ScrollTrigger)
 
   const pageRef = useRef<HTMLDivElement | null>(null)
@@ -152,27 +157,18 @@ export const ApproachPageDesktop = () => {
         style={{ backgroundAttachment: isTop ? 'initial' : 'fixed' }}
       >
         <div className={s.postProjectCards}>
-          <Card
-            titleRight="04"
-            title="Long Term Partnership"
-            textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
-          >
-            <div className={s.cardContent}></div>
-          </Card>
-          <Card
-            titleRight="05"
-            title="On-going Project Support"
-            textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
-          >
-            <div className={s.cardContent}></div>
-          </Card>
-          <Card
-            titleRight="06"
-            title="Growth Support"
-            textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
-          >
-            <div className={s.cardContent}></div>
-          </Card>
+          {data?.postProjectCards.map((card, i) => {
+            return (
+              <Card
+                key={i}
+                titleRight={`${card.subtitle}`}
+                title={`${card.title}`}
+                textContent={`${card.textContent}`}
+              >
+                <div className={s.cardContent}></div>
+              </Card>
+            )
+          })}
         </div>
       </div>
     </div>

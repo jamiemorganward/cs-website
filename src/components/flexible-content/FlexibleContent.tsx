@@ -16,7 +16,7 @@ export const FlexibleContent = ({ data }: { data: any }) => {
   if (data.__typename === 'SingleImageBlockRecord') {
     return (
       <Segment>
-        <SingleImageBlock data={data} />
+        <SingleImageBlock data={data} fullWidth={data.fullwidth} />
       </Segment>
     )
   }

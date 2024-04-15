@@ -8,7 +8,13 @@ import {
 } from '@/graphql/generated/graphql'
 import { useEffect, useState } from 'react'
 
-export const MobileMenu = ({ open }: { open: boolean }) => {
+export const MobileMenu = ({
+  open,
+  changedPath
+}: {
+  open: boolean
+  changedPath: () => void
+}) => {
   const pathname = usePathname()
 
   const [latestProject, setLatestProject] = useState<ProjectThumbFragment>()
@@ -23,6 +29,10 @@ export const MobileMenu = ({ open }: { open: boolean }) => {
   useEffect(() => {
     getLatestProject()
   }, [])
+
+  useEffect(() => {
+    changedPath()
+  }, [pathname])
 
   const isActive = (href: string) => pathname === href
 
@@ -45,6 +55,12 @@ export const MobileMenu = ({ open }: { open: boolean }) => {
             href={'/people'}
           >
             People
+          </Link>
+          <Link
+            className={`${s.link} ${isActive('/approach') ? s.active : ''}`}
+            href={'/approach'}
+          >
+            Approach
           </Link>
           <Link
             className={`${s.link} ${isActive('/about') ? s.active : ''}`}
