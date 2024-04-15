@@ -1,11 +1,17 @@
-import { DoubleImageBlockRecord } from '@/graphql/generated/graphql'
+import {
+  DoubleImageBlockRecord,
+  FeaturedMediaFragment
+} from '@/graphql/generated/graphql'
 import s from './DoubleImageBlock.module.scss'
 import MuxPlayer from '@mux/mux-player-react'
 
 export const DoubleImageBlock = ({
   data
 }: {
-  data: DoubleImageBlockRecord
+  data: {
+    imageLeft?: FeaturedMediaFragment
+    imageRight?: FeaturedMediaFragment
+  }
 }) => {
   return (
     <div className={s.wrapper}>
@@ -18,11 +24,7 @@ export const DoubleImageBlock = ({
           />
         )}
         {data.imageLeft?.video && (
-          <MuxPlayer
-            src={data.imageLeft.video.streamingUrl}
-            autoPlay="any"
-            loop
-          />
+          <MuxPlayer src={data.imageLeft.video.mp4High} autoPlay="any" loop />
         )}
       </div>
       <div className={s.right}>
@@ -32,11 +34,7 @@ export const DoubleImageBlock = ({
           title={`${data.imageRight?.responsiveImage?.title}`}
         />
         {data.imageRight?.video && (
-          <MuxPlayer
-            src={data.imageRight.video.streamingUrl}
-            autoPlay="any"
-            loop
-          />
+          <MuxPlayer src={data.imageRight.video.mp4High} autoPlay="any" loop />
         )}
       </div>
     </div>

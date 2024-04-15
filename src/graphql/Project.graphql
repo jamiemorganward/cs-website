@@ -109,6 +109,7 @@ fragment SingleImage on SingleImageBlockRecord {
   id
   fullwidth
   image {
+    url
     ...Video
     ...Image
   }
