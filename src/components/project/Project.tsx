@@ -2,9 +2,7 @@
 import { FeaturedMediaFragment } from '@/graphql/generated/graphql'
 import s from './Project.module.scss'
 import Link from 'next/link'
-// import Image from 'next/image'
 import MuxPlayer from '@mux/mux-player-react'
-import { useEffect, useRef } from 'react'
 
 export const Project = ({
   slug,
@@ -17,7 +15,8 @@ export const Project = ({
   category,
   media,
   noLine,
-  noLink
+  noLink,
+  colour
 }: {
   slug?: string
   name: string
@@ -30,6 +29,7 @@ export const Project = ({
   category?: string
   noLine?: boolean
   noLink?: boolean
+  colour?: string
 }) => {
   return (
     <>
@@ -50,12 +50,14 @@ export const Project = ({
             />
           )}
           {media && media.video && (
-            <MuxPlayer
-              src={media.video.streamingUrl}
-              autoPlay="any"
-              loop
-              className={`${s.featuredImage} ${s.fullWidth}`}
-            />
+            <div className={s.videoWrapper} style={{ backgroundColor: colour }}>
+              <MuxPlayer
+                src={media.video.streamingUrl}
+                autoPlay="any"
+                loop
+                className={`${s.featuredImage}`}
+              />
+            </div>
           )}
         </Link>
       )}

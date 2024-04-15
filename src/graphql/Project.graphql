@@ -18,6 +18,9 @@ fragment ProjectOnWorkPage on ProjectRecord {
   year
   service
   alignment
+  themeColour {
+    hex
+  }
 }
 
 fragment ProjectThumb on ProjectRecord {
@@ -53,6 +56,9 @@ fragment Project on ProjectRecord {
   year
   service
   alignment
+  themeColour {
+    hex
+  }
   featuredMedia {
     ...Image
     ...Video
