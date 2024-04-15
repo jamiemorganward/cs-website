@@ -1,8 +1,12 @@
 @import '../../../styles/config';
 
 .wrapper {
-  max-width: 960px;
+  @include grid-col(8);
   margin: 0 auto;
+
+  @include tablet {
+    @include grid-col(12);
+  }
 }
 
 .quote {

@@ -47,12 +47,12 @@ $heading-font-family: $degular;
 
 // 04. Grid
 $grid-columns: 12;
-$grid-gutter: 12px;
+$grid-gutter: 1rem;
 $container-width: 1440px;
-$container-gutter-mobile: 25px;
-$container-gutter-tablet: 50px;
-$container-gutter-desktop: 70px;
+$container-gutter-mobile: 0.5rem;
+$container-gutter-tablet: 1.5rem;
+$container-gutter-desktop: 1.5rem;
 
 $side-gaps-desktop: 2rem;
 $side-gaps-tablet: 2rem;
-$side-gaps-mobile: 1rem;
+$side-gaps-mobile: $container-gutter-mobile + ($grid-gutter / 2);

@@ -5,10 +5,15 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  max-width: 960px;
+  @include grid-col(8);
 
   &.fullwidth {
     max-width: 100%;
+    @include grid-col(12);
+  }
+
+  @include tablet {
+    @include grid-col(12);
   }
 }
 mux-player {

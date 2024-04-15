@@ -1,13 +1,5 @@
 @import '../../styles/config';
 
 .segment {
-  padding: 0 $side-gaps-desktop;
-
-  @include tablet {
-    padding: 0 $side-gaps-tablet;
-  }
-
-  @include mobile-p {
-    padding: 0 $side-gaps-mobile;
-  }
+  @include container;
 }

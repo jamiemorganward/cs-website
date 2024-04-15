@@ -63,7 +63,7 @@
     padding: 1rem $side-gaps-tablet;
   }
 
-  @include mobile-p {
-    padding: 1rem $side-gaps-mobile;
+  @include mobile-l {
+    padding: 1rem 1rem;
   }
 }
