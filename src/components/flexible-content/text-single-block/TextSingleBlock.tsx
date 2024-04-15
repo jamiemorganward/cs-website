@@ -13,7 +13,9 @@ export const TextSingleBlock = ({ data }: { data: TextSingleBlockRecord }) => {
           : ''
       }`}
     >
-      <StructuredText data={data.textSingle?.value} />
+      <div className={s.textContent}>
+        <StructuredText data={data.textSingle?.value} />
+      </div>
     </div>
   )
 }

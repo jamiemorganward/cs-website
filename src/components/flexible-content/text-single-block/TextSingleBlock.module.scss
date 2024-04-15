@@ -1,16 +1,39 @@
 @import '../../../styles/config';
 
 .wrapper {
-  max-width: 716px;
+  @include grid-col(6);
   margin: 0 auto;
 
+  .text-content {
+    max-width: 48rem;
+    margin: 0 auto;
+  }
+
   &.left {
+    @include grid-col(5);
     margin-left: 0;
-    width: 55%;
+    .text-content {
+      margin: 0;
+    }
   }
 
   &.right {
+    @include grid-col(5);
     margin-right: 0;
-    width: 45%;
+    .text-content {
+      margin: 0;
+    }
+  }
+
+  &.right,
+  &.left,
+  & {
+    @include tablet {
+      margin: 0;
+      @include grid-col(12);
+      .text-content {
+        margin: 0 auto;
+      }
+    }
   }
 }

@@ -2,7 +2,6 @@
 
 .wrapper {
   display: flex;
-  gap: 120px;
   width: 100%;
 
   @include tablet {
@@ -11,17 +10,19 @@
   }
 
   & .left {
-    width: 55%;
+    @include grid-col(6);
   }
 
   & .right {
-    width: 45%;
+    @include grid-col(5);
+    @include grid-offset-left(1);
   }
 
   @include tablet {
     & .left,
     & .right {
       width: 100%;
+      @include grid-offset-left(0);
     }
   }
 }
