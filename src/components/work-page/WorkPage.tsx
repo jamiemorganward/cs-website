@@ -77,7 +77,6 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
         </div>
 
         {localProjects.map((project: any, i: number) => {
-          console.log(project)
           return (
             <div key={i} className={s.projectOuterWrapper}>
               <Project
