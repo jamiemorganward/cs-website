@@ -1,0 +1,29 @@
+@import '../../styles/config';
+
+.rd-grid-wrapper {
+  display: flex;
+  padding: 6rem $side-gaps-desktop;
+  justify-content: space-between;
+  gap: 1rem;
+  // flex-wrap: wrap;
+
+  @include tablet {
+    padding: 0 $side-gaps-tablet;
+    flex-wrap: wrap;
+  }
+  @include mobile-p {
+    padding: 0 $side-gaps-mobile;
+  }
+}
+
+.project-outer-wrapper {
+  width: 25%;
+  height: auto;
+
+  @include tablet {
+    width: calc(50% - 0.5rem);
+  }
+  @include mobile-p {
+    width: 100%;
+  }
+}

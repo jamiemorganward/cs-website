@@ -1,0 +1,23 @@
+@import '../../../styles/config';
+
+.modal-backdrop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  top: 0;
+  left: 0;
+  will-change: background-color;
+  transition: background-color 400ms ease;
+  pointer-events: none;
+  cursor: pointer;
+
+  &.open {
+    background-color: rgba($white, 0.68);
+    pointer-events: all;
+  }
+
+  @include mobile-l {
+    align-items: flex-start;
+  }
+}

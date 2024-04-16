@@ -1,0 +1,28 @@
+query GetAllRDProjects {
+  allRdProjects {
+    ...RDProject
+  }
+}
+
+query GetRDProject($slug: String) {
+  rdProject(filter: { slug: { eq: $slug } }) {
+    ...RDProject
+  }
+}
+
+fragment RDProject on RdProjectRecord {
+  projectName
+  slug
+  year
+  featuredMedia {
+    ...Image
+    ...Video
+  }
+  flexibleContent {
+    ...DoubleImage
+    ...TextTwoColumn
+    ...TextSingle
+    ...SingleImage
+    ...Quote
+  }
+}
