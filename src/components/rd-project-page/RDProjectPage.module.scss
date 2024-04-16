@@ -1,0 +1,30 @@
+@import '../../styles/config';
+
+.project-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem $side-gaps-desktop;
+  color: $black;
+  align-items: flex-end;
+
+  & .name {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  & .year {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+}
+
+.flex-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+
+  @include mobile-p {
+    gap: 70px;
+  }
+}

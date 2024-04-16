@@ -1,0 +1,25 @@
+@import '../../styles/config';
+
+.project-inner-wrapper {
+  text-decoration: none;
+}
+
+.project-caption {
+  margin-top: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+  & h2 {
+    font-size: 21px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  & span {
+    font-size: 18px;
+    font-weight: 400;
+    text-decoration: none;
+    color: $black;
+  }
+}
