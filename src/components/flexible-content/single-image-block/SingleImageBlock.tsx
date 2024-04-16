@@ -7,22 +7,31 @@ import MuxPlayer from '@mux/mux-player-react'
 
 export const SingleImageBlock = ({
   data,
-  fullWidth
+  fullWidth,
+  colour
 }: {
-  data: { image: FeaturedMediaFragment }
+  data: { image: FeaturedMediaFragment; video?: string }
   fullWidth?: boolean
+  colour?: string
 }) => {
   return (
-    <div className={`${s.wrapper} ${fullWidth ? s.fullwidth : ''}`}>
+    <div
+      className={`${s.wrapper} ${fullWidth ? s.fullwidth : ''}`}
+      style={colour ? { backgroundColor: colour, padding: '8rem' } : undefined}
+    >
       {data.image?.responsiveImage && (
         <img
           src={`${data.image?.responsiveImage?.src}`}
           alt={`${data.image?.responsiveImage?.alt}`}
           title={`${data.image?.responsiveImage?.title}`}
+          className={s.image}
         />
       )}
-      {data.image?.video && (
-        <MuxPlayer src={data.image.video.mp4High} autoPlay="any" loop />
+
+      {data.video && (
+        <video width="100%" height="100%" autoPlay loop muted>
+          <source src={data.video} />
+        </video>
       )}
     </div>
   )

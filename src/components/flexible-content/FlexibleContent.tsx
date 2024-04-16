@@ -5,18 +5,28 @@ import { SingleImageBlock } from './single-image-block/SingleImageBlock'
 import { TextSingleBlock } from './text-single-block/TextSingleBlock'
 import { TextTwoColBlock } from './text-two-col-block/TextTwoColBlock'
 
-export const FlexibleContent = ({ data }: { data: any }) => {
+export const FlexibleContent = ({
+  data,
+  themeColour
+}: {
+  data: any
+  themeColour?: string
+}) => {
   if (data.__typename === 'DoubleImageBlockRecord') {
     return (
       <Segment>
-        <DoubleImageBlock data={data} />
+        <DoubleImageBlock data={data} colour={themeColour} />
       </Segment>
     )
   }
   if (data.__typename === 'SingleImageBlockRecord') {
     return (
       <Segment>
-        <SingleImageBlock data={data} fullWidth={data.fullwidth} />
+        <SingleImageBlock
+          data={data}
+          fullWidth={data.fullwidth}
+          colour={themeColour}
+        />
       </Segment>
     )
   }

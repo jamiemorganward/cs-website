@@ -3,6 +3,8 @@
 .wrapper {
   display: flex;
   width: 100%;
+  align-items: flex-start;
+  // justify-content: center;
 
   @include tablet {
     flex-direction: column;
@@ -10,12 +12,20 @@
   }
 
   & .left {
-    @include grid-col(6);
+    @include grid-col(6, flex-start);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
   }
 
   & .right {
-    @include grid-col(5);
+    @include grid-col(5, flex-start);
     @include grid-offset-left(1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
   }
 
   @include tablet {
