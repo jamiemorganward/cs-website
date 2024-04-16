@@ -49,10 +49,14 @@ export const Header = () => {
           <div className={s.headerInner}>
             <div className={s.topSection}>
               <Link href={'/'}>
-                <LogoWrapper />
+                <LogoWrapper dark={isMobile && open} />
               </Link>
               {isMobile ? (
-                <HamburgerButton open={open} onClick={() => setOpen(!open)} />
+                <HamburgerButton
+                  open={open}
+                  onClick={() => setOpen(!open)}
+                  dark={isMobile && open}
+                />
               ) : (
                 <DesktopMenu sticky={sticky} />
               )}
