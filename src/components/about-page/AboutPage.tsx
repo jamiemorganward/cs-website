@@ -6,7 +6,7 @@ import { EmailSelection } from './email-selection/EmailSelection'
 import { AboutPageQuery } from '@/graphql/generated/graphql'
 import { Card } from '../card/Card'
 import { Project } from '../project/Project'
-import { ReactLenis, useLenis } from '@studio-freight/react-lenis'
+import { ReactLenis } from '@studio-freight/react-lenis'
 
 export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
   const partnershipsRef = useRef<HTMLDivElement | null>(null)
@@ -61,7 +61,7 @@ export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
         <div className={s.daddyWrapper} style={{ position: 'relative' }}>
           {data.longStandingPartnerships &&
             data.longStandingPartnerships.map((partner, i) => {
-              if (!partner.featuredMedia) return
+              if (!partner.featuredVideo) return
               return (
                 <div className={s.stickyWrapper} key={i}>
                   {i === 0 && <></>}
@@ -72,7 +72,8 @@ export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
                     client={`${partner.client}`}
                     service={`${partner.service}`}
                     year={`${partner.yearStarted}`}
-                    media={partner.featuredMedia}
+                    // image={partner.featuredImage}
+                    video={partner.featuredVideo}
                     noLink
                   />
                 </div>
