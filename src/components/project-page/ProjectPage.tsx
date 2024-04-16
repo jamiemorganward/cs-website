@@ -18,7 +18,7 @@ export const ProjectPage = ({ data }: { data: GetProjectQuery }) => {
       ctx.setProjectName('')
     }
   }, [data])
-
+  console.log(data)
   // To do: pass on data.data.project and figure out typing issue
   return (
     <>
@@ -39,7 +39,10 @@ export const ProjectPage = ({ data }: { data: GetProjectQuery }) => {
             {data.project?.flexibleContent.map((slice, i) => {
               return (
                 <FadeInAnimation delay={i === 0 ? 0.25 : 0} key={i}>
-                  <FlexibleContent data={slice} />
+                  <FlexibleContent
+                    data={slice}
+                    themeColour={data.project?.themeColour?.hex}
+                  />
                 </FadeInAnimation>
               )
             })}
