@@ -1,3 +1,4 @@
+'use client'
 import { GetRdProjectQuery } from '@/graphql/generated/graphql'
 import s from './RDProjectPage.module.scss'
 import { FlexibleContent } from '../flexible-content/FlexibleContent'
