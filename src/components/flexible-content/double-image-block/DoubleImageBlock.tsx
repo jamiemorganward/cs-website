@@ -26,7 +26,7 @@ export const DoubleImageBlock = ({
           className={s.colourWrapper}
           style={{
             backgroundColor: colour ? colour : '',
-            height: data.heightLeft ? `${data.heightLeft}vw` : '100%'
+            height: data.heightLeft ? `${data.heightLeft}vw` : undefined
           }}
         >
           {data.imageLeft?.responsiveImage && (
@@ -49,7 +49,7 @@ export const DoubleImageBlock = ({
           className={s.colourWrapper}
           style={{
             backgroundColor: colour ? colour : '',
-            height: data.heightRight ? `${data.heightRight}vw` : '100%'
+            height: data.heightRight ? `${data.heightRight}vw` : undefined
           }}
         >
           <img
