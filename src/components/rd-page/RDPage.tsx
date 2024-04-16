@@ -5,8 +5,6 @@ import Link from 'next/link'
 import { RDProject } from '../rd-project/RDProject'
 
 export const RDPage = ({ projects }: { projects: GetAllRdProjectsQuery }) => {
-  console.log(projects)
-
   if (!projects) return <></>
 
   return (
