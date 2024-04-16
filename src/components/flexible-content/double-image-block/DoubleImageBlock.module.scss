@@ -3,19 +3,27 @@
 .wrapper {
   display: flex;
   width: 100%;
+  align-items: flex-start;
+  // justify-content: center;
 
   @include tablet {
     flex-direction: column;
-    gap: 70px;
+    gap: 2rem;
   }
 
   & .left {
-    @include grid-col(6);
+    @include grid-col(6, flex-start);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   & .right {
-    @include grid-col(5);
+    @include grid-col(5, flex-start);
     @include grid-offset-left(1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   @include tablet {
@@ -24,6 +32,24 @@
       width: 100%;
       @include grid-offset-left(0);
     }
+  }
+}
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.colour-wrapper {
+  padding: 5rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include mobile-l {
+    padding: 1rem;
+    height: 99vw;
   }
 }
 mux-player {

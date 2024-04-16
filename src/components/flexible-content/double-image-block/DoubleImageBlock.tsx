@@ -6,36 +6,64 @@ import s from './DoubleImageBlock.module.scss'
 import MuxPlayer from '@mux/mux-player-react'
 
 export const DoubleImageBlock = ({
-  data
+  data,
+  colour
 }: {
   data: {
     imageLeft?: FeaturedMediaFragment
     imageRight?: FeaturedMediaFragment
+    videoLeft?: string
+    videoRight?: string
+    heightLeft?: number
+    heightRight?: number
   }
+  colour?: string
 }) => {
   return (
     <div className={s.wrapper}>
       <div className={s.left}>
-        {data.imageLeft?.responsiveImage && (
-          <img
-            src={`${data.imageLeft?.responsiveImage?.src}`}
-            alt={`${data.imageLeft?.responsiveImage?.alt}`}
-            title={`${data.imageLeft?.responsiveImage?.title}`}
-          />
-        )}
-        {data.imageLeft?.video && (
-          <MuxPlayer src={data.imageLeft.video.mp4High} autoPlay="any" loop />
-        )}
+        <div
+          className={s.colourWrapper}
+          style={{
+            backgroundColor: colour ? colour : '',
+            height: data.heightLeft ? `${data.heightLeft}vw` : undefined
+          }}
+        >
+          {data.imageLeft?.responsiveImage && (
+            <img
+              src={`${data.imageLeft?.responsiveImage?.src}`}
+              alt={`${data.imageLeft?.responsiveImage?.alt}`}
+              title={`${data.imageLeft?.responsiveImage?.title}`}
+              className={s.image}
+            />
+          )}
+          {data.videoLeft && (
+            <video width="100%" height="100%" autoPlay loop muted>
+              <source src={data.videoLeft} />
+            </video>
+          )}
+        </div>
       </div>
       <div className={s.right}>
-        <img
-          src={data.imageRight?.responsiveImage?.src}
-          alt={`${data.imageRight?.responsiveImage?.alt}`}
-          title={`${data.imageRight?.responsiveImage?.title}`}
-        />
-        {data.imageRight?.video && (
-          <MuxPlayer src={data.imageRight.video.mp4High} autoPlay="any" loop />
-        )}
+        <div
+          className={s.colourWrapper}
+          style={{
+            backgroundColor: colour ? colour : '',
+            height: data.heightRight ? `${data.heightRight}vw` : undefined
+          }}
+        >
+          <img
+            src={data.imageRight?.responsiveImage?.src}
+            alt={`${data.imageRight?.responsiveImage?.alt}`}
+            title={`${data.imageRight?.responsiveImage?.title}`}
+            className={s.image}
+          />
+          {data.videoRight && (
+            <video width="100%" height="100%" autoPlay loop muted>
+              <source src={data.videoRight} />
+            </video>
+          )}
+        </div>
       </div>
     </div>
   )

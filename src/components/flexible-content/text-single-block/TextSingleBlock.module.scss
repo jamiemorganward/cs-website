@@ -7,6 +7,12 @@
   .text-content {
     max-width: 48rem;
     margin: 0 auto;
+    padding-top: 27px;
+    padding-bottom: 27px;
+
+    p {
+      padding-bottom: 1rem;
+    }
   }
 
   &.left {

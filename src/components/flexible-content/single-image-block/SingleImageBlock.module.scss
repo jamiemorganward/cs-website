@@ -5,6 +5,8 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  height: 70%;
+
   @include grid-col(8);
 
   &.fullwidth {
@@ -16,9 +18,24 @@
     @include grid-col(12);
   }
 }
+
+.colour-wrapper {
+  padding: 5rem;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include mobile-l {
+    padding: 1rem;
+  }
+}
 mux-player {
   /* Hide all controls at once */
   --controls: none;
   width: 100%;
   max-width: none;
+  max-height: 750px;
+  max-width: 1175px;
 }

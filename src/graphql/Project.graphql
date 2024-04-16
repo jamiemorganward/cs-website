@@ -79,12 +79,16 @@ fragment DoubleImage on DoubleImageBlockRecord {
     ...Video
     ...Image
   }
+  videoRight
+  heightRight
   imageLeft {
     alt
     ...Video
     ...Image
     url
   }
+  videoLeft
+  heightLeft
 }
 
 fragment TextTwoColumn on TextTwoColumnBlockRecord {
@@ -119,6 +123,7 @@ fragment SingleImage on SingleImageBlockRecord {
     ...Video
     ...Image
   }
+  video
 }
 
 fragment Quote on QuoteBlockRecord {
