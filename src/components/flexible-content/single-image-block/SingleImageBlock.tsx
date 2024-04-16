@@ -3,7 +3,7 @@ import {
   SingleImageBlockRecord
 } from '@/graphql/generated/graphql'
 import s from './SingleImageBlock.module.scss'
-import MuxPlayer from '@mux/mux-player-react'
+import { useWindowSize } from '@/utils/useWindowSize'
 
 export const SingleImageBlock = ({
   data,
@@ -17,14 +17,13 @@ export const SingleImageBlock = ({
   return (
     <div className={`${s.wrapper} ${fullWidth ? s.fullwidth : ''}`}>
       <div
-        className={s.colourWrapper}
+        className={`${s.colourWrapper} ${fullWidth ? s.fullwidth : ''}`}
         style={colour ? { backgroundColor: colour } : undefined}
       >
         {data.image?.responsiveImage && (
           <img
             src={`${data.image?.responsiveImage?.src}`}
             alt={`${data.image?.responsiveImage?.alt}`}
-            title={`${data.image?.responsiveImage?.title}`}
             className={s.image}
           />
         )}

@@ -17,6 +17,10 @@ fragment ProjectOnWorkPage on ProjectRecord {
   slug
   year
   service
+  featuredImage {
+    ...Image
+  }
+  featuredVideo
   alignment
   themeColour {
     hex
