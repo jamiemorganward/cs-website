@@ -80,6 +80,7 @@ fragment DoubleImage on DoubleImageBlockRecord {
     ...Image
   }
   videoRight
+  heightRight
   imageLeft {
     alt
     ...Video
@@ -87,6 +88,7 @@ fragment DoubleImage on DoubleImageBlockRecord {
     url
   }
   videoLeft
+  heightLeft
 }
 
 fragment TextTwoColumn on TextTwoColumnBlockRecord {

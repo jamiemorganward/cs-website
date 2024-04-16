@@ -18,7 +18,6 @@ export const ProjectPage = ({ data }: { data: GetProjectQuery }) => {
       ctx.setProjectName('')
     }
   }, [data])
-  console.log(data)
   // To do: pass on data.data.project and figure out typing issue
   return (
     <>

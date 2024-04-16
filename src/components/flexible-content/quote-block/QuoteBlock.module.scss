@@ -7,6 +7,8 @@
   @include tablet {
     @include grid-col(12);
   }
+  padding-top: 27px;
+  padding-bottom: 27px;
 }
 
 .quote {
@@ -19,7 +21,9 @@
   @include mobile-p {
     font-size: 32px;
   }
-
+  p {
+    padding-bottom: 1rem;
+  }
   & p::before {
     content: '“';
     display: inline;
