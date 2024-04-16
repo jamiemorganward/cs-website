@@ -18,9 +18,7 @@ export const SingleImageBlock = ({
     <div className={`${s.wrapper} ${fullWidth ? s.fullwidth : ''}`}>
       <div
         className={s.colourWrapper}
-        style={
-          colour ? { backgroundColor: colour, padding: '8rem' } : undefined
-        }
+        style={colour ? { backgroundColor: colour } : undefined}
       >
         {data.image?.responsiveImage && (
           <img
