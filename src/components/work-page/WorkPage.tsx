@@ -84,7 +84,8 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
                 name={project.projectName}
                 service={project.service}
                 client={project.client}
-                media={project.featuredMedia}
+                image={project.featuredImage}
+                video={project.featuredVideo}
                 slug={project.slug}
                 year={project.year}
                 category={project.category}

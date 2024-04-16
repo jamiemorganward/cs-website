@@ -13,17 +13,19 @@ export const Project = ({
   projectUrl,
   year,
   category,
-  media,
+  image,
   noLine,
   noLink,
-  colour
+  colour,
+  video
 }: {
   slug?: string
   name: string
   client: string
   service: string
   alignment?: string
-  media: FeaturedMediaFragment
+  image?: FeaturedMediaFragment
+  video?: string
   projectUrl?: string
   year?: string
   category?: string
@@ -40,25 +42,22 @@ export const Project = ({
             <div className={s.client}>{client}</div>
             <div className={s.service}>{service}</div>
           </div>
-          {/* {media && media?.responsiveImage && (
+          {image && image?.responsiveImage && (
             <img
               className={`${s.featuredImage}
         ${alignment === 'left' && s.left}
         ${alignment === 'right' && s.right}
         ${alignment === 'fullwidth' && s.fullWidth}`}
-              src={media.responsiveImage.src}
+              src={image.responsiveImage.src}
             />
           )}
-          {media && media.video && (
+          {video && (
             <div className={s.videoWrapper} style={{ backgroundColor: colour }}>
-              <MuxPlayer
-                src={media.video.streamingUrl}
-                autoPlay="any"
-                loop
-                className={`${s.featuredImage}`}
-              />
+              <video width="100%" height="100%" autoPlay loop muted>
+                <source src={video} />
+              </video>
             </div>
-          )} */}
+          )}
         </Link>
       )}
       {noLink && (
@@ -68,23 +67,22 @@ export const Project = ({
             <div className={s.client}>{client}</div>
             <div className={s.service}>{service}</div>
           </div>
-          {/* {media && media?.responsiveImage && (
+          {image && image?.responsiveImage && (
             <img
               className={`${s.featuredImage}
-        ${alignment === 'left' ? s.left : ''}
-        ${alignment === 'right' ? s.right : ''}
-        ${alignment === 'fullwidth' ? s.fullwidth : ''}`}
-              src={media.responsiveImage.src}
+        ${alignment === 'left' && s.left}
+        ${alignment === 'right' && s.right}
+        ${alignment === 'fullwidth' && s.fullWidth}`}
+              src={image.responsiveImage.src}
             />
           )}
-          {media && media.video && (
-            <MuxPlayer
-              src={media.video.streamingUrl}
-              autoPlay="any"
-              loop
-              className={`${s.featuredImage} ${s.fullWidth}`}
-            />
-          )} */}
+          {video && (
+            <div className={s.videoWrapper} style={{ backgroundColor: colour }}>
+              <video width="100%" height="100%" autoPlay loop muted>
+                <source src={video} />
+              </video>
+            </div>
+          )}
         </div>
       )}
     </>
