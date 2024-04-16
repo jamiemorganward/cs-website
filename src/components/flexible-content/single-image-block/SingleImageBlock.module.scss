@@ -20,15 +20,31 @@
 }
 
 .colour-wrapper {
-  padding: 5rem;
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 
+  &.fullwidth {
+    padding: 8rem 22rem;
+
+    @media screen and (max-width: 1450px) {
+      padding: 8rem 12rem;
+    }
+
+    @include tablet {
+      padding: 6rem 8rem;
+    }
+
+    @include mobile-l {
+      padding: 2rem;
+    }
+  }
+
   @include mobile-l {
-    padding: 1rem;
+    padding: 2rem;
+    height: 99vw;
   }
 }
 mux-player {
