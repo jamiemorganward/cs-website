@@ -86,9 +86,9 @@ export const MobileMenu = ({
         {latestProject && (
           <a className={s.latest} href={`${latestProject.projectUrl}`}>
             <div className={s.projectThumb}>
-              <img
+              {/* <img
                 src={`${latestProject.featuredMedia?.responsiveImage?.src}`}
-              />
+              /> */}
             </div>
             Latest Project:
             <br />
