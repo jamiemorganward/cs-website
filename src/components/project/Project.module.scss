@@ -55,20 +55,25 @@
   width: 100%;
 }
 
-mux-player {
-  /* Hide all controls at once */
-  --controls: none;
-  max-height: 750px;
-  max-width: 1175px;
-}
-
 .video-wrapper {
   height: 85%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 8rem 22rem;
   @media screen and (max-width: 1600px) {
     height: 80%;
+    padding: 8rem 12rem;
+  }
+
+  @include tablet {
+    padding: 6rem 8rem;
+    height: 60%;
+  }
+
+  @include mobile-l {
+    padding: 2rem;
+    height: 60%;
   }
 }

@@ -18,6 +18,35 @@
     @include grid-col(12);
   }
 }
+
+.colour-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.fullwidth {
+    padding: 8rem 22rem;
+
+    @media screen and (max-width: 1450px) {
+      padding: 8rem 12rem;
+    }
+
+    @include tablet {
+      padding: 6rem 8rem;
+    }
+
+    @include mobile-l {
+      padding: 2rem;
+    }
+  }
+
+  @include mobile-l {
+    padding: 2rem;
+    height: 99vw;
+  }
+}
 mux-player {
   /* Hide all controls at once */
   --controls: none;

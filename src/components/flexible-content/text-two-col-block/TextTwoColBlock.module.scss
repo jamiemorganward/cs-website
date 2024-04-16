@@ -1,11 +1,25 @@
 @import '../../../styles/config';
 
 .wrapper {
+  padding-top: 27px;
+  padding-bottom: 27px;
   display: flex;
   gap: 70px;
 
   @include tablet {
     flex-direction: column;
     gap: 30px;
+  }
+}
+
+.left {
+  p {
+    padding-bottom: 1rem;
+  }
+}
+
+.right {
+  p {
+    padding-bottom: 1rem;
   }
 }

@@ -17,6 +17,10 @@ fragment ProjectOnWorkPage on ProjectRecord {
   slug
   year
   service
+  featuredImage {
+    ...Image
+  }
+  featuredVideo
   alignment
   themeColour {
     hex
@@ -27,10 +31,11 @@ fragment ProjectThumb on ProjectRecord {
   projectName
   projectUrl
   category
-  featuredMedia {
+  featuredImage {
     ...Image
     ...Video
   }
+  featuredVideo
 }
 
 fragment Image on FileField {
@@ -59,10 +64,11 @@ fragment Project on ProjectRecord {
   themeColour {
     hex
   }
-  featuredMedia {
+  featuredImage {
     ...Image
     ...Video
   }
+  featuredVideo
   flexibleContent {
     ...DoubleImage
     ...TextTwoColumn
@@ -80,6 +86,7 @@ fragment DoubleImage on DoubleImageBlockRecord {
     ...Image
   }
   videoRight
+  heightRight
   imageLeft {
     alt
     ...Video
@@ -87,6 +94,7 @@ fragment DoubleImage on DoubleImageBlockRecord {
     url
   }
   videoLeft
+  heightLeft
 }
 
 fragment TextTwoColumn on TextTwoColumnBlockRecord {
