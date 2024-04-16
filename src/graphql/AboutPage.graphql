@@ -19,11 +19,8 @@ fragment FeaturedMedia on FileField {
 
 fragment Partner on PartnershipRecord {
   client
-  featuredMedia {
-    ...FeaturedMedia
-  }
+  featuredVideo
   service
-  imageAlignment
   yearStarted
 }
 
