@@ -1,16 +1,11 @@
 'use client'
-import React, {
-  WheelEventHandler,
-  useCallback,
-  useEffect,
-  useRef,
-  useState
-} from 'react'
-import s from './LampShade.module.scss'
+import React, { useEffect, useRef } from 'react'
 import { Canvas, ThreeElements, useFrame, useThree } from '@react-three/fiber'
-import { Color, Euler, FogExp2, PerspectiveCamera, Vector3 } from 'three'
-import { useScroll, useSpring } from '@react-spring/three'
-import { useDrag, useWheel } from '@use-gesture/react'
+import { useSpring } from '@react-spring/three'
+import { useDrag } from '@use-gesture/react'
+
+import { MeshWobbleMaterial } from '@react-three/drei'
+import { DoubleSide, MathUtils, Vector2 } from 'three'
 
 interface LampShadeProps {
   children?: React.ReactNode
@@ -48,7 +43,7 @@ type BoxProps = ThreeElements['mesh'] & {
 }
 
 function Box(props: BoxProps) {
-  const ref = useRef<THREE.Mesh>(null!)
+  const ref = useRef<any>(null!)
 
   const height = 8 + 5 * Math.random()
 
@@ -62,59 +57,57 @@ function Box(props: BoxProps) {
 
   pos[1] = props.position[1] > 0 ? yPos : -yPos
 
+  // useFrame(() => {
+  //   ref.current.distort = MathUtils.lerp(ref.current.distort, 0.4, 0.3)
+  // })
+
   return (
-    <mesh {...props} position={pos} ref={ref}>
-      <boxGeometry args={[12, height]} />
-      <meshStandardMaterial color={0xffffff} />
+    <mesh {...props} position={pos}>
+      <planeGeometry args={[12, height, 32, 32]} />
+      <meshBasicMaterial color={0xffffff} side={DoubleSide} />
+      {/* <MeshWobbleMaterial
+        ref={ref}
+        speed={5}
+        color={0xffffff}
+        factor={0}
+        normalScale={new Vector2(16, 16)}
+      /> */}
     </mesh>
   )
 }
 
 export const LampShadeCamera = () => {
   const three = useThree()
-
-  const [rotationY, setRotationY] = useState(0)
   const wheelOffset = useRef(0)
   const dragOffset = useRef(0)
 
   const [springs, api] = useSpring(
-    () => ({
+    {
       rotationY: 0,
 
-      config: (key) => {
-        switch (key) {
-          case 'scale':
-            return {
-              mass: 4,
-              friction: 10
-            }
-          case 'rotationY':
-            return {
-              mass: 1.3,
-              friction: 35,
-              decay: true
-            }
-          default:
-            return {}
-        }
+      config: {
+        mass: 5,
+        friction: 35,
+        tension: 350,
+        decay: true
       }
-    }),
+    },
     []
   )
 
-  const runSprings = useCallback(
-    (y: number, dy: number, vxvy: number) => {
-      const x = 0 // for now
-      api.start((i) => {
-        return {
-          rotationY: y,
-          immediate: true,
-          velocity: vxvy
-        }
-      })
-    },
-    [api]
-  )
+  // const runSprings = useCallback(
+  //   (y: number, dy: number, vxvy: number) => {
+  //     const x = 0 // for now
+  //     api.start((i) => {
+  //       return {
+  //         rotationY: y
+  //         // immediate: true,
+  //         // velocity: vxvy
+  //       }
+  //     })
+  //   },
+  //   [api]
+  // )
 
   useFrame((state) => {
     state.camera.rotation.z = 0.1
@@ -122,40 +115,35 @@ export const LampShadeCamera = () => {
     state.camera.rotation.y = springs.rotationY.get()
   })
 
-  useWheel(
-    (props) => {
-      console.log(props)
-      const {
-        event,
-        offset: [, y],
-        direction: [, dy]
-      } = props
-      // event.preventDefault()
-      if (dy) {
-        wheelOffset.current = y * 0.001
-        runSprings(dragOffset.current + y * 0.001, y, 0)
-      }
+  // useWheel(
+  //   (props) => {
+  //     console.log(props)
+  //     const {
+  //       event,
+  //       offset: [, y],
+  //       direction: [, dy]
+  //     } = props
+  //     // event.preventDefault()
+  //     if (dy) {
+  //       wheelOffset.current = y * 0.001
+  //       runSprings(dragOffset.current + y * 0.001, y, 0)
+  //     }
 
-      // api.start({
-      //   rotationY: y
-      // })
-    },
-    { target: window }
-  )
+  //     // api.start({
+  //     //   rotationY: y
+  //     // })
+  //   },
+  //   { target: window }
+  // )
   useDrag(
-    (props) => {
-      console.log(props)
-      const {
-        event,
-        offset: [x],
-        direction: [dx],
-        vxvy
-      } = props
+    ({ active, offset: [x, y] }) => {
       // event.preventDefault()
-      if (dx) {
+      if (x) {
         dragOffset.current = x * 0.001
-        console.log(wheelOffset.current)
-        runSprings(wheelOffset.current + x * 0.001, x)
+        // console.log(wheelOffset.current)
+        api.set({ rotationY: x * 0.001 })
+        console.log(x)
+        // runSprings(wheelOffset.current + x * 0.001, x, 0)
       }
 
       // api.start({
@@ -225,7 +213,6 @@ export const LampShade = ({ children }: LampShadeProps) => {
             rotation={[0, i * -0.261799, 0]}
           />
         ))}
-        {/* <Box position={[1.2, 0, 0]} /> */}
       </Canvas>
     </div>
   )

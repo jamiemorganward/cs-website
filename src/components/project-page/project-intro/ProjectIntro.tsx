@@ -39,16 +39,20 @@ export const ProjectIntro = ({
             <div className={s.label}>Service</div>
             <div className={s.value}>{service}</div>
           </div>
-          <div className={s.row}>
-            <div className={s.label}>Platform</div>
-            <div className={s.value}>{platform}</div>
+          {platform && (
+            <div className={s.row}>
+              <div className={s.label}>Platform</div>
+              <div className={s.value}>{platform}</div>
+            </div>
+          )}
+        </div>
+        {link && (
+          <div className={s.url}>
+            <Link href={link} target="_blank">
+              View Live Website
+            </Link>
           </div>
-        </div>
-        <div className={s.url}>
-          <Link href={link} target="_blank">
-            View Live Website
-          </Link>
-        </div>
+        )}
       </div>
     </div>
   )

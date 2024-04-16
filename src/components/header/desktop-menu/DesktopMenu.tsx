@@ -7,6 +7,7 @@ export const DesktopMenu = ({ sticky }: { sticky?: boolean | undefined }) => {
       <nav className={`${s.menu} ${sticky ? s.sticky : ''}`}>
         <MenuItem text="Work" link={'/work'} hasSubMenuPill sticky={sticky} />
         <MenuItem text="People" link={'/people'} sticky={sticky} />
+        <MenuItem text="Approach" link={'/approach'} sticky={sticky} />
         <MenuItem text="About" link={'/about'} sticky={sticky} />
         <MenuItem text="Playground" link={'/rd'} sticky={sticky} />
         <MenuItem text="Contact" link={'/contact'} sticky={sticky} />

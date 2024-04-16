@@ -1,0 +1,25 @@
+.modal {
+  position: relative;
+  margin: 0 auto;
+  background-color: white;
+  width: 100%;
+  will-change: transform;
+  transform: translateY(87vh);
+  border: 1px solid #dcdcdc;
+  margin: 0 auto;
+  overflow: visible;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.open {
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.closed {
+  height: 120%;
+  overflow: hidden;
+}

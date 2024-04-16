@@ -6,6 +6,7 @@ import { EmailSelection } from './email-selection/EmailSelection'
 import { AboutPageQuery } from '@/graphql/generated/graphql'
 import { Card } from '../card/Card'
 import { Project } from '../project/Project'
+import { ReactLenis } from '@studio-freight/react-lenis'
 
 export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
   const partnershipsRef = useRef<HTMLDivElement | null>(null)
@@ -39,44 +40,48 @@ export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
       <div className={s.headerWrapper}>
         <PageTitle title="About" />
       </div>
-      <div className={s.cardSection}>
-        {data.cardSection &&
-          data.cardSection.map((card, i) => {
-            return (
-              <Card
-                key={i}
-                title={`${card.title}`}
-                textContent={`${card.textContent}`}
-              >
-                <div className={s.cardSpacer}></div>
-              </Card>
-            )
-          })}
-      </div>
-      <div className={s.partnerships} ref={partnershipsRef}>
-        <h2 className={s.partnershipTitle}>Long Standing Partnerships</h2>
-      </div>
-      <div className={s.daddyWrapper} style={{ position: 'relative' }}>
-        {data.longStandingPartnerships &&
-          data.longStandingPartnerships.map((partner, i) => {
-            if (!partner.featuredMedia) return
-            return (
-              <div className={s.stickyWrapper} key={i}>
-                {i === 0 && <></>}
-
-                <Project
+      <ReactLenis root>
+        <div className={s.cardSection}>
+          {data.cardSection &&
+            data.cardSection.map((card, i) => {
+              return (
+                <Card
                   key={i}
-                  name={`${partner.client}`}
-                  client={`${partner.client}`}
-                  service={`${partner.service}`}
-                  year={`${partner.yearStarted}`}
-                  media={partner.featuredMedia}
-                />
-              </div>
-            )
-          })}
-      </div>
-      <EmailSelection />
+                  title={`${card.title}`}
+                  textContent={`${card.textContent}`}
+                >
+                  <div className={s.cardSpacer}></div>
+                </Card>
+              )
+            })}
+        </div>
+        <div className={s.partnerships} ref={partnershipsRef}>
+          <h2 className={s.partnershipTitle}>Long Standing Partnerships</h2>
+        </div>
+        <div className={s.daddyWrapper} style={{ position: 'relative' }}>
+          {data.longStandingPartnerships &&
+            data.longStandingPartnerships.map((partner, i) => {
+              if (!partner.featuredVideo) return
+              return (
+                <div className={s.stickyWrapper} key={i}>
+                  {i === 0 && <></>}
+
+                  <Project
+                    key={i}
+                    name={`${partner.client}`}
+                    client={`${partner.client}`}
+                    service={`${partner.service}`}
+                    year={`${partner.yearStarted}`}
+                    // image={partner.featuredImage}
+                    video={partner.featuredVideo}
+                    noLink
+                  />
+                </div>
+              )
+            })}
+        </div>
+        <EmailSelection />
+      </ReactLenis>
     </div>
   )
 }

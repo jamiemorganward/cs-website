@@ -2,10 +2,7 @@
 import { FeaturedMediaFragment } from '@/graphql/generated/graphql'
 import s from './Project.module.scss'
 import Link from 'next/link'
-// import Image from 'next/image'
-import { Image } from 'react-datocms'
 import MuxPlayer from '@mux/mux-player-react'
-import { useEffect, useRef } from 'react'
 
 export const Project = ({
   slug,
@@ -16,45 +13,78 @@ export const Project = ({
   projectUrl,
   year,
   category,
-  media,
-  noLine
+  image,
+  noLine,
+  noLink,
+  colour,
+  video
 }: {
   slug?: string
   name: string
   client: string
   service: string
   alignment?: string
-  media: FeaturedMediaFragment
+  image?: FeaturedMediaFragment
+  video?: string
   projectUrl?: string
   year?: string
   category?: string
   noLine?: boolean
+  noLink?: boolean
+  colour?: string
 }) => {
-  useEffect(() => {}, [])
   return (
-    <Link className={s.projectWrapper} href={`/work${slug}`}>
-      <div className={s.projectInfoWrapper}>
-        <div className={s.projectName}>{name}</div>
-        <div className={s.client}>{client}</div>
-        <div className={s.service}>{service}</div>
-      </div>
-      {media && media?.responsiveImage && (
-        <Image
-          className={`${s.featuredImage}
-        ${alignment === 'left' ? s.left : ''}
-        ${alignment === 'right' ? s.right : ''}
-        ${alignment === 'fullwidth' ? s.fullwidth : ''}`}
-          data={media.responsiveImage}
-        />
+    <>
+      {!noLink && (
+        <Link className={s.projectWrapper} href={`/work${slug}`}>
+          <div className={`${s.projectInfoWrapper}`}>
+            <div className={s.projectName}>{name}</div>
+            <div className={s.client}>{client}</div>
+            <div className={s.service}>{service}</div>
+          </div>
+          {image && image?.responsiveImage && (
+            <img
+              className={`${s.featuredImage}
+        ${alignment === 'left' && s.left}
+        ${alignment === 'right' && s.right}
+        ${alignment === 'fullwidth' && s.fullWidth}`}
+              src={image.responsiveImage.src}
+            />
+          )}
+          {video && (
+            <div className={s.videoWrapper} style={{ backgroundColor: colour }}>
+              <video width="100%" height="100%" autoPlay loop muted>
+                <source src={video} />
+              </video>
+            </div>
+          )}
+        </Link>
       )}
-      {media && media.video && (
-        <MuxPlayer
-          src={media.video.streamingUrl}
-          autoPlay="any"
-          loop
-          className={`${s.featuredImage} ${s.fullWidth}`}
-        />
+      {noLink && (
+        <div className={s.projectWrapper}>
+          <div className={s.projectInfoWrapper}>
+            <div className={s.projectName}>{name}</div>
+            <div className={s.client}>{client}</div>
+            <div className={s.service}>{service}</div>
+          </div>
+          {image && image?.responsiveImage && (
+            <img
+              className={`${s.featuredImage}
+        ${alignment === 'left' && s.left}
+        ${alignment === 'right' && s.right}
+        ${alignment === 'fullwidth' && s.fullWidth}`}
+              src={image.responsiveImage.src}
+            />
+          )}
+          {video && (
+            <div className={s.videoWrapper} style={{ backgroundColor: colour }}>
+              <video width="100%" height="100%" autoPlay loop muted>
+                <source src={video} />
+              </video>
+            </div>
+          )}
+        </div>
       )}
-    </Link>
+    </>
   )
 }

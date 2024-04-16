@@ -7,15 +7,26 @@
   padding: 0 $side-gaps-desktop;
   text-decoration: none;
   background-color: $white;
-  max-height: 90vh;
+  height: calc(100vh - 10rem);
   overflow: hidden;
+
+  @include mobile-l {
+    padding: 0 1rem;
+    height: 40vh;
+  }
 }
 
 .project-info-wrapper {
   width: 100%;
   display: grid;
-  grid-template-columns: 40vw 1fr max-content;
+  grid-template-columns: 40% 1fr max-content;
   border-top: 1px solid #0000000a;
+
+  @include tablet {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
 
   & .project-name,
   & .client,
@@ -29,7 +40,7 @@
 }
 
 .featured-image {
-  width: 65%;
+  width: 60%;
 }
 
 .right {
@@ -44,8 +55,25 @@
   width: 100%;
 }
 
-mux-player {
-  /* Hide all controls at once */
-  --controls: none;
-  height: 70%;
+.video-wrapper {
+  height: 85%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 22rem;
+  @media screen and (max-width: 1600px) {
+    height: 80%;
+    padding: 8rem 12rem;
+  }
+
+  @include tablet {
+    padding: 6rem 8rem;
+    height: 60%;
+  }
+
+  @include mobile-l {
+    padding: 2rem;
+    height: 60%;
+  }
 }

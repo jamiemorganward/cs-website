@@ -17,17 +17,25 @@ fragment ProjectOnWorkPage on ProjectRecord {
   slug
   year
   service
+  featuredImage {
+    ...Image
+  }
+  featuredVideo
   alignment
+  themeColour {
+    hex
+  }
 }
 
 fragment ProjectThumb on ProjectRecord {
   projectName
   projectUrl
   category
-  featuredMedia {
+  featuredImage {
     ...Image
     ...Video
   }
+  featuredVideo
 }
 
 fragment Image on FileField {
@@ -53,10 +61,14 @@ fragment Project on ProjectRecord {
   year
   service
   alignment
-  featuredMedia {
+  themeColour {
+    hex
+  }
+  featuredImage {
     ...Image
     ...Video
   }
+  featuredVideo
   flexibleContent {
     ...DoubleImage
     ...TextTwoColumn
@@ -70,29 +82,19 @@ fragment DoubleImage on DoubleImageBlockRecord {
   id
   imageRight {
     alt
-    responsiveImage {
-      alt
-      src
-      sizes
-      base64
-      height
-      title
-      width
-    }
+    ...Video
+    ...Image
   }
+  videoRight
+  heightRight
   imageLeft {
     alt
-    responsiveImage {
-      alt
-      src
-      sizes
-      base64
-      height
-      title
-      width
-    }
+    ...Video
+    ...Image
     url
   }
+  videoLeft
+  heightLeft
 }
 
 fragment TextTwoColumn on TextTwoColumnBlockRecord {
@@ -123,16 +125,11 @@ fragment SingleImage on SingleImageBlockRecord {
   id
   fullwidth
   image {
-    responsiveImage {
-      alt
-      src
-      sizes
-      base64
-      height
-      title
-      width
-    }
+    url
+    ...Video
+    ...Image
   }
+  video
 }
 
 fragment Quote on QuoteBlockRecord {

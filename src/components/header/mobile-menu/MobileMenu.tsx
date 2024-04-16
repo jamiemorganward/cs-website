@@ -10,10 +10,10 @@ import { useEffect, useState } from 'react'
 
 export const MobileMenu = ({
   open,
-  onClose
+  changedPath
 }: {
   open: boolean
-  onClose?: () => void
+  changedPath: () => void
 }) => {
   const pathname = usePathname()
 
@@ -29,6 +29,10 @@ export const MobileMenu = ({
   useEffect(() => {
     getLatestProject()
   }, [])
+
+  useEffect(() => {
+    changedPath()
+  }, [pathname])
 
   const isActive = (href: string) => pathname === href
 
@@ -53,6 +57,12 @@ export const MobileMenu = ({
             onClick={onClose}
           >
             People
+          </Link>
+          <Link
+            className={`${s.link} ${isActive('/approach') ? s.active : ''}`}
+            href={'/approach'}
+          >
+            Approach
           </Link>
           <Link
             className={`${s.link} ${isActive('/about') ? s.active : ''}`}
@@ -81,9 +91,9 @@ export const MobileMenu = ({
         {latestProject && (
           <a className={s.latest} href={`${latestProject.projectUrl}`}>
             <div className={s.projectThumb}>
-              <img
+              {/* <img
                 src={`${latestProject.featuredMedia?.responsiveImage?.src}`}
-              />
+              /> */}
             </div>
             Latest Project:
             <br />

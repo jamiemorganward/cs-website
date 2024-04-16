@@ -17,7 +17,7 @@
   @return $number;
 }
 
-@mixin container($width: $container-width) {
+@mixin container($width: null) {
   margin: 0 auto;
 
   padding-left: $container-gutter-desktop;
@@ -25,27 +25,33 @@
 
   width: 100%;
 
-  @if unitless($width) == true or unit($width) == 'px' {
-    max-width: $width + $container-gutter-desktop * 2;
-  } @else {
-    max-width: calc(#{$width} + #{$container-gutter-desktop * 2});
+  @if $width != null {
+    @if unitless($width) == true or unit($width) == 'px' {
+      max-width: $width + $container-gutter-desktop * 2;
+    } @else {
+      max-width: calc(#{$width} + #{$container-gutter-desktop * 2});
+    }
   }
 
   @include tablet {
-    @if unitless($width) == true or unit($width) == 'px' {
-      max-width: $width + $container-gutter-tablet * 2;
-    } @else {
-      max-width: calc(#{$width} + #{$container-gutter-tablet * 2});
+    @if $width != null {
+      @if unitless($width) == true or unit($width) == 'px' {
+        max-width: $width + $container-gutter-tablet * 2;
+      } @else {
+        max-width: calc(#{$width} + #{$container-gutter-tablet * 2});
+      }
     }
     padding-left: $container-gutter-tablet;
     padding-right: $container-gutter-tablet;
   }
 
   @include mobile-l {
-    @if unitless($width) == true or unit($width) == 'px' {
-      max-width: $width + $container-gutter-mobile * 2;
-    } @else {
-      max-width: calc(#{$width} + #{$container-gutter-mobile * 2});
+    @if $width != null {
+      @if unitless($width) == true or unit($width) == 'px' {
+        max-width: $width + $container-gutter-mobile * 2;
+      } @else {
+        max-width: calc(#{$width} + #{$container-gutter-mobile * 2});
+      }
     }
     padding-left: $container-gutter-mobile;
     padding-right: $container-gutter-mobile;

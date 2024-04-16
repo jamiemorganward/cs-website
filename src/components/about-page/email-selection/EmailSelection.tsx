@@ -1,8 +1,6 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import s from './EmailSelection.module.scss'
-import LeftEye from '@/assets/svgs/left-eye.svg'
-import RightEye from '@/assets/svgs/right-eye.svg'
 import Copied from '@/assets/svgs/cursors/copied.svg'
 import gsap from 'gsap'
 import { useWindowSize } from '@/utils/useWindowSize'
@@ -15,6 +13,9 @@ export const EmailSelection = () => {
   const mobileCopied = useRef<HTMLDivElement | null>(null)
   const [diameter, setDiameter] = useState<number>(0)
   const windowSize = useWindowSize()
+
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const cursorRef = useRef<HTMLDivElement | null>(null)
 
   const getABackground = () => {
     const value = Math.floor(Math.random() * 3)
@@ -79,13 +80,76 @@ export const EmailSelection = () => {
     }
   }, [isCopied])
 
+  const onMove = (e: any) => {
+    if (cursorRef.current && containerRef.current) {
+      const containerRect = containerRef.current.getBoundingClientRect()
+      const mouseX = e.clientX - containerRect.left
+      const mouseY = e.clientY - containerRect.top
+
+      const buttonWidth = cursorRef.current.offsetWidth
+      const buttonHeight = cursorRef.current.offsetHeight
+      const buttonX = mouseX - buttonWidth / 2
+      const buttonY = mouseY - buttonHeight / 2
+
+      const maxButtonX = containerRect.width - buttonWidth
+      const maxButtonY = containerRect.height - buttonHeight
+
+      gsap.to(cursorRef.current, {
+        duration: 0.4,
+        overwrite: 'auto',
+        x: Math.min(Math.max(buttonX, 0), maxButtonX),
+        y: Math.min(Math.max(buttonY, 0), maxButtonY),
+        // stagger: 0.1,
+        ease: 'Power1.ease'
+      })
+    }
+  }
+
+  const onLeave = (e: any) => {
+    if (cursorRef.current && containerRef.current) {
+      gsap.killTweensOf(cursorRef.current)
+      gsap.to(cursorRef.current, {
+        duration: 0.5,
+        x:
+          (containerRef.current.clientWidth - cursorRef.current.clientWidth) /
+          2,
+        y:
+          (containerRef.current.clientHeight - cursorRef.current.clientHeight) /
+          2
+      })
+    }
+  }
+
+  useEffect(() => {
+    const container = containerRef.current
+
+    if (!container || !cursorRef.current) return
+
+    gsap.set(cursorRef.current, {
+      x: (container.clientWidth - cursorRef.current.clientWidth) / 2,
+      y: (container.clientHeight - cursorRef.current.clientHeight) / 2
+    })
+
+    container?.addEventListener('mousemove', (e) => onMove(e))
+    container?.addEventListener('mouseleave', (e) => onLeave(e))
+
+    return () => {
+      container.removeEventListener('mousemove', onMove)
+      container.removeEventListener('mouseleave', onLeave)
+    }
+  }, [containerRef, cursorRef])
+
   return (
     <div
       className={`${s.emailSelection} ${isCopied && s.copiedEmailSelection}`}
       onClick={() => setIsCopied(true)}
       onMouseDown={() => tl.play()}
       onMouseUp={() => tl.reverse()}
+      ref={containerRef}
     >
+      <div className={s.cursor} ref={cursorRef}>
+        <p> {isCopied ? 'Copied!' : 'Hold To Copy'}</p>
+      </div>
       <p className={s.email}>hello@clicksuite.co.nz</p>
 
       <div className={s.mobileCopied} ref={mobileCopied}>

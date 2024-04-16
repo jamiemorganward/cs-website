@@ -4,16 +4,24 @@ import s from './ApproachPage.module.scss'
 import { useWindowSize } from '@/utils/useWindowSize'
 import { ApproachPageDesktop } from './approach-page-desktop/ApproachPageDesktop'
 import { ApproachPageMobile } from './approach-page-mobile/ApproachPageMobile'
+import { ReactLenis, useLenis } from '@studio-freight/react-lenis'
+import { ApproachPageQuery } from '@/graphql/generated/graphql'
 
-export const ApproachPage = () => {
+export const ApproachPage = ({
+  data
+}: {
+  data: ApproachPageQuery['approachPage']
+}) => {
   const windowSize = useWindowSize()
 
   if (!windowSize.width) return <></>
 
   return (
     <>
-      {windowSize.width >= 991 && <ApproachPageDesktop />}
-      {windowSize.width < 991 && <ApproachPageMobile />}
+      <ReactLenis root>
+        {windowSize.width >= 991 && <ApproachPageDesktop data={data} />}
+        {windowSize.width < 991 && <ApproachPageMobile data={data} />}
+      </ReactLenis>
     </>
   )
 }
