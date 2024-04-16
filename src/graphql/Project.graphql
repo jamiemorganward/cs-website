@@ -27,10 +27,11 @@ fragment ProjectThumb on ProjectRecord {
   projectName
   projectUrl
   category
-  featuredMedia {
+  featuredImage {
     ...Image
     ...Video
   }
+  featuredVideo
 }
 
 fragment Image on FileField {
@@ -59,10 +60,11 @@ fragment Project on ProjectRecord {
   themeColour {
     hex
   }
-  featuredMedia {
+  featuredImage {
     ...Image
     ...Video
   }
+  featuredVideo
   flexibleContent {
     ...DoubleImage
     ...TextTwoColumn

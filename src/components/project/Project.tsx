@@ -40,7 +40,7 @@ export const Project = ({
             <div className={s.client}>{client}</div>
             <div className={s.service}>{service}</div>
           </div>
-          {media && media?.responsiveImage && (
+          {/* {media && media?.responsiveImage && (
             <img
               className={`${s.featuredImage}
         ${alignment === 'left' && s.left}
@@ -58,7 +58,7 @@ export const Project = ({
                 className={`${s.featuredImage}`}
               />
             </div>
-          )}
+          )} */}
         </Link>
       )}
       {noLink && (
@@ -68,7 +68,7 @@ export const Project = ({
             <div className={s.client}>{client}</div>
             <div className={s.service}>{service}</div>
           </div>
-          {media && media?.responsiveImage && (
+          {/* {media && media?.responsiveImage && (
             <img
               className={`${s.featuredImage}
         ${alignment === 'left' ? s.left : ''}
@@ -84,7 +84,7 @@ export const Project = ({
               loop
               className={`${s.featuredImage} ${s.fullWidth}`}
             />
-          )}
+          )} */}
         </div>
       )}
     </>

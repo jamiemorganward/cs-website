@@ -15,10 +15,14 @@
 .project-title {
   padding: 100px 0 150px 0;
   & h1 {
-    font-size: 56px;
+    font-size: 48px;
     font-weight: 600;
     color: $black;
     line-height: 1.2;
+  }
+
+  @include mobile-l {
+    padding: 100px 0 70px 0;
   }
 }
 
