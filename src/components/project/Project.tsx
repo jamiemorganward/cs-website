@@ -3,6 +3,8 @@ import { FeaturedMediaFragment } from '@/graphql/generated/graphql'
 import s from './Project.module.scss'
 import Link from 'next/link'
 import MuxPlayer from '@mux/mux-player-react'
+import Marquee from 'react-fast-marquee'
+import { useWindowSize } from '@/utils/useWindowSize'
 
 export const Project = ({
   slug,
@@ -35,15 +37,29 @@ export const Project = ({
   colour?: string
   fullwidth?: boolean
 }) => {
+  const windowSize = useWindowSize()
+
+  if (typeof windowSize.width === 'undefined') return <></>
+
   return (
     <>
       {!noLink && (
         <Link className={s.projectWrapper} href={`/work${slug}`}>
-          <div className={`${s.projectInfoWrapper}`}>
-            <div className={s.client}>{client}</div>
-            <div className={s.service}>{service}</div>
-            <div className={s.projectName}>{year}</div>
-          </div>
+          {windowSize.width < 991 ? (
+            <div className={`${s.projectInfoWrapper} ${s.tickerTape}`}>
+              <Marquee pauseOnHover autoFill>
+                <div className={s.client}>{client}</div>
+                <div className={s.service}>{service}</div>
+                <div className={s.projectName}>{year}</div>
+              </Marquee>
+            </div>
+          ) : (
+            <div className={`${s.projectInfoWrapper}`}>
+              <div className={s.client}>{client}</div>
+              <div className={s.service}>{service}</div>
+              <div className={s.projectName}>{year}</div>
+            </div>
+          )}
           {image && image?.responsiveImage && (
             <img
               className={`${s.featuredImage}
@@ -67,11 +83,21 @@ export const Project = ({
       )}
       {noLink && (
         <div className={s.projectWrapper}>
-          <div className={s.projectInfoWrapper}>
-            <div className={s.client}>{client}</div>
-            <div className={s.service}>{service}</div>
-            <div className={s.projectName}>{year}</div>
-          </div>
+          {windowSize.width < 991 ? (
+            <div className={`${s.projectInfoWrapper} ${s.tickerTape}`}>
+              <Marquee pauseOnHover autoFill>
+                <div className={s.client}>{client}</div>
+                <div className={s.service}>{service}</div>
+                <div className={s.projectName}>{year}</div>
+              </Marquee>
+            </div>
+          ) : (
+            <div className={`${s.projectInfoWrapper}`}>
+              <div className={s.client}>{client}</div>
+              <div className={s.service}>{service}</div>
+              <div className={s.projectName}>{year}</div>
+            </div>
+          )}
           {image && image?.responsiveImage && (
             <img
               className={`${s.featuredImage}

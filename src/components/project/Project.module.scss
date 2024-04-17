@@ -25,7 +25,6 @@
   @include tablet {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
   }
 
   & .project-name,
@@ -36,6 +35,25 @@
     font-weight: 500;
     color: $black;
     margin: 1rem 0;
+  }
+}
+
+.ticker-tape {
+  flex-wrap: nowrap;
+
+  & .project-name,
+  & .client,
+  & .service {
+    @include tablet {
+      margin: 1rem 5rem;
+    }
+
+    @include mobile-l {
+      margin: 1rem 3rem;
+    }
+    @include mobile-p {
+      margin: 1rem 2rem;
+    }
   }
 }
 
