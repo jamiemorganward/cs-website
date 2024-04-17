@@ -1,11 +1,12 @@
-import Link from 'next/link'
 import s from './MenuItem.module.scss'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import CloseIcon from '../../../../assets/svgs/close.svg'
 import { PageInfoContext } from '@/lib/contexts/PageInfoContext'
 import { useContext, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
+import TransitionLink from '@/components/transition-link/TransitionLink'
+import { useTransitionRouter } from '@/lib/pageTransitions'
 
 export const MenuItem = ({
   text,
@@ -20,7 +21,7 @@ export const MenuItem = ({
   subMenuText?: boolean
   sticky: boolean | undefined
 }) => {
-  const router = useRouter()
+  const router = useTransitionRouter()
   const ctx = useContext(PageInfoContext)
   const pathname = usePathname()
 
@@ -68,7 +69,7 @@ export const MenuItem = ({
   }
 
   return (
-    <Link
+    <TransitionLink
       onMouseEnter={() => !isActive(link) && hoverIn()}
       onMouseLeave={() => !isActive(link) && hoverOut()}
       className={`${s.link} ${sticky ? s.sticky : ''} ${
@@ -91,6 +92,6 @@ export const MenuItem = ({
         </span>
       )}
       <span className={s.linkBg}></span>
-    </Link>
+    </TransitionLink>
   )
 }

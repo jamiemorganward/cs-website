@@ -7,6 +7,7 @@ import { DesktopMenu } from './desktop-menu/DesktopMenu'
 import { MobileMenu } from './mobile-menu/MobileMenu'
 import { useEffect, useState } from 'react'
 import { HamburgerButton } from './hamburger-button/HamburgerButton'
+import TransitionLink from '../transition-link/TransitionLink'
 
 export const Header = () => {
   const windowSize = useWindowSize()
@@ -48,9 +49,9 @@ export const Header = () => {
         <div className={s.container}>
           <div className={s.headerInner}>
             <div className={s.topSection}>
-              <Link href={'/'}>
+              <TransitionLink href={'/'}>
                 <LogoWrapper dark={isMobile && open} />
-              </Link>
+              </TransitionLink>
               {isMobile ? (
                 <HamburgerButton
                   open={open}
