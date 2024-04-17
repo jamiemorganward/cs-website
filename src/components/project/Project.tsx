@@ -17,7 +17,8 @@ export const Project = ({
   noLine,
   noLink,
   colour,
-  video
+  video,
+  fullwidth
 }: {
   slug?: string
   name: string
@@ -32,27 +33,31 @@ export const Project = ({
   noLine?: boolean
   noLink?: boolean
   colour?: string
+  fullwidth?: boolean
 }) => {
   return (
     <>
       {!noLink && (
         <Link className={s.projectWrapper} href={`/work${slug}`}>
           <div className={`${s.projectInfoWrapper}`}>
-            <div className={s.projectName}>{name}</div>
             <div className={s.client}>{client}</div>
             <div className={s.service}>{service}</div>
+            <div className={s.projectName}>{year}</div>
           </div>
           {image && image?.responsiveImage && (
             <img
               className={`${s.featuredImage}
         ${alignment === 'left' && s.left}
         ${alignment === 'right' && s.right}
-        ${alignment === 'fullwidth' && s.fullWidth}`}
+        ${(alignment === 'fullwidth' || fullwidth) && s.fullWidth}`}
               src={image.responsiveImage.src}
             />
           )}
           {video && (
-            <div className={s.videoWrapper} style={{ backgroundColor: colour }}>
+            <div
+              className={`${s.videoWrapper} ${fullwidth ? s.fullWidth : ''}`}
+              style={{ backgroundColor: colour }}
+            >
               <video width="100%" height="100%" autoPlay loop muted>
                 <source src={video} />
               </video>
@@ -63,9 +68,9 @@ export const Project = ({
       {noLink && (
         <div className={s.projectWrapper}>
           <div className={s.projectInfoWrapper}>
-            <div className={s.projectName}>{name}</div>
             <div className={s.client}>{client}</div>
             <div className={s.service}>{service}</div>
+            <div className={s.projectName}>{year}</div>
           </div>
           {image && image?.responsiveImage && (
             <img
@@ -77,7 +82,10 @@ export const Project = ({
             />
           )}
           {video && (
-            <div className={s.videoWrapper} style={{ backgroundColor: colour }}>
+            <div
+              className={`${s.videoWrapper} ${fullwidth ? s.fullWidth : ''}`}
+              style={{ backgroundColor: colour }}
+            >
               <video width="100%" height="100%" autoPlay loop muted>
                 <source src={video} />
               </video>

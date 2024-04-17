@@ -17,15 +17,19 @@ export const ContactPage = () => {
         <div className={s.contactInfoBlock}>
           <h2 className={s.title}>Location</h2>
           <a href="https://maps.app.goo.gl/WBUTwgX2taUEUCwG7" target="_blank">
-            17 Garrett Street,<br></br>
-            Te Aro, Wellington 6011
+            <p>
+              17 Garrett Street,<br></br>
+              Te Aro, Wellington 6011
+            </p>
           </a>
         </div>
         <div className={s.contactInfoBlock}>
           <h2 className={s.title}>Social</h2>
-          <a href="https://www.instagram.com/clicksuitenz/">Instagram</a>
-          <br></br>
-          <a href="https://www.linkedin.com/company/click-suite/">LinkedIn</a>
+          <p>
+            <a href="https://www.instagram.com/clicksuitenz/">Instagram</a>
+            <br></br>
+            <a href="https://www.linkedin.com/company/click-suite/">LinkedIn</a>
+          </p>
         </div>
       </div>
     </div>

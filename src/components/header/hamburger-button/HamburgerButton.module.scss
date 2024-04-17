@@ -16,6 +16,10 @@
     width: 22px;
   }
 
+  &.dark span {
+    background-color: $black;
+  }
+
   & .barTop {
     transform: rotate(0deg);
     top: calc(50% - 4px);

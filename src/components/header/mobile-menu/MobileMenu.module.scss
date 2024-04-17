@@ -1,11 +1,36 @@
 @import '../../../styles/config';
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-delay: 0.25s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
 .menu-wrapper {
   flex-grow: 1;
   padding: 0 2rem;
+  mix-blend-mode: normal;
 
   @include mobile-p {
     padding: 0 $side-gaps-mobile;
+  }
+
+  &.open {
+    opacity: 1;
   }
 }
 
@@ -13,18 +38,18 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 80px;
+  margin-top: 45px;
 
   & .link {
     text-decoration: none;
     font-size: 36px;
     font-weight: 500;
-    opacity: 0.4;
+    opacity: 1;
+    color: $black;
+    line-height: 1.37em;
 
     &.active {
-      opacity: 1;
-      color: $black;
+      text-decoration: underline;
     }
   }
 }
@@ -33,7 +58,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
 
   & .latest {
     display: flex;
@@ -58,17 +82,22 @@
       width: 170px;
       height: 125px;
       margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
 
       & img {
+        border-radius: 4px;
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
-    }
 
-    & span {
-      color: $black;
-      font-size: 16px;
+      & span {
+        color: $black;
+        font-size: 16px;
+      }
     }
   }
 
@@ -76,20 +105,16 @@
     width: 100%;
     box-shadow: 0px 2px 8.1px 9px rgba(0, 0, 0, 0.05);
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 
-    a {
+    p {
       width: 100%;
-      font-size: 30px;
+      font-size: 36px;
       text-decoration: none;
       font-weight: 500;
-      text-align: right;
+      text-align: center;
       padding: 0 1rem 0.5rem 1rem;
       color: $black;
-
-      &:hover {
-        color: $grey;
-      }
     }
   }
 }

@@ -164,9 +164,7 @@ export const ApproachPageDesktop = ({
                 titleRight={`${card.subtitle}`}
                 title={`${card.title}`}
                 textContent={`${card.textContent}`}
-              >
-                <div className={s.cardContent}></div>
-              </Card>
+              ></Card>
             )
           })}
         </div>

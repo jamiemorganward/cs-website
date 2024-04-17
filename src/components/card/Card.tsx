@@ -10,7 +10,7 @@ export const Card = ({
   title: string
   titleRight?: string
   textContent: string
-  children: ReactNode
+  children?: ReactNode
 }) => {
   return (
     <div className={s.card}>
@@ -18,7 +18,7 @@ export const Card = ({
         <h2 className={s.cardTitle}>{title}</h2>
         {titleRight && <h2 className={s.titleRight}>{titleRight}</h2>}
       </div>
-      <div className={s.contentWrapper}>{children}</div>
+      {children && <div className={s.contentWrapper}>{children}</div>}
       <div className={s.textContentWrapper}>
         <p className={s.textContent}>{textContent}</p>
       </div>
