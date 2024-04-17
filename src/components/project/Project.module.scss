@@ -10,9 +10,17 @@
   height: calc(100vh - 10rem);
   overflow: hidden;
 
+  @include tablet {
+    height: 60svh;
+  }
+
   @include mobile-l {
     padding: 0 1rem;
-    height: 40vh;
+    height: 40svh;
+  }
+
+  @include mobile-p {
+    height: 60svh;
   }
 }
 
@@ -62,6 +70,8 @@
 
   @include tablet {
     width: 100%;
+    height: calc(100% - 58px);
+    object-fit: cover;
   }
 }
 
@@ -92,12 +102,15 @@
 
   @include tablet {
     padding: 6rem 8rem;
-    height: 60%;
+    height: calc(100% - 58px);
   }
 
   @include mobile-l {
     padding: 2rem;
-    height: 60%;
+  }
+
+  @include mobile-p {
+    height: 60svh;
   }
 
   &.full-width {
