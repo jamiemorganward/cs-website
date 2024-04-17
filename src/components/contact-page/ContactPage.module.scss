@@ -4,17 +4,17 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   width: 100%;
-  padding: 3rem $side-gaps-desktop 10rem;
+  padding: 10rem $side-gaps-desktop 10rem;
 
   @include tablet {
-    padding: 0 $side-gaps-tablet;
+    padding: 2rem $side-gaps-tablet;
     grid-template-columns: repeat(2, 1fr);
   }
   @include mobile-l {
     display: block;
   }
   @include mobile-p {
-    padding: 0 $side-gaps-mobile;
+    padding: 2rem $side-gaps-mobile;
   }
 }
 
@@ -42,4 +42,9 @@ a {
   color: $black;
   font-weight: 500;
   font-size: 18px;
+}
+
+p {
+  line-height: 1.2em;
+  text-decoration: none;
 }
