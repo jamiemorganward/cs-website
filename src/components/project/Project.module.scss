@@ -41,6 +41,10 @@
 
 .featured-image {
   width: 60%;
+
+  @include tablet {
+    width: 100%;
+  }
 }
 
 .right {
@@ -62,6 +66,7 @@
   align-items: center;
   justify-content: center;
   padding: 8rem 22rem;
+
   @media screen and (max-width: 1600px) {
     height: 80%;
     padding: 8rem 12rem;
@@ -75,5 +80,11 @@
   @include mobile-l {
     padding: 2rem;
     height: 60%;
+  }
+
+  &.full-width {
+    padding: 0;
+    width: 100%;
+    height: auto;
   }
 }
