@@ -19,7 +19,7 @@
   }
 
   & * {
-    transition: all 0.35s ease-out;
+    // transition: all 0.35s ease-out;
   }
 
   & .link-text {
@@ -27,6 +27,27 @@
     bottom: 1px;
     // color: rgba($black, 0.4);
     z-index: 2;
+    overflow: hidden;
+  }
+
+  & .link-hover-line {
+    width: 0%;
+    height: 1px;
+    background-color: $white;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  &.active .link-active-line {
+    width: 100%;
+    height: 1px;
+    background-color: $white;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 
   &.active .link-text {
