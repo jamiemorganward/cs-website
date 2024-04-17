@@ -1,5 +1,8 @@
 import Link from 'next/link'
 import s from './ProjectIntro.module.scss'
+import View from '@/lottie-files/view-live-website.json'
+import Lottie from 'react-lottie'
+import { useState } from 'react'
 
 interface ProjectInfoTypes {
   title: string
@@ -20,6 +23,17 @@ export const ProjectIntro = ({
   link,
   year
 }: ProjectInfoTypes) => {
+  const [isStopped, setIsStopped] = useState(true)
+
+  const animOptions = {
+    loop: true,
+    autoplay: false,
+    animationData: View,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
+  }
+
   return (
     <div className={s.projectIntro}>
       <div className={s.projectTitle}>
@@ -48,8 +62,16 @@ export const ProjectIntro = ({
         </div>
         {link && (
           <div className={s.url}>
-            <Link href={link} target="_blank">
-              View Live Website
+            <Link
+              href={link}
+              target="_blank"
+              onMouseEnter={() => setIsStopped(false)}
+              onMouseLeave={() => setIsStopped(true)}
+            >
+              <span>View Live Website</span>
+              <div className={s.animationWrapper}>
+                <Lottie options={animOptions} isStopped={isStopped} />
+              </div>
             </Link>
           </div>
         )}
