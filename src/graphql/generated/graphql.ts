@@ -2070,6 +2070,7 @@ export type ProjectModelFilter = {
   featuredVideo?: InputMaybe<StringFilter>;
   id?: InputMaybe<ItemIdFilter>;
   platform?: InputMaybe<StringFilter>;
+  position?: InputMaybe<PositionFilter>;
   projectName?: InputMaybe<StringFilter>;
   projectUrl?: InputMaybe<StringFilter>;
   service?: InputMaybe<StringFilter>;
@@ -2109,6 +2110,8 @@ export enum ProjectModelOrderBy {
   IdDesc = 'id_DESC',
   PlatformAsc = 'platform_ASC',
   PlatformDesc = 'platform_DESC',
+  PositionAsc = 'position_ASC',
+  PositionDesc = 'position_DESC',
   ProjectNameAsc = 'projectName_ASC',
   ProjectNameDesc = 'projectName_DESC',
   ProjectUrlAsc = 'projectUrl_ASC',
@@ -2145,6 +2148,7 @@ export type ProjectRecord = RecordInterface & {
   flexibleContent: Array<ProjectModelFlexibleContentField>;
   id: Scalars['ItemId']['output'];
   platform?: Maybe<Scalars['String']['output']>;
+  position?: Maybe<Scalars['IntType']['output']>;
   projectName?: Maybe<Scalars['String']['output']>;
   projectUrl?: Maybe<Scalars['String']['output']>;
   service?: Maybe<Scalars['String']['output']>;
