@@ -40,9 +40,9 @@ export const Project = ({
       {!noLink && (
         <Link className={s.projectWrapper} href={`/work${slug}`}>
           <div className={`${s.projectInfoWrapper}`}>
-            <div className={s.projectName}>{name}</div>
             <div className={s.client}>{client}</div>
             <div className={s.service}>{service}</div>
+            <div className={s.projectName}>{year}</div>
           </div>
           {image && image?.responsiveImage && (
             <img
@@ -68,9 +68,9 @@ export const Project = ({
       {noLink && (
         <div className={s.projectWrapper}>
           <div className={s.projectInfoWrapper}>
-            <div className={s.projectName}>{name}</div>
             <div className={s.client}>{client}</div>
             <div className={s.service}>{service}</div>
+            <div className={s.projectName}>{year}</div>
           </div>
           {image && image?.responsiveImage && (
             <img
