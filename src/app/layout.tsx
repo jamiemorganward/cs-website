@@ -26,6 +26,19 @@ export default function RootLayout({
           {children}
           {/* <Footer /> */}
         </PageInfoContextProvider>
+        <div
+          id="transition-element"
+          style={{
+            background: 'white',
+            width: '100vw',
+            height: '100vh',
+            zIndex: 10000000,
+            position: 'fixed',
+            top: 0,
+            left: 0
+          }}
+          className="w-screen h-screen bg-black z-100 fixed top-0 left-0"
+        ></div>
       </body>
     </html>
   )

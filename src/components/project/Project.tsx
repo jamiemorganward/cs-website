@@ -1,10 +1,10 @@
 'use client'
 import { FeaturedMediaFragment } from '@/graphql/generated/graphql'
 import s from './Project.module.scss'
-import Link from 'next/link'
 import MuxPlayer from '@mux/mux-player-react'
 import Marquee from 'react-fast-marquee'
 import { useWindowSize } from '@/utils/useWindowSize'
+import TransitionLink from '../transition-link/TransitionLink'
 
 export const Project = ({
   slug,
@@ -44,7 +44,7 @@ export const Project = ({
   return (
     <>
       {!noLink && (
-        <Link className={s.projectWrapper} href={`/work${slug}`}>
+        <TransitionLink className={s.projectWrapper} href={`/work${slug}`}>
           {windowSize.width < 991 ? (
             <div className={`${s.projectInfoWrapper} ${s.tickerTape}`}>
               <Marquee pauseOnHover autoFill>
@@ -79,7 +79,7 @@ export const Project = ({
               </video>
             </div>
           )}
-        </Link>
+        </TransitionLink>
       )}
       {noLink && (
         <div className={s.projectWrapper}>

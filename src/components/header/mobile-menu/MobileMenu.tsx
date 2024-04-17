@@ -1,5 +1,4 @@
 import s from './MobileMenu.module.scss'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { client } from '@/lib/datocms'
 import {
@@ -7,6 +6,7 @@ import {
   ProjectThumbFragment
 } from '@/graphql/generated/graphql'
 import { useEffect, useState } from 'react'
+import TransitionLink from '@/components/transition-link/TransitionLink'
 
 export const MobileMenu = ({
   open,
@@ -50,44 +50,44 @@ export const MobileMenu = ({
       <div className={`${s.mobileMenu} ${open ? s.open : ''}`}>
         <div className={`${s.menuWrapper}`}>
           <nav className={s.menu}>
-            <Link
+            <TransitionLink
               className={`${s.link} ${
                 pathname.includes('/work') ? s.active : ''
               }`}
               href={'/work'}
             >
               Work
-            </Link>
-            <Link
+            </TransitionLink>
+            <TransitionLink
               className={`${s.link} ${isActive('/people') ? s.active : ''}`}
               href={'/people'}
             >
               People
-            </Link>
-            <Link
+            </TransitionLink>
+            <TransitionLink
               className={`${s.link} ${isActive('/approach') ? s.active : ''}`}
               href={'/approach'}
             >
               Approach
-            </Link>
-            <Link
+            </TransitionLink>
+            <TransitionLink
               className={`${s.link} ${isActive('/about') ? s.active : ''}`}
               href={'/about'}
             >
               About
-            </Link>
-            <Link
+            </TransitionLink>
+            <TransitionLink
               className={`${s.link} ${isActive('/rd') ? s.active : ''}`}
               href={'/rd'}
             >
               Playground
-            </Link>
-            <Link
+            </TransitionLink>
+            <TransitionLink
               className={`${s.link} ${isActive('/contact') ? s.active : ''}`}
               href={'/contact'}
             >
               Contact
-            </Link>
+            </TransitionLink>
           </nav>
         </div>
         <div className={s.bottomSection}>
