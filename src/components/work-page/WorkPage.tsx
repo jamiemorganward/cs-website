@@ -25,7 +25,9 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
   const organise = () => {
     let tempCats: string[] = []
     data.allProjects.map((project) => {
-      tempCats.push(`${project.category}`)
+      project.multiCategory?.map((cat: string) => {
+        tempCats.push(`${cat}`)
+      })
     })
     setAllCategories(tempCats)
     setLocalProjects(data.allProjects)
