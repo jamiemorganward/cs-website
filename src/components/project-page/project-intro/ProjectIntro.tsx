@@ -7,7 +7,8 @@ import { useState } from 'react'
 interface ProjectInfoTypes {
   title: string
   client: string
-  category: string
+
+  multiCategory: string[]
   service: string
   platform: string
   link: string
@@ -17,7 +18,8 @@ interface ProjectInfoTypes {
 export const ProjectIntro = ({
   title,
   client,
-  category,
+
+  multiCategory,
   service,
   platform,
   link,
@@ -47,7 +49,15 @@ export const ProjectIntro = ({
           </div>
           <div className={s.row}>
             <div className={s.label}>Category</div>
-            <div className={s.value}>{category}</div>
+            <div className={s.value}>
+              {multiCategory.map((cat, i) => {
+                if (i < multiCategory.length - 1) {
+                  return `${cat}, `
+                } else {
+                  return `${cat}`
+                }
+              })}
+            </div>
           </div>
           <div className={s.row}>
             <div className={s.label}>Service</div>

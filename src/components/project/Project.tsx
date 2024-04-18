@@ -14,7 +14,7 @@ export const Project = ({
   alignment,
   projectUrl,
   year,
-  category,
+  multiCategory,
   image,
   noLine,
   noLink,
@@ -31,7 +31,7 @@ export const Project = ({
   video?: string
   projectUrl?: string
   year?: string
-  category?: string
+  multiCategory?: string[]
   noLine?: boolean
   noLink?: boolean
   colour?: string

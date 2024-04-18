@@ -50,11 +50,15 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
     const _projects: ProjectOnWorkPageFragment[] = []
 
     data.allProjects.map((project) => {
-      if (project.category && filters.includes(project.category)) {
-        _projects.push(project)
-      } else {
-        return
-      }
+      project.multiCategory?.map((cat: string) => {
+        if (cat && filters.includes(cat)) {
+          if (!_projects.includes(project)) {
+            _projects.push(project)
+          }
+        } else {
+          return
+        }
+      })
     })
     setLocalProjects(_projects)
     if (filters.length < 1) {
@@ -90,7 +94,7 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
                 video={project.featuredVideo}
                 slug={project.slug}
                 year={project.year}
-                category={project.category}
+                multiCategory={project.multiCategory}
                 alignment={project.alignment}
                 colour={project.themeColour?.hex}
               />
