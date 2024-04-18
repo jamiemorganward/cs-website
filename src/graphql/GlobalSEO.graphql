@@ -1,0 +1,15 @@
+query SEO {
+  _site {
+    globalSeo {
+      siteName
+      titleSuffix
+      twitterAccount
+      fallbackSeo {
+        description
+        title
+        twitterCard
+      }
+      facebookPageUrl
+    }
+  }
+}
