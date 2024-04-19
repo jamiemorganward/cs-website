@@ -1,11 +1,28 @@
-import { Metadata } from 'next'
+import { Metadata, ResolvingMetadata } from 'next'
 import '@/styles/main.scss'
 import { Header } from '@/components/header/Header'
 import { Footer } from '@/components/footer/Footer'
 import { PageInfoContextProvider } from '@/lib/contexts/PageInfoContext'
-export const metadata: Metadata = {
-  title: 'Home',
-  description: 'Welcome to Next.js'
+import { getClient } from '@/lib/serverClient'
+import { SeoDocument, SeoQuery } from '@/graphql/generated/graphql'
+
+export const generateMetadata = async () => {
+  const client = getClient()
+  const seoData = await client.query<SeoQuery>({
+    query: SeoDocument,
+    context: {
+      fetchOptions: {
+        next: { tags: ['seo'] }
+      }
+    }
+  })
+  // construct output object
+  const metadata = {
+    title: seoData.data._site.globalSeo?.siteName,
+    description: seoData.data._site.globalSeo?.fallbackSeo?.description
+  }
+  console.log(metadata)
+  return metadata
 }
 
 export default function RootLayout({
