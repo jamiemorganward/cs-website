@@ -27,7 +27,7 @@ export const ProjectPage = ({ data }: { data: GetProjectQuery }) => {
             <ProjectIntro
               title={`${data.project?.projectName}`}
               client={`${data.project?.client}`}
-              category={`${data.project?.category}`}
+              multiCategory={data.project?.multiCategory}
               service={`${data.project?.service}`}
               platform={`${data.project?.platform}`}
               link={`${data.project?.projectUrl}`}

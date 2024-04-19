@@ -1,5 +1,4 @@
 'use client'
-import Link from 'next/link'
 import s from './FilterBar.module.scss'
 import { countBy, filter, uniq } from 'lodash'
 
