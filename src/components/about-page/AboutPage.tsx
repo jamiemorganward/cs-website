@@ -75,6 +75,7 @@ export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
                     // image={partner.featuredImage}
                     video={partner.featuredVideo}
                     noLink
+                    fullwidth
                   />
                 </div>
               )

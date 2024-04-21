@@ -1,11 +1,28 @@
-import { Metadata } from 'next'
+import { Metadata, ResolvingMetadata } from 'next'
 import '@/styles/main.scss'
 import { Header } from '@/components/header/Header'
 import { Footer } from '@/components/footer/Footer'
 import { PageInfoContextProvider } from '@/lib/contexts/PageInfoContext'
-export const metadata: Metadata = {
-  title: 'Home',
-  description: 'Welcome to Next.js'
+import { getClient } from '@/lib/serverClient'
+import { SeoDocument, SeoQuery } from '@/graphql/generated/graphql'
+
+export const generateMetadata = async () => {
+  const client = getClient()
+  const seoData = await client.query<SeoQuery>({
+    query: SeoDocument,
+    context: {
+      fetchOptions: {
+        next: { tags: ['seo'] }
+      }
+    }
+  })
+  // construct output object
+  const metadata = {
+    title: seoData.data._site.globalSeo?.siteName,
+    description: seoData.data._site.globalSeo?.fallbackSeo?.description
+  }
+  console.log(metadata)
+  return metadata
 }
 
 export default function RootLayout({
@@ -26,6 +43,19 @@ export default function RootLayout({
           {children}
           {/* <Footer /> */}
         </PageInfoContextProvider>
+        <div
+          id="transition-element"
+          style={{
+            background: 'white',
+            width: '100vw',
+            height: '100vh',
+            zIndex: 10000000,
+            position: 'fixed',
+            top: 0,
+            left: 0
+          }}
+          className="w-screen h-screen bg-black z-100 fixed top-0 left-0"
+        ></div>
       </body>
     </html>
   )

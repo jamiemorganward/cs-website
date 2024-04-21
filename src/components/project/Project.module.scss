@@ -10,9 +10,17 @@
   height: calc(100vh - 10rem);
   overflow: hidden;
 
+  @include tablet {
+    height: 60svh;
+  }
+
   @include mobile-l {
     padding: 0 1rem;
-    height: 40vh;
+    height: 40svh;
+  }
+
+  @include mobile-p {
+    height: 60svh;
   }
 }
 
@@ -25,7 +33,6 @@
   @include tablet {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
   }
 
   & .project-name,
@@ -39,8 +46,33 @@
   }
 }
 
+.ticker-tape {
+  flex-wrap: nowrap;
+
+  & .project-name,
+  & .client,
+  & .service {
+    @include tablet {
+      margin: 1rem 5rem;
+    }
+
+    @include mobile-l {
+      margin: 1rem 3rem;
+    }
+    @include mobile-p {
+      margin: 1rem 2rem;
+    }
+  }
+}
+
 .featured-image {
   width: 60%;
+
+  @include tablet {
+    width: 100%;
+    height: calc(100% - 58px);
+    object-fit: cover;
+  }
 }
 
 .right {
@@ -62,6 +94,7 @@
   align-items: center;
   justify-content: center;
   padding: 8rem 22rem;
+
   @media screen and (max-width: 1600px) {
     height: 80%;
     padding: 8rem 12rem;
@@ -69,11 +102,20 @@
 
   @include tablet {
     padding: 6rem 8rem;
-    height: 60%;
+    height: calc(100% - 58px);
   }
 
   @include mobile-l {
     padding: 2rem;
-    height: 60%;
+  }
+
+  @include mobile-p {
+    height: 60svh;
+  }
+
+  &.full-width {
+    padding: 0;
+    width: 100%;
+    height: auto;
   }
 }

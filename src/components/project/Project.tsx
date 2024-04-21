@@ -1,8 +1,10 @@
 'use client'
 import { FeaturedMediaFragment } from '@/graphql/generated/graphql'
 import s from './Project.module.scss'
-import Link from 'next/link'
 import MuxPlayer from '@mux/mux-player-react'
+import Marquee from 'react-fast-marquee'
+import { useWindowSize } from '@/utils/useWindowSize'
+import TransitionLink from '../transition-link/TransitionLink'
 
 export const Project = ({
   slug,
@@ -12,12 +14,13 @@ export const Project = ({
   alignment,
   projectUrl,
   year,
-  category,
+  multiCategory,
   image,
   noLine,
   noLink,
   colour,
-  video
+  video,
+  fullwidth
 }: {
   slug?: string
   name: string
@@ -28,45 +31,73 @@ export const Project = ({
   video?: string
   projectUrl?: string
   year?: string
-  category?: string
+  multiCategory?: string[]
   noLine?: boolean
   noLink?: boolean
   colour?: string
+  fullwidth?: boolean
 }) => {
+  const windowSize = useWindowSize()
+
+  if (typeof windowSize.width === 'undefined') return <></>
+
   return (
     <>
       {!noLink && (
-        <Link className={s.projectWrapper} href={`/work${slug}`}>
-          <div className={`${s.projectInfoWrapper}`}>
-            <div className={s.projectName}>{name}</div>
-            <div className={s.client}>{client}</div>
-            <div className={s.service}>{service}</div>
-          </div>
+        <TransitionLink className={s.projectWrapper} href={`/work${slug}`}>
+          {windowSize.width < 991 ? (
+            <div className={`${s.projectInfoWrapper} ${s.tickerTape}`}>
+              <Marquee pauseOnHover autoFill>
+                <div className={s.client}>{client}</div>
+                <div className={s.service}>{service}</div>
+                <div className={s.projectName}>{year}</div>
+              </Marquee>
+            </div>
+          ) : (
+            <div className={`${s.projectInfoWrapper}`}>
+              <div className={s.client}>{client}</div>
+              <div className={s.service}>{service}</div>
+              <div className={s.projectName}>{year}</div>
+            </div>
+          )}
           {image && image?.responsiveImage && (
             <img
               className={`${s.featuredImage}
         ${alignment === 'left' && s.left}
         ${alignment === 'right' && s.right}
-        ${alignment === 'fullwidth' && s.fullWidth}`}
+        ${(alignment === 'fullwidth' || fullwidth) && s.fullWidth}`}
               src={image.responsiveImage.src}
             />
           )}
           {video && (
-            <div className={s.videoWrapper} style={{ backgroundColor: colour }}>
+            <div
+              className={`${s.videoWrapper} ${fullwidth ? s.fullWidth : ''}`}
+              style={{ backgroundColor: colour }}
+            >
               <video width="100%" height="100%" autoPlay loop muted>
                 <source src={video} />
               </video>
             </div>
           )}
-        </Link>
+        </TransitionLink>
       )}
       {noLink && (
         <div className={s.projectWrapper}>
-          <div className={s.projectInfoWrapper}>
-            <div className={s.projectName}>{name}</div>
-            <div className={s.client}>{client}</div>
-            <div className={s.service}>{service}</div>
-          </div>
+          {windowSize.width < 991 ? (
+            <div className={`${s.projectInfoWrapper} ${s.tickerTape}`}>
+              <Marquee pauseOnHover autoFill>
+                <div className={s.client}>{client}</div>
+                <div className={s.service}>{service}</div>
+                <div className={s.projectName}>{year}</div>
+              </Marquee>
+            </div>
+          ) : (
+            <div className={`${s.projectInfoWrapper}`}>
+              <div className={s.client}>{client}</div>
+              <div className={s.service}>{service}</div>
+              <div className={s.projectName}>{year}</div>
+            </div>
+          )}
           {image && image?.responsiveImage && (
             <img
               className={`${s.featuredImage}
@@ -77,7 +108,10 @@ export const Project = ({
             />
           )}
           {video && (
-            <div className={s.videoWrapper} style={{ backgroundColor: colour }}>
+            <div
+              className={`${s.videoWrapper} ${fullwidth ? s.fullWidth : ''}`}
+              style={{ backgroundColor: colour }}
+            >
               <video width="100%" height="100%" autoPlay loop muted>
                 <source src={video} />
               </video>

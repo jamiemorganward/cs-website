@@ -5,7 +5,12 @@ import {
   GetProjectQueryVariables
 } from '@/graphql/generated/graphql'
 import { getClient } from '@/lib/serverClient'
+import { Metadata } from 'next'
 import React from 'react'
+
+export const metadata: Metadata = {
+  title: 'Work | ClickSuite'
+}
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const client = getClient()
