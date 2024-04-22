@@ -1890,6 +1890,12 @@ export enum ItemStatus {
   Updated = 'updated'
 }
 
+/** Specifies how to filter JSON fields */
+export type JsonFilter = {
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars['BooleanType']['input']>;
+};
+
 export enum MuxThumbnailFormatType {
   Gif = 'gif',
   Jpg = 'jpg',
@@ -1924,7 +1930,7 @@ export type PartnershipRecord = RecordInterface & {
   featuredVideo?: Maybe<Scalars['String']['output']>;
   id: Scalars['ItemId']['output'];
   service?: Maybe<Scalars['String']['output']>;
-  yearStarted?: Maybe<Scalars['IntType']['output']>;
+  yearStarted?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -2069,6 +2075,7 @@ export type ProjectModelFilter = {
   featuredImage?: InputMaybe<FileFilter>;
   featuredVideo?: InputMaybe<StringFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  multiCategory?: InputMaybe<JsonFilter>;
   platform?: InputMaybe<StringFilter>;
   position?: InputMaybe<PositionFilter>;
   projectName?: InputMaybe<StringFilter>;
@@ -2147,6 +2154,7 @@ export type ProjectRecord = RecordInterface & {
   featuredVideo?: Maybe<Scalars['String']['output']>;
   flexibleContent: Array<ProjectModelFlexibleContentField>;
   id: Scalars['ItemId']['output'];
+  multiCategory?: Maybe<Scalars['JsonField']['output']>;
   platform?: Maybe<Scalars['String']['output']>;
   position?: Maybe<Scalars['IntType']['output']>;
   projectName?: Maybe<Scalars['String']['output']>;
@@ -3193,12 +3201,12 @@ export type VideoFragment = { __typename?: 'FileField', video?: { __typename?: '
 
 export type FeaturedMediaFragment = { __typename?: 'FileField', video?: { __typename?: 'UploadVideoField', streamingUrl: string, duration?: number | null, framerate?: number | null, mp4High?: string | null, mp4Med?: string | null, mp4Low?: string | null, thumbJpg: string, thumbPng: string, thumbGif: string } | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, src: string, sizes: string, base64?: string | null, height: any, title?: string | null, width: any } | null };
 
-export type PartnerFragment = { __typename?: 'PartnershipRecord', client?: string | null, featuredVideo?: string | null, service?: string | null, yearStarted?: any | null };
+export type PartnerFragment = { __typename?: 'PartnershipRecord', client?: string | null, featuredVideo?: string | null, service?: string | null, yearStarted?: string | null };
 
 export type AboutPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AboutPageQuery = { __typename?: 'Query', aboutPage?: { __typename?: 'AboutPageRecord', cardSection: Array<{ __typename?: 'CardRecord', title?: string | null, subtitle?: string | null, textContent?: string | null }>, longStandingPartnerships: Array<{ __typename?: 'PartnershipRecord', client?: string | null, featuredVideo?: string | null, service?: string | null, yearStarted?: any | null }> } | null };
+export type AboutPageQuery = { __typename?: 'Query', aboutPage?: { __typename?: 'AboutPageRecord', cardSection: Array<{ __typename?: 'CardRecord', title?: string | null, subtitle?: string | null, textContent?: string | null }>, longStandingPartnerships: Array<{ __typename?: 'PartnershipRecord', client?: string | null, featuredVideo?: string | null, service?: string | null, yearStarted?: string | null }> } | null };
 
 export type ApproachPageQueryVariables = Exact<{ [key: string]: never; }>;
 

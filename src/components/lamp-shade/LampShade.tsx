@@ -11,52 +11,73 @@ import { useSpring } from '@react-spring/three'
 import { useDrag, useWheel } from '@use-gesture/react'
 
 import { DoubleSide, TextureLoader } from 'three'
-import { color } from 'three/examples/jsm/nodes/Nodes.js'
 
 interface LampShadeProps {
   children?: React.ReactNode
 }
 
 const row1 = [
-  { x: 86.33, z: 45 },
-  { x: 9.57, z: 23.1 },
-  { x: 17.68, z: 17.68 },
-  { x: 23.1, z: 9.57 },
+  { x: 86.33, z: 45, long: true, image: 'RNZB.jpg' },
+  // { x: 9.57, z: 23.1 },
   null,
-  { x: 23.1, z: -9.57 },
-  { x: 17.68, z: -17.68 },
-  { x: 9.57, z: -23.1 },
-  { x: 0, z: -25 },
-  { x: -9.57, z: -23.1 },
-  { x: -17.68, z: -17.68 },
-  { x: -23.1, z: -9.57 },
-  { x: -25, z: 0 },
+  // { x: 17.68, z: 17.68 },
   null,
-  { x: -17.68, z: 17.68 },
-  { x: -9.57, z: 23.1 },
-  { x: 0, z: 25 },
-  { x: 0, z: 0 }
+  { x: 23.1, z: 9.57, image: 'Junior.jpg' },
+  { x: 25.0, z: 0.0, tall: true, image: 'bullet.jpg' },
+  { x: 23.1, z: -9.57, image: 'map-table.jpg' },
+  // { x: 17.68, z: -17.68 },
+  null,
+  { x: 9.57, z: -23.1, image: 'SOD.jpg' },
+  // loopdy loop around
+  { x: 0, z: -25, long: true, image: 'RNZB.jpg' },
+  // { x: -9.57, z: -23.1 },
+  null,
+  // { x: -17.68, z: -17.68 },
+  null,
+  { x: -23.1, z: -9.57, image: 'Junior.jpg' },
+  { x: -25, z: 0, tall: true, image: 'bullet.jpg' },
+  { x: -23.1, z: 9.57, image: 'map-table.jpg' },
+  // { x: -17.68, z: 17.68 },
+  null,
+  { x: -9.57, z: 23.1, image: 'SOD.jpg' },
+  null,
+  null
+  // { x: 0, z: 25 },
+  // { x: 0, z: 0 }
 ]
 
 const row2 = [
-  { x: 86.33, z: 45 },
-  { x: 9.57, z: 23.1 },
+  { x: 86.33, z: 45, image: 'he-tohu.jpg' },
+  // { x: 9.57, z: 23.1 },
   null,
-  { x: 23.1, z: 9.57 },
-  { x: 25, z: 0 },
-  { x: 23.1, z: -9.57 },
-  { x: 17.68, z: -17.68 },
-  { x: 9.57, z: -23.1 },
-  { x: 0, z: -25 },
-  { x: -9.57, z: -23.1 },
-  { x: -17.68, z: -17.68, long: true },
+  { x: 17.68, z: 17.68, image: 'Fireflies.jpg' },
+  // { x: 23.1, z: 9.57 },
   null,
-  { x: -25, z: 0 },
-  { x: -23.1, z: 9.57 },
-  { x: -17.68, z: 17.68 },
-  { x: -9.57, z: 23.1 },
-  { x: 0, z: 25 },
-  { x: 0, z: 0 }
+  // { x: 25, z: 0 },
+  null,
+  // { x: 23.1, z: -9.57 },
+  null,
+  { x: 17.68, z: -17.68, long: true, image: 'Eels.jpg' },
+  // { x: 9.57, z: -23.1 },
+  null,
+  // loopdy loop
+  { x: 0, z: -25, image: 'he-tohu.jpg' },
+  // { x: -9.57, z: -23.1 },
+  null,
+  { x: -17.68, z: -17.68, image: 'Fireflies.jpg' },
+  // { x: -23.1, z: -9.57 },
+  null,
+  // { x: -25, z: 0 },
+  null,
+  // { x: -23.1, z: 9.57 },
+  null,
+  { x: -17.68, z: 17.68, long: true, image: 'Eels.jpg' },
+  // { x: -9.57, z: 23.1 },
+  null,
+  null,
+  null
+  // { x: 0, z: 25 },
+  // { x: 0, z: 0 }
 ]
 
 // console.log(
@@ -66,21 +87,12 @@ const row2 = [
 type BoxProps = ThreeElements['mesh'] & {
   position: [number, number, number]
   long?: boolean
+  image: string
+  tall?: boolean
 }
 
 function Box(props: BoxProps) {
-  const images = [
-    useLoader(TextureLoader, '/JR-1.jpg'),
-    useLoader(TextureLoader, '/JR.jpg'),
-    useLoader(TextureLoader, '/RNZB.jpg'),
-    useLoader(TextureLoader, '/ballet-2.jpg'),
-    useLoader(TextureLoader, '/tp-1.jpg'),
-    useLoader(
-      TextureLoader,
-      '/654039aa5525e7a663457076_Junior Films Wireframes.jpg'
-    ),
-    useLoader(TextureLoader, '/Evolve.jpg')
-  ]
+  const image = useLoader(TextureLoader, props.image)
   const height = 10
 
   if (!props.position) {
@@ -89,11 +101,11 @@ function Box(props: BoxProps) {
 
   const pos = props.position
 
-  const yPos = height * 0.5 + 1.1
+  const yPos = height * 0.5 + 1.1 + (props.tall ? -6 : 0)
 
   pos[1] = props.position[1] > 0 ? yPos : -yPos
 
-  const colorMap = images[Math.floor(Math.random() * images.length)]
+  const colorMap = image
 
   return (
     <mesh {...props} position={pos}>
@@ -102,7 +114,7 @@ function Box(props: BoxProps) {
         args={[
           50,
           50,
-          height,
+          height + (props.tall ? 12 : 0),
           100,
           1,
           true,
@@ -211,8 +223,11 @@ export const LampShade = ({ children }: LampShadeProps) => {
           if (item !== null) {
             return (
               <Box
-                position={[0 * 2, -4.5, 0]}
+                position={[0 * 2, 4.5, 0]}
                 key={i}
+                long={item.long}
+                tall={item.tall}
+                image={item.image}
                 rotation={[
                   0,
                   ((i + 1) * (360 / row2.length) * Math.PI) / 180,
@@ -227,8 +242,10 @@ export const LampShade = ({ children }: LampShadeProps) => {
           if (item !== null) {
             return (
               <Box
+                image={item.image}
                 long={item.long}
-                position={[0 * 2, 4.5, 0]}
+                // tall={item.tall}
+                position={[0 * 2, -4.5, 0]}
                 key={i}
                 rotation={[
                   0,
