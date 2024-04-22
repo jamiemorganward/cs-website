@@ -93,7 +93,7 @@ type BoxProps = ThreeElements['mesh'] & {
 
 function Box(props: BoxProps) {
   const image = useLoader(TextureLoader, props.image)
-  const height = 10
+  const height = 13
 
   if (!props.position) {
     return <></>
@@ -101,7 +101,7 @@ function Box(props: BoxProps) {
 
   const pos = props.position
 
-  const yPos = height * 0.5 + 1.1 + (props.tall ? -6 : 0)
+  const yPos = height * 0.5 + 1.3 + (props.tall ? -8 : 0)
 
   pos[1] = props.position[1] > 0 ? yPos : -yPos
 
@@ -114,7 +114,7 @@ function Box(props: BoxProps) {
         args={[
           50,
           50,
-          height + (props.tall ? 12 : 0),
+          height + (props.tall ? 16 : 0),
           100,
           1,
           true,
@@ -153,8 +153,8 @@ export const LampShadeCamera = () => {
     state.camera.rotation.y = springs.rotationY.to((y) => y).get()
 
     state.camera.zoom = Math.max(
-      1 - 100 * (Math.abs(springs.rotationY.velocity) / 2),
-      0.6
+      1 - 100 * (Math.abs(springs.rotationY.velocity) / 1.6),
+      0.4
     )
 
     state.camera.updateProjectionMatrix()
