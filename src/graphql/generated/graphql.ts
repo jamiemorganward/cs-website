@@ -1930,7 +1930,7 @@ export type PartnershipRecord = RecordInterface & {
   featuredVideo?: Maybe<Scalars['String']['output']>;
   id: Scalars['ItemId']['output'];
   service?: Maybe<Scalars['String']['output']>;
-  yearStarted?: Maybe<Scalars['IntType']['output']>;
+  yearStarted?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -3201,12 +3201,12 @@ export type VideoFragment = { __typename?: 'FileField', video?: { __typename?: '
 
 export type FeaturedMediaFragment = { __typename?: 'FileField', video?: { __typename?: 'UploadVideoField', streamingUrl: string, duration?: number | null, framerate?: number | null, mp4High?: string | null, mp4Med?: string | null, mp4Low?: string | null, thumbJpg: string, thumbPng: string, thumbGif: string } | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, src: string, sizes: string, base64?: string | null, height: any, title?: string | null, width: any } | null };
 
-export type PartnerFragment = { __typename?: 'PartnershipRecord', client?: string | null, featuredVideo?: string | null, service?: string | null, yearStarted?: any | null };
+export type PartnerFragment = { __typename?: 'PartnershipRecord', client?: string | null, featuredVideo?: string | null, service?: string | null, yearStarted?: string | null };
 
 export type AboutPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AboutPageQuery = { __typename?: 'Query', aboutPage?: { __typename?: 'AboutPageRecord', cardSection: Array<{ __typename?: 'CardRecord', title?: string | null, subtitle?: string | null, textContent?: string | null }>, longStandingPartnerships: Array<{ __typename?: 'PartnershipRecord', client?: string | null, featuredVideo?: string | null, service?: string | null, yearStarted?: any | null }> } | null };
+export type AboutPageQuery = { __typename?: 'Query', aboutPage?: { __typename?: 'AboutPageRecord', cardSection: Array<{ __typename?: 'CardRecord', title?: string | null, subtitle?: string | null, textContent?: string | null }>, longStandingPartnerships: Array<{ __typename?: 'PartnershipRecord', client?: string | null, featuredVideo?: string | null, service?: string | null, yearStarted?: string | null }> } | null };
 
 export type ApproachPageQueryVariables = Exact<{ [key: string]: never; }>;
 
