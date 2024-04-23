@@ -89,7 +89,7 @@ export const ApproachPageDesktop = ({
       trigger: allCards.current,
       animation: tl,
       start: 'top top',
-      end: '+=6000',
+      end: '+=4000',
       scrub: 1.5,
       pin: allCards.current,
       pinSpacing: false
@@ -126,6 +126,7 @@ export const ApproachPageDesktop = ({
             title="Form"
             titleRight="01"
             textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
+            approach
           >
             <Lottie options={functionOptions} />
           </Card>
@@ -135,6 +136,7 @@ export const ApproachPageDesktop = ({
             title="Fun"
             titleRight="02"
             textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
+            approach
           >
             <Lottie options={funOptions} />
           </Card>
@@ -144,6 +146,7 @@ export const ApproachPageDesktop = ({
             title="Function"
             titleRight="03"
             textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
+            approach
           >
             <Lottie options={formOptions} />
           </Card>

@@ -12,6 +12,12 @@
   flex-direction: column;
   justify-content: space-between;
   z-index: 1;
+
+  &.approach {
+    @media screen and (max-width: 1600px) {
+      transform: scale(0.9);
+    }
+  }
 }
 
 .title-wrapper {

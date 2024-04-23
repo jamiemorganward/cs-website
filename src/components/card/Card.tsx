@@ -5,15 +5,17 @@ export const Card = ({
   title,
   titleRight,
   textContent,
-  children
+  children,
+  approach
 }: {
   title: string
   titleRight?: string
   textContent: string
   children?: ReactNode
+  approach?: boolean
 }) => {
   return (
-    <div className={s.card}>
+    <div className={`${s.card} ${approach ? s.approach : ''}`}>
       <div className={s.titleWrapper}>
         <h2 className={s.cardTitle}>{title}</h2>
         {titleRight && <h2 className={s.titleRight}>{titleRight}</h2>}
