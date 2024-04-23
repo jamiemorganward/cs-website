@@ -1,15 +1,7 @@
 @import '@/styles/config';
 
-.header-wrapper {
-  position: fixed;
-  background: linear-gradient(to bottom, #fff 80%, transparent 100%);
-  z-index: 5;
-  @include mobile-p {
-    background: linear-gradient(to bottom, #fff 90%, transparent 100%);
-  }
-}
 .card-wrapper {
-  padding: 16rem $side-gaps-mobile 0;
+  padding: 2rem $side-gaps-mobile 0;
   display: flex;
   flex-direction: column;
   align-items: center;
