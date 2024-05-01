@@ -123,23 +123,23 @@ export const ApproachPageMobile = ({
             titleRight="04"
             title="Long Term Partnership"
             textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
-          >
-            <div className={s.cardContent}></div>
-          </Card>
+            minHeight={550}
+            aspectRatio={false}
+          ></Card>
           <Card
             titleRight="05"
             title="On-going Project Support"
             textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
-          >
-            <div className={s.cardContent}></div>
-          </Card>
+            minHeight={550}
+            aspectRatio={false}
+          ></Card>
           <Card
             titleRight="06"
             title="Growth Support"
             textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
-          >
-            <div className={s.cardContent}></div>
-          </Card>
+            minHeight={550}
+            aspectRatio={false}
+          ></Card>
         </div>
       </div>
     </div>
