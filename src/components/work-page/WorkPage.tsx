@@ -1,9 +1,7 @@
 'use client'
 import {
   GetAllProjectsQuery,
-  ProjectFragment,
-  ProjectOnWorkPageFragment,
-  ProjectRecord
+  ProjectOnWorkPageFragment
 } from '@/graphql/generated/graphql'
 import s from './WorkPage.module.scss'
 import { useEffect, useRef, useState } from 'react'
