@@ -6,6 +6,7 @@ import { ApproachPageDesktop } from './approach-page-desktop/ApproachPageDesktop
 import { ApproachPageMobile } from './approach-page-mobile/ApproachPageMobile'
 import { ReactLenis, useLenis } from '@studio-freight/react-lenis'
 import { ApproachPageQuery } from '@/graphql/generated/graphql'
+import Lenis from '@studio-freight/lenis/types'
 
 export const ApproachPage = ({
   data
@@ -18,7 +19,7 @@ export const ApproachPage = ({
 
   return (
     <>
-      <ReactLenis root>
+      <ReactLenis root options={{ lerp: 0.1 }}>
         {windowSize.width >= 991 && <ApproachPageDesktop data={data} />}
         {windowSize.width < 991 && <ApproachPageMobile data={data} />}
       </ReactLenis>
