@@ -63,34 +63,46 @@ export const ApproachPageDesktop = ({
     tl.to(cardTwo.current, { rotate: 10, translateX: '15px' }, '>-0.25')
     tl.to(cardThree.current, { rotate: -10, translateX: '-15px' }, '>-0.5')
     tl.to(cardOne.current, { scale: 1.1 }, '>-0.5')
-    tl.to(cardOne.current, {
-      yPercent: -200,
-      xPercent: 500,
-      rotate: 78,
-      duration: 1
-    })
-    tl.to(cardTwo.current, { rotate: 0, scale: 1.1, duration: 0.5 }, '>-1')
-    tl.to(cardTwo.current, {
-      yPercent: -200,
-      xPercent: -500,
-      rotate: 270,
-      duration: 1
-    })
-    tl.to(cardThree.current, { rotate: 0, scale: 1.1 }, '>-1')
-    tl.to(cardThree.current, {
-      yPercent: -350,
-      xPercent: 500,
-      rotate: 170,
-      duration: 1
-    })
+    tl.to(
+      cardOne.current,
+      {
+        yPercent: -200,
+        xPercent: 500,
+        rotate: 78,
+        duration: 2
+      },
+      '<+=1'
+    )
+    tl.to(cardTwo.current, { rotate: 0, scale: 1.1 }, '>-2')
+    tl.to(
+      cardTwo.current,
+      {
+        yPercent: -200,
+        xPercent: -500,
+        rotate: 270,
+        duration: 2
+      },
+      '<+=1'
+    )
+    tl.to(cardThree.current, { rotate: 0, scale: 1.1 }, '>-2')
+    tl.to(
+      cardThree.current,
+      {
+        yPercent: -350,
+        xPercent: 500,
+        rotate: 170,
+        duration: 2
+      },
+      '<+=1'
+    )
     tl.to(textRef.current, { filter: 'blur(0px)' }, '<')
 
     ScrollTrigger.create({
       trigger: allCards.current,
       animation: tl,
       start: 'top top',
-      end: '+=4000',
-      scrub: 1.5,
+      end: '+=6000',
+      scrub: 0,
       pin: allCards.current,
       pinSpacing: false
     })
