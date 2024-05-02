@@ -1,11 +1,15 @@
 @import '../../styles/config';
 
+.link-wrapper {
+  text-decoration: none;
+}
+
 .project-wrapper {
   width: 100%;
   display: flex;
   flex-direction: column;
   padding: 0 $side-gaps-desktop;
-  text-decoration: none;
+
   background-color: $white;
   height: calc(100vh - 10rem);
   overflow: hidden;
@@ -117,5 +121,25 @@
     padding: 0;
     width: 100%;
     height: auto;
+  }
+}
+.cursor {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 90px;
+  width: 90px;
+  border: 0.2px solid #000;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  background-color: rgba($color: #ffffff, $alpha: 0.4);
+  backdrop-filter: blur(6px);
+  p {
+    transform: rotate(5deg);
+    font-size: 14px;
+    font-weight: 500;
   }
 }
