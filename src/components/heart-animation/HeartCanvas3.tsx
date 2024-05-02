@@ -151,6 +151,20 @@ export const HeartCanvas3 = () => {
       //   ctx.bezierCurveTo(4.46703, 0, 0, 4.31111, 0, 11.8199)
       //   ctx.bezierCurveTo(0, 18.6435, 5.00856, 23.5829, 11.9912, 28.322)
       //   ctx.bezierCurveTo(16.8192, 31.6909, 20.8632, 34.6891, 23.4408, 39)
+
+      //////// OG converted heart code
+
+      ctx.moveTo(5.48615, 9.82104) // line from here to
+      ctx.lineTo(5.54291, 9.82104) //here
+      ctx.bezierCurveTo(6.11714, 8.79888, 7.07153, 8.08134, 8.2081, 7.28933)
+      ctx.bezierCurveTo(9.82912, 6.15887, 11, 4.99455, 11, 3.37669)
+      ctx.bezierCurveTo(11, 1.59638, 9.94132, 0.574219, 8.3071, 0.574219)
+      ctx.bezierCurveTo(6.77716, 0.574219, 5.95609, 1.25114, 5.52839, 2.65915)
+      ctx.lineTo(5.47163, 2.65915)
+      ctx.bezierCurveTo(5.03073, 1.25114, 4.22285, 0.574219, 2.70742, 0.574219)
+      ctx.bezierCurveTo(1.04548, 0.574219, 0, 1.59638, 0, 3.37669)
+      ctx.bezierCurveTo(0, 4.99455, 1.17222, 6.16564, 2.80644, 7.28933)
+      ctx.bezierCurveTo(3.93641, 8.08811, 4.88289, 8.79888, 5.48615, 9.82104)
       //   ctx.closePath()
       //   ctx.fill()
       //   ctx.stroke()

@@ -3,7 +3,9 @@
 .footer {
   width: 100%;
   background-color: $white;
-  padding-top: 1rem;
+  padding: 1rem $side-gaps-desktop;
+  position: relative;
+  z-index: 1000000;
 
   & .top-section {
     display: flex;
