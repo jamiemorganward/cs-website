@@ -8,12 +8,15 @@ import { MobileMenu } from './mobile-menu/MobileMenu'
 import { useEffect, useState } from 'react'
 import { HamburgerButton } from './hamburger-button/HamburgerButton'
 import TransitionLink from '../transition-link/TransitionLink'
+import { usePathname } from 'next/navigation'
 
 export const Header = () => {
   const windowSize = useWindowSize()
   const [isMobile, setIsMobile] = useState(false)
   const [open, setOpen] = useState<boolean>(false)
   const [sticky, setSticky] = useState<boolean>()
+
+  const route = usePathname()
 
   // const stickyMagic = () => {
   //   if (window.scrollY > 100) {
@@ -43,8 +46,8 @@ export const Header = () => {
     <>
       <header
         className={`${s.headerWrapper} ${isMobile ? s.mobile : s.desktop} ${
-          open ? s.open : ''
-        } ${sticky ? s.sticky : ''}`}
+          route === '/' && s.home
+        } ${open ? s.open : ''} ${sticky ? s.sticky : ''}`}
       >
         <div className={s.container}>
           <div className={s.headerInner}>

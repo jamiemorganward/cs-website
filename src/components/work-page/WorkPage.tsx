@@ -1,9 +1,7 @@
 'use client'
 import {
   GetAllProjectsQuery,
-  ProjectFragment,
-  ProjectOnWorkPageFragment,
-  ProjectRecord
+  ProjectOnWorkPageFragment
 } from '@/graphql/generated/graphql'
 import s from './WorkPage.module.scss'
 import { useEffect, useRef, useState } from 'react'
@@ -12,6 +10,7 @@ import { FilterBar } from '../filter-bar/FilterBar'
 import { Project } from '../project/Project'
 import { useWindowSize } from '@/utils/useWindowSize'
 import { ReactLenis, useLenis } from '@studio-freight/react-lenis'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
   const [categories, setAllCategories] = useState<string[]>([])
@@ -22,6 +21,11 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
   const filterRef = useRef<HTMLDivElement | null>(null)
   const windowSize = useWindowSize()
 
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+  const { replace } = useRouter()
+
+  // Creates the list of categories and sets a local state of projects
   const organise = () => {
     let tempCats: string[] = []
     data.allProjects.map((project) => {
@@ -37,6 +41,7 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
     organise()
   }, [])
 
+  // Simple add or remove from the filter list and scroll the user to the top of the page
   const addOrRemove = (e: string) => {
     if (!filters.includes(e)) {
       setFilters([...filters, e])
@@ -44,8 +49,11 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
       let _filters = filters.filter((item) => item !== e)
       setFilters(_filters)
     }
+    scrollTo({ behavior: 'smooth', top: 0 })
   }
 
+  // Runs each time filter list changes and displays or removes a project from the local state
+  // in order to visibly filter the list
   useEffect(() => {
     const _projects: ProjectOnWorkPageFragment[] = []
 
@@ -65,6 +73,29 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
       setLocalProjects(data.allProjects)
     }
   }, [filters])
+
+  //  Runs anytime a value is added or removed from the list of filters and updates the
+  //  url in order to maintain a shareable state
+  useEffect(() => {
+    if (filters.length > 0) {
+      const params = new URLSearchParams(searchParams)
+      params.set('filter', filters.toString())
+      replace(`${pathname}?${params.toString()}`)
+    } else {
+      replace(`${pathname}`)
+    }
+  }, [filters])
+
+  // Runs on mount to check if url contains any filter values if it
+  // does those are added to the filter list so that the local state can update
+  useEffect(() => {
+    let arrayFilters: string[] = []
+    const urlFilters = searchParams.get('filter')
+    if (urlFilters) {
+      arrayFilters = urlFilters.split(',')
+      setFilters(arrayFilters)
+    }
+  }, [])
 
   if (!localProjects || !windowSize.width) return <></>
 

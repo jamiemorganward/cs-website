@@ -1,51 +1,99 @@
 'use client'
 import React, { useEffect, useRef } from 'react'
-import { Canvas, ThreeElements, useFrame, useThree } from '@react-three/fiber'
+import {
+  Canvas,
+  ThreeElements,
+  useFrame,
+  useLoader,
+  useThree
+} from '@react-three/fiber'
 import { useSpring } from '@react-spring/three'
-import { useDrag } from '@use-gesture/react'
+import { useDrag, useWheel } from '@use-gesture/react'
 
-import { MeshWobbleMaterial } from '@react-three/drei'
-import { DoubleSide, MathUtils, Vector2 } from 'three'
+import { DoubleSide, TextureLoader } from 'three'
 
 interface LampShadeProps {
   children?: React.ReactNode
 }
 
 const row1 = [
-  { z: -25, x: 0 },
-  { z: -24.1481, x: 6.47048 },
-  { z: -21.65064, x: 12.5 },
-  { z: -17.6776, x: 17.6776 },
-  { z: -12.5, x: 21.65064 },
-  { z: -6.47048, x: 24.1481 },
-  { z: 0, x: 25 },
-  { z: 6.47048, x: 24.1481 },
-  { z: 12.5, x: 21.65064 },
-  { z: 17.6776, x: 17.6776 },
-  { z: 21.65064, x: 12.5 },
-  { z: 24.1481, x: 6.47048 },
-  { z: 25, x: 0 },
-  { z: 24.1481, x: -6.47048 },
-  { z: 21.65064, x: -12.5 },
-  { z: 17.6776, x: -17.6776 },
-  { z: 12.5, x: -21.65064 },
-  { z: 6.47048, x: -24.1481 },
-  { z: 0, x: -25 },
-  { z: -6.47048, x: -24.1481 },
-  { z: -12.5, x: -21.65064 },
-  { z: -17.6776, x: -17.6776 },
-  { z: -21.65064, x: -12.5 },
-  { z: -24.1481, x: -6.47048 }
+  { x: 86.33, z: 45, long: true, image: 'RNZB.jpg' },
+  // { x: 9.57, z: 23.1 },
+  null,
+  // { x: 17.68, z: 17.68 },
+  null,
+  { x: 23.1, z: 9.57, image: 'Junior.jpg' },
+  { x: 25.0, z: 0.0, tall: true, image: 'bullet.jpg' },
+  { x: 23.1, z: -9.57, image: 'map-table.jpg' },
+  // { x: 17.68, z: -17.68 },
+  null,
+  { x: 9.57, z: -23.1, image: 'SOD.jpg' },
+  // loopdy loop around
+  { x: 0, z: -25, long: true, image: 'RNZB.jpg' },
+  // { x: -9.57, z: -23.1 },
+  null,
+  // { x: -17.68, z: -17.68 },
+  null,
+  { x: -23.1, z: -9.57, image: 'Junior.jpg' },
+  { x: -25, z: 0, tall: true, image: 'bullet.jpg' },
+  { x: -23.1, z: 9.57, image: 'map-table.jpg' },
+  // { x: -17.68, z: 17.68 },
+  null,
+  { x: -9.57, z: 23.1, image: 'SOD.jpg' },
+  null,
+  null
+  // { x: 0, z: 25 },
+  // { x: 0, z: 0 }
 ]
+
+const row2 = [
+  { x: 86.33, z: 45, image: 'he-tohu.jpg' },
+  // { x: 9.57, z: 23.1 },
+  null,
+  { x: 17.68, z: 17.68, image: 'Fireflies.jpg' },
+  // { x: 23.1, z: 9.57 },
+  null,
+  // { x: 25, z: 0 },
+  null,
+  // { x: 23.1, z: -9.57 },
+  null,
+  { x: 17.68, z: -17.68, long: true, image: 'Eels.jpg' },
+  // { x: 9.57, z: -23.1 },
+  null,
+  // loopdy loop
+  { x: 0, z: -25, image: 'he-tohu.jpg' },
+  // { x: -9.57, z: -23.1 },
+  null,
+  { x: -17.68, z: -17.68, image: 'Fireflies.jpg' },
+  // { x: -23.1, z: -9.57 },
+  null,
+  // { x: -25, z: 0 },
+  null,
+  // { x: -23.1, z: 9.57 },
+  null,
+  { x: -17.68, z: 17.68, long: true, image: 'Eels.jpg' },
+  // { x: -9.57, z: 23.1 },
+  null,
+  null,
+  null
+  // { x: 0, z: 25 },
+  // { x: 0, z: 0 }
+]
+
+// console.log(
+//   [...new Set(row2.map((s) => JSON.stringify(s)))].map((e) => JSON.parse(e))
+// )
 
 type BoxProps = ThreeElements['mesh'] & {
   position: [number, number, number]
+  long?: boolean
+  image: string
+  tall?: boolean
 }
 
 function Box(props: BoxProps) {
-  const ref = useRef<any>(null!)
-
-  const height = 8 + 5 * Math.random()
+  const image = useLoader(TextureLoader, props.image)
+  const height = 13
 
   if (!props.position) {
     return <></>
@@ -53,25 +101,29 @@ function Box(props: BoxProps) {
 
   const pos = props.position
 
-  const yPos = height * 0.5 + 0.5
+  const yPos = height * 0.5 + 1.3 + (props.tall ? -8 : 0)
 
   pos[1] = props.position[1] > 0 ? yPos : -yPos
 
-  // useFrame(() => {
-  //   ref.current.distort = MathUtils.lerp(ref.current.distort, 0.4, 0.3)
-  // })
+  const colorMap = image
 
   return (
     <mesh {...props} position={pos}>
-      <planeGeometry args={[12, height, 32, 32]} />
-      <meshBasicMaterial color={0xffffff} side={DoubleSide} />
-      {/* <MeshWobbleMaterial
-        ref={ref}
-        speed={5}
-        color={0xffffff}
-        factor={0}
-        normalScale={new Vector2(16, 16)}
-      /> */}
+      {/* <planeGeometry args={[23, height, 32, 32]} /> */}
+      <cylinderGeometry
+        args={[
+          50,
+          50,
+          height + (props.tall ? 16 : 0),
+          100,
+          1,
+          true,
+          props.long ? -0.65 : -1,
+          props.long ? -0.65 : -0.3
+        ]}
+      />
+
+      <meshBasicMaterial map={colorMap} side={DoubleSide} />
     </mesh>
   )
 }
@@ -86,64 +138,39 @@ export const LampShadeCamera = () => {
       rotationY: 0,
 
       config: {
-        mass: 5,
-        friction: 35,
-        tension: 350,
-        decay: true
+        tension: 170,
+        friction: 26,
+        frequency: 1,
+        damping: 1
       }
     },
     []
   )
 
-  // const runSprings = useCallback(
-  //   (y: number, dy: number, vxvy: number) => {
-  //     const x = 0 // for now
-  //     api.start((i) => {
-  //       return {
-  //         rotationY: y
-  //         // immediate: true,
-  //         // velocity: vxvy
-  //       }
-  //     })
-  //   },
-  //   [api]
-  // )
-
   useFrame((state) => {
     state.camera.rotation.z = 0.1
     state.camera.rotation.x = 0
-    state.camera.rotation.y = springs.rotationY.get()
+    state.camera.rotation.y = springs.rotationY.to((y) => y).get()
+
+    state.camera.zoom = Math.max(
+      1 - 100 * (Math.abs(springs.rotationY.velocity) / 1.6),
+      0.4
+    )
+
+    state.camera.updateProjectionMatrix()
   })
 
-  // useWheel(
-  //   (props) => {
-  //     console.log(props)
-  //     const {
-  //       event,
-  //       offset: [, y],
-  //       direction: [, dy]
-  //     } = props
-  //     // event.preventDefault()
-  //     if (dy) {
-  //       wheelOffset.current = y * 0.001
-  //       runSprings(dragOffset.current + y * 0.001, y, 0)
-  //     }
-
-  //     // api.start({
-  //     //   rotationY: y
-  //     // })
-  //   },
-  //   { target: window }
-  // )
-  useDrag(
-    ({ active, offset: [x, y] }) => {
+  useWheel(
+    (props) => {
+      const {
+        offset: [, y],
+        direction: [, dy]
+      } = props
       // event.preventDefault()
-      if (x) {
-        dragOffset.current = x * 0.001
-        // console.log(wheelOffset.current)
-        api.set({ rotationY: x * 0.001 })
-        console.log(x)
-        // runSprings(wheelOffset.current + x * 0.001, x, 0)
+      if (dy) {
+        wheelOffset.current = y * 0.001
+        api.start({ rotationY: dragOffset.current + y * 0.001 })
+        // runSprings(dragOffset.current + y * 0.001, y, 0)
       }
 
       // api.start({
@@ -152,32 +179,25 @@ export const LampShadeCamera = () => {
     },
     { target: window }
   )
-
-  // const handleWheel = (event: WheelEvent) => {
-  //   setRotationY((current) => {
-  //     return (
-  //       current +
-  //       (event.deltaY > 0 || event.deltaX > 0
-  //         ? Math.max(event.deltaY, event.deltaX)
-  //         : Math.min(event.deltaY, event.deltaX)) *
-  //         -0.001
-  //     )
-  //   })
-  // }
+  useDrag(
+    ({ active, offset: [x, y] }) => {
+      if (x) {
+        dragOffset.current = x * 0.001
+        api.start({ rotationY: wheelOffset.current + x * 0.001 })
+      }
+    },
+    { target: window }
+  )
 
   useEffect(() => {
     three.camera.position.z = 0
     three.camera.rotation.order = 'YXZ'
-
-    // window.addEventListener('wheel', handleWheel)
-
-    return () => {
-      // window.removeEventListener('wheel', handleWheel)
-    }
   }, [])
 
   return <></>
 }
+
+const radians = (deg: number) => deg * (Math.PI / 180)
 
 export const LampShade = ({ children }: LampShadeProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null!)
@@ -199,20 +219,44 @@ export const LampShade = ({ children }: LampShadeProps) => {
           intensity={Math.PI}
         />
         <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-        {row1.map((item, i) => (
-          <Box
-            position={[item.x * 2, 4.5, item.z * 2]}
-            key={i}
-            rotation={[0, i * -0.261799, 0]}
-          />
-        ))}
-        {row1.map((item, i) => (
-          <Box
-            position={[item.x * 2, -4.5, item.z * 2]}
-            key={i}
-            rotation={[0, i * -0.261799, 0]}
-          />
-        ))}
+        {row1.map((item, i) => {
+          if (item !== null) {
+            return (
+              <Box
+                position={[0 * 2, 4.5, 0]}
+                key={i}
+                long={item.long}
+                tall={item.tall}
+                image={item.image}
+                rotation={[
+                  0,
+                  ((i + 1) * (360 / row2.length) * Math.PI) / 180,
+                  0
+                ]}
+              />
+            )
+          }
+          return <></>
+        })}
+        {row2.map((item, i) => {
+          if (item !== null) {
+            return (
+              <Box
+                image={item.image}
+                long={item.long}
+                // tall={item.tall}
+                position={[0 * 2, -4.5, 0]}
+                key={i}
+                rotation={[
+                  0,
+                  ((i + 1) * (360 / row2.length) * Math.PI) / 180,
+                  0
+                ]}
+              />
+            )
+          }
+          return <></>
+        })}
       </Canvas>
     </div>
   )

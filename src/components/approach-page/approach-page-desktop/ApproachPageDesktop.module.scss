@@ -5,7 +5,11 @@
 }
 
 .spacer {
-  height: 5750px;
+  height: 5000px;
+
+  @media screen and (max-width: 1600px) {
+    height: 4900px;
+  }
 }
 
 .card-wrapper {
@@ -30,14 +34,23 @@
 
 .card-one-wrapper {
   z-index: 3;
+  @media screen and (max-width: 1600px) {
+    transform: translate3d(0, 50px, 0);
+  }
 }
 .card-two-wrapper {
   z-index: 2;
   transform: translate3d(200px, 50px, 0);
+  @media screen and (max-width: 1600px) {
+    transform: translate3d(200px, 100px, 0);
+  }
 }
 .card-three-wrapper {
   z-index: 1;
   transform: translate3d(-200px, 50px, 0);
+  @media screen and (max-width: 1600px) {
+    transform: translate3d(-200px, 100px, 0);
+  }
 }
 .post-project-wrapper {
   width: 100%;

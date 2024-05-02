@@ -22,6 +22,10 @@
     height: 100svh;
     mix-blend-mode: normal;
   }
+
+  &.home {
+    position: fixed;
+  }
 }
 
 .background {

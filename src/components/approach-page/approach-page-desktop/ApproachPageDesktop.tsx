@@ -63,26 +63,38 @@ export const ApproachPageDesktop = ({
     tl.to(cardTwo.current, { rotate: 10, translateX: '15px' }, '>-0.25')
     tl.to(cardThree.current, { rotate: -10, translateX: '-15px' }, '>-0.5')
     tl.to(cardOne.current, { scale: 1.1 }, '>-0.5')
-    tl.to(cardOne.current, {
-      yPercent: -200,
-      xPercent: 500,
-      rotate: 78,
-      duration: 1
-    })
-    tl.to(cardTwo.current, { rotate: 0, scale: 1.1, duration: 0.5 }, '>-1')
-    tl.to(cardTwo.current, {
-      yPercent: -200,
-      xPercent: -500,
-      rotate: 270,
-      duration: 1
-    })
-    tl.to(cardThree.current, { rotate: 0, scale: 1.1 }, '>-1')
-    tl.to(cardThree.current, {
-      yPercent: -350,
-      xPercent: 500,
-      rotate: 170,
-      duration: 1
-    })
+    tl.to(
+      cardOne.current,
+      {
+        yPercent: -200,
+        xPercent: 500,
+        rotate: 78,
+        duration: 2
+      },
+      '<+=1'
+    )
+    tl.to(cardTwo.current, { rotate: 0, scale: 1.1 }, '>-2')
+    tl.to(
+      cardTwo.current,
+      {
+        yPercent: -200,
+        xPercent: -500,
+        rotate: 270,
+        duration: 2
+      },
+      '<+=1'
+    )
+    tl.to(cardThree.current, { rotate: 0, scale: 1.1 }, '>-2')
+    tl.to(
+      cardThree.current,
+      {
+        yPercent: -350,
+        xPercent: 500,
+        rotate: 170,
+        duration: 2
+      },
+      '<+=1'
+    )
     tl.to(textRef.current, { filter: 'blur(0px)' }, '<')
 
     ScrollTrigger.create({
@@ -90,7 +102,7 @@ export const ApproachPageDesktop = ({
       animation: tl,
       start: 'top top',
       end: '+=6000',
-      scrub: 1.5,
+      scrub: 0,
       pin: allCards.current,
       pinSpacing: false
     })
@@ -126,6 +138,7 @@ export const ApproachPageDesktop = ({
             title="Form"
             titleRight="01"
             textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
+            approach
           >
             <Lottie options={functionOptions} />
           </Card>
@@ -135,6 +148,7 @@ export const ApproachPageDesktop = ({
             title="Fun"
             titleRight="02"
             textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
+            approach
           >
             <Lottie options={funOptions} />
           </Card>
@@ -144,6 +158,7 @@ export const ApproachPageDesktop = ({
             title="Function"
             titleRight="03"
             textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
+            approach
           >
             <Lottie options={formOptions} />
           </Card>

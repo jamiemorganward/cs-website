@@ -5,7 +5,7 @@ import {
 } from '@/graphql/generated/graphql'
 import { getClient } from '@/lib/serverClient'
 import { Metadata } from 'next'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: 'Work | ClickSuite'
@@ -17,5 +17,13 @@ export default async function Page() {
     query: GetAllProjectsDocument
   })
 
-  return <WorkPage data={data.data} />
+  function WorkPageFallBack() {
+    return <p>placeholder</p>
+  }
+
+  return (
+    <Suspense fallback={<WorkPageFallBack />}>
+      <WorkPage data={data.data} />
+    </Suspense>
+  )
 }

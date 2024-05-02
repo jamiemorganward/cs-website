@@ -5,15 +5,27 @@ export const Card = ({
   title,
   titleRight,
   textContent,
-  children
+  children,
+  approach,
+  aspectRatio = true,
+  minHeight
 }: {
   title: string
   titleRight?: string
   textContent: string
   children?: ReactNode
+  approach?: boolean
+  aspectRatio?: boolean
+  minHeight?: number
 }) => {
   return (
-    <div className={s.card}>
+    <div
+      className={`${s.card} ${approach ? s.approach : ''}`}
+      style={{
+        aspectRatio: aspectRatio ? '0.83/1' : '',
+        minHeight: minHeight ? `${minHeight}px` : 'none'
+      }}
+    >
       <div className={s.titleWrapper}>
         <h2 className={s.cardTitle}>{title}</h2>
         {titleRight && <h2 className={s.titleRight}>{titleRight}</h2>}
