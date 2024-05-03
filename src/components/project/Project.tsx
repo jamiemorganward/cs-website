@@ -60,15 +60,19 @@ export const Project = ({
               <div className={s.projectName}>{year}</div>
             </div>
           )}
+
           {image && image?.responsiveImage && (
-            <img
-              className={`${s.featuredImage}
+            <div className={s.imageWrapper} style={{ backgroundColor: colour }}>
+              <img
+                className={`${s.featuredImage}
         ${alignment === 'left' && s.left}
         ${alignment === 'right' && s.right}
         ${(alignment === 'fullwidth' || fullwidth) && s.fullWidth}`}
-              src={image.responsiveImage.src}
-            />
+                src={image.responsiveImage.src}
+              />
+            </div>
           )}
+
           {video && (
             <div
               className={`${s.videoWrapper} ${fullwidth ? s.fullWidth : ''}`}
@@ -98,15 +102,19 @@ export const Project = ({
               <div className={s.projectName}>{year}</div>
             </div>
           )}
+
           {image && image?.responsiveImage && (
-            <img
-              className={`${s.featuredImage}
+            <div className={s.imageWrapper} style={{ backgroundColor: colour }}>
+              <img
+                className={`${s.featuredImage}
         ${alignment === 'left' && s.left}
         ${alignment === 'right' && s.right}
         ${alignment === 'fullwidth' && s.fullWidth}`}
-              src={image.responsiveImage.src}
-            />
+                src={image.responsiveImage.src}
+              />
+            </div>
           )}
+
           {video && (
             <div
               className={`${s.videoWrapper} ${fullwidth ? s.fullWidth : ''}`}
