@@ -21,7 +21,6 @@ export const generateMetadata = async () => {
     title: seoData.data._site.globalSeo?.siteName,
     description: seoData.data._site.globalSeo?.fallbackSeo?.description
   }
-  console.log(metadata)
   return metadata
 }
 
@@ -41,7 +40,7 @@ export default function RootLayout({
         <PageInfoContextProvider>
           <Header />
           {children}
-          {/* <Footer /> */}
+          <Footer />
         </PageInfoContextProvider>
         <div
           id="transition-element"

@@ -4,16 +4,38 @@
   width: 100%;
   background-color: $white;
   padding: 1rem $side-gaps-desktop;
+  position: relative;
+  z-index: 1000000;
 
   & .top-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    max-width: 100%;
+
+    @include tablet {
+      padding: 1rem $side-gaps-tablet;
+    }
+
+    @include mobile-l {
+      overflow-x: scroll;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      & .logo {
+        display: none;
+      }
+    }
+
+    @include mobile-p {
+      padding: 1rem $side-gaps-mobile;
+    }
   }
 
   & .interactive-bit {
-    background-color: $grey;
-    margin: 1rem 0;
-    height: 300px;
+    margin: 1rem 0 0;
   }
 }
