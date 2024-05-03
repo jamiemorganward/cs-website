@@ -2,10 +2,11 @@
 
 .project-wrapper {
   width: 100%;
+  text-decoration: none;
   display: flex;
   flex-direction: column;
   padding: 0 $side-gaps-desktop;
-  text-decoration: none;
+
   background-color: $white;
   height: calc(100vh - 10rem);
   overflow: hidden;
@@ -21,6 +22,10 @@
 
   @include mobile-p {
     height: 60svh;
+  }
+
+  &.no-cursor {
+    cursor: none;
   }
 }
 
@@ -66,8 +71,9 @@
 }
 
 .image-wrapper {
-  height: 100%;
+  height: 85%;
   width: 100%;
+  position: relative;
 }
 
 .featured-image {
@@ -99,6 +105,7 @@
   align-items: center;
   justify-content: center;
   padding: 8rem 22rem;
+  position: relative;
 
   @media screen and (max-width: 1600px) {
     height: 80%;

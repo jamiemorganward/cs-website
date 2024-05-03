@@ -82,6 +82,7 @@ export const EmailSelection = () => {
 
   const onMove = (e: any) => {
     if (cursorRef.current && containerRef.current) {
+      gsap.killTweensOf(cursorRef.current)
       const containerRect = containerRef.current.getBoundingClientRect()
       const mouseX = e.clientX - containerRect.left
       const mouseY = e.clientY - containerRect.top
@@ -94,29 +95,39 @@ export const EmailSelection = () => {
       const maxButtonX = containerRect.width - buttonWidth
       const maxButtonY = containerRect.height - buttonHeight
 
-      gsap.to(cursorRef.current, {
-        duration: 0.4,
+      const tl = gsap.timeline()
+
+      tl.to(cursorRef.current, {
+        duration: 0.1,
         overwrite: 'auto',
         x: Math.min(Math.max(buttonX, 0), maxButtonX),
         y: Math.min(Math.max(buttonY, 0), maxButtonY),
-        // stagger: 0.1,
+        stagger: 0.1,
         ease: 'Power1.ease'
       })
+      tl.to(cursorRef.current, { opacity: 1 }, '<')
     }
   }
 
   const onLeave = (e: any) => {
     if (cursorRef.current && containerRef.current) {
       gsap.killTweensOf(cursorRef.current)
-      gsap.to(cursorRef.current, {
-        duration: 0.5,
-        x:
-          (containerRef.current.clientWidth - cursorRef.current.clientWidth) /
-          2,
-        y:
-          (containerRef.current.clientHeight - cursorRef.current.clientHeight) /
-          2
-      })
+      const tl = gsap.timeline()
+      tl.to(cursorRef.current, { opacity: 0, duration: 0.1 })
+      tl.to(
+        cursorRef.current,
+        {
+          duration: 0.5,
+          x:
+            (containerRef.current.clientWidth - cursorRef.current.clientWidth) /
+            2,
+          y:
+            (containerRef.current.clientHeight -
+              cursorRef.current.clientHeight) /
+            2
+        },
+        '<1'
+      )
     }
   }
 

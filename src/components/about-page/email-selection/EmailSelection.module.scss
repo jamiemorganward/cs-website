@@ -42,6 +42,7 @@
   z-index: 10;
   background-color: rgba($color: #ffffff, $alpha: 0.4);
   backdrop-filter: blur(6px);
+  opacity: 0;
   p {
     transform: rotate(5deg);
     font-size: 14px;
