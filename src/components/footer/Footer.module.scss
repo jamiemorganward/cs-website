@@ -11,7 +11,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem $side-gaps-desktop;
     max-width: 100%;
 
     @include tablet {
@@ -37,17 +36,6 @@
   }
 
   & .interactive-bit {
-    // background-color: $grey;
-    border: 1px solid red;
     margin: 1rem 0 0;
-    // height: 300px;s
-    // padding: 1rem $side-gaps-desktop;
-
-    // @include tablet {
-    //   padding: 1rem $side-gaps-tablet;
-    // }
-    // @include mobile-p {
-    //   padding: 1rem $side-gaps-mobile;
-    // }
   }
 }
