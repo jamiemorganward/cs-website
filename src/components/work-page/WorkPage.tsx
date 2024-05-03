@@ -4,13 +4,14 @@ import {
   ProjectOnWorkPageFragment
 } from '@/graphql/generated/graphql'
 import s from './WorkPage.module.scss'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { PageTitle } from '../page-title/PageTitle'
 import { FilterBar } from '../filter-bar/FilterBar'
 import { Project } from '../project/Project'
 import { useWindowSize } from '@/utils/useWindowSize'
 import { ReactLenis, useLenis } from '@studio-freight/react-lenis'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import gsap from 'gsap'
 
 export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
   const [categories, setAllCategories] = useState<string[]>([])
@@ -97,10 +98,90 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
     }
   }, [])
 
+  // Mouse Logic starts here
+
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const cursorRef = useRef<HTMLDivElement | null>(null)
+  const pageRef = useRef<HTMLDivElement | null>(null)
+
+  const onMove = (e: any) => {
+    if (cursorRef.current && containerRef.current) {
+      gsap.killTweensOf(cursorRef.current)
+      const containerRect = containerRef.current.getBoundingClientRect()
+      const mouseX = e.clientX - containerRect.left
+      const mouseY = e.clientY - containerRect.top
+
+      const buttonWidth = cursorRef.current.offsetWidth
+      const buttonHeight = cursorRef.current.offsetHeight
+      const buttonX = mouseX - buttonWidth / 2
+      const buttonY = mouseY - buttonHeight / 2
+
+      const maxButtonX = containerRect.width - buttonWidth
+      const maxButtonY = containerRect.height - buttonHeight
+
+      const tl = gsap.timeline()
+
+      tl.to(cursorRef.current, {
+        duration: 0.1,
+        overwrite: 'auto',
+        x: Math.min(Math.max(buttonX, 0), maxButtonX),
+        y: Math.min(Math.max(buttonY, 0), maxButtonY),
+        stagger: 0.1,
+        ease: 'Power1.ease'
+      })
+      tl.to(cursorRef.current, { opacity: 1 }, '=<')
+    }
+  }
+
+  const onLeave = (e: any) => {
+    if (cursorRef.current && containerRef.current) {
+      gsap.killTweensOf(cursorRef.current)
+      const tl = gsap.timeline()
+      tl.to(cursorRef.current, { opacity: 0, duration: 0.1 })
+      tl.to(
+        cursorRef.current,
+        {
+          duration: 0.5,
+          x:
+            (containerRef.current.clientWidth - cursorRef.current.clientWidth) /
+            2,
+          y:
+            (containerRef.current.clientHeight -
+              cursorRef.current.clientHeight) /
+            2
+        },
+        '<1'
+      )
+    }
+  }
+
+  const hereWeGo = (e: any) => {
+    console.log(e)
+  }
+  useLayoutEffect(() => {
+    const container = containerRef.current
+    const pageWrap = pageRef.current
+
+    if (!container || !cursorRef.current || !pageWrap) return
+
+    gsap.set(cursorRef.current, {
+      x: (container.clientWidth - cursorRef.current.clientWidth) / 2,
+      y: (container.clientHeight - cursorRef.current.clientHeight) / 2
+    })
+
+    container?.addEventListener('mousemove', (e) => onMove(e))
+    container?.addEventListener('mouseleave', (e) => onLeave(e))
+
+    return () => {
+      container?.removeEventListener('mousemove', onMove)
+      container?.removeEventListener('mouseleave', onLeave)
+    }
+  }, [containerRef, cursorRef, windowSize.width, localProjects])
+
   if (!localProjects || !windowSize.width) return <></>
 
   return (
-    <div>
+    <div ref={pageRef}>
       <div className={s.titleWrapper}>
         <PageTitle title="Work" />
       </div>
@@ -112,26 +193,30 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
             setFilters={(e: string) => addOrRemove(e)}
           />
         </div>
-
-        {localProjects.map((project: any, i: number) => {
-          return (
-            <div key={i} className={s.projectOuterWrapper}>
-              <Project
-                noLine
-                name={project.projectName}
-                service={project.service}
-                client={project.client}
-                image={project.featuredImage}
-                video={project.featuredVideo}
-                slug={project.slug}
-                year={project.year}
-                multiCategory={project.multiCategory}
-                alignment={project.alignment}
-                colour={project.themeColour?.hex}
-              />
-            </div>
-          )
-        })}
+        <div className={s.wrapperRef} ref={containerRef}>
+          {localProjects.map((project: any, i: number) => {
+            return (
+              <div key={i} className={s.projectOuterWrapper}>
+                <Project
+                  noLine
+                  name={project.projectName}
+                  service={project.service}
+                  client={project.client}
+                  image={project.featuredImage}
+                  video={project.featuredVideo}
+                  slug={project.slug}
+                  year={project.year}
+                  multiCategory={project.multiCategory}
+                  alignment={project.alignment}
+                  colour={project.themeColour?.hex}
+                />
+              </div>
+            )
+          })}
+          <div className={s.cursor} ref={cursorRef}>
+            <p>View Project</p>
+          </div>
+        </div>
       </ReactLenis>
     </div>
   )

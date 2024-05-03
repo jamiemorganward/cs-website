@@ -82,6 +82,7 @@ export const EmailSelection = () => {
 
   const onMove = (e: any) => {
     if (cursorRef.current && containerRef.current) {
+      gsap.killTweensOf(cursorRef.current)
       const containerRect = containerRef.current.getBoundingClientRect()
       const mouseX = e.clientX - containerRect.left
       const mouseY = e.clientY - containerRect.top
@@ -101,10 +102,10 @@ export const EmailSelection = () => {
         overwrite: 'auto',
         x: Math.min(Math.max(buttonX, 0), maxButtonX),
         y: Math.min(Math.max(buttonY, 0), maxButtonY),
-        // stagger: 0.1,
+        stagger: 0.1,
         ease: 'Power1.ease'
       })
-      tl.to(cursorRef.current, { opacity: 1 }, '<.1')
+      tl.to(cursorRef.current, { opacity: 1 }, '<')
     }
   }
 
