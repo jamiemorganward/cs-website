@@ -16,7 +16,7 @@ export const RDProjectPage = ({ data }: { data: GetRdProjectQuery }) => {
         <div className={s.featuredMedia}>
           <img
             src={data.rdProject?.featuredMedia?.responsiveImage?.src}
-            // alt={`${data.rdProject?.featuredMedia?.responsiveImage?.alt}`}
+            alt={`${data.rdProject?.featuredMedia?.responsiveImage?.alt}`}
           />
         </div>
       </div>
