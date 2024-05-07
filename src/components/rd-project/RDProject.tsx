@@ -14,7 +14,11 @@ export const RDProject = ({
   slug: string
 }) => {
   return (
-    <Link className={s.projectInnerWrapper} href={`/rd/project${slug}`}>
+    <Link
+      className={s.projectInnerWrapper}
+      href={`/rd/project${slug}`}
+      scroll={false}
+    >
       <img src={media} />
       <div className={s.projectCaption}>
         <h2>{name}</h2>

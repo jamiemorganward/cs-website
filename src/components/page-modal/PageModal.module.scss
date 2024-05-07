@@ -7,7 +7,8 @@
   height: 100%;
   z-index: 1000000;
   pointer-events: none;
-  padding: 216px 6rem 0 6rem;
+  will-change: padding;
+  padding: 12rem 6rem 0 6rem;
   overflow: scroll;
 
   &.open {
@@ -17,4 +18,5 @@
 
 .modal-inner-wrapper {
   background-color: $white;
+  padding-top: 4rem;
 }

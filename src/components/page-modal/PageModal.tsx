@@ -1,5 +1,11 @@
 'use client'
-import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import React, {
+  ReactNode,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState
+} from 'react'
 import s from './PageModal.module.scss'
 import { Modal } from '@mui/base'
 import { RDProjectPage } from '../rd-project-page/RDProjectPage'
@@ -9,6 +15,7 @@ import { ModalBackdrop } from './modal-backdrop/ModalBackdrop'
 import { ModalAnimation } from './modal-animation/ModalAnimation'
 import { usePathname } from 'next/navigation'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/all'
 
 export const PageModal = ({
   data,
@@ -26,20 +33,22 @@ export const PageModal = ({
   const [padding, setPadding] = useState(initialPadding)
   const pathname = usePathname()
   const [routeChange, setRouteChange] = useState(0)
+  const innerWrapperRef = useRef<HTMLDivElement | null>(null)
 
   useLayoutEffect(() => {
     setRouteChange((prev) => prev + 1)
   }, [pathname])
 
-  // let distTop = scrollRef.current?.style.padding
-
   const handleGrow = () => {
     let scrollAmount = scrollRef.current?.scrollTop || 0
+
     let distTop = initialPadding - scrollAmount
-    // if (distTop >= 216) {
-    //   console.log('Reach')
-    //   gsap.to(wrapperRef.current, { padding: 0, duration: 1 })
-    // }
+    if (distTop >= 0) {
+      gsap.to(wrapperRef.current, {
+        padding: 0,
+        duration: 0.5
+      })
+    }
     setPadding(distTop)
   }
 
@@ -59,6 +68,7 @@ export const PageModal = ({
     <Modal
       style={{ paddingTop: `${padding}`, paddingBottom: '10px' }}
       open={modalOpen}
+      disableAutoFocus
       closeAfterTransition
       onClose={() => {
         setModalOpen(false)
@@ -71,7 +81,7 @@ export const PageModal = ({
       ref={wrapperRef}
     >
       <ModalAnimation className={s.modal} in={modalOpen} onExited={handleClose}>
-        <div className={s.modalInnerWrapper}>
+        <div className={s.modalInnerWrapper} ref={innerWrapperRef}>
           <RDProjectPage data={data} />
         </div>
       </ModalAnimation>

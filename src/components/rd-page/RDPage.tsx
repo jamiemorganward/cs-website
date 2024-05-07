@@ -1,14 +1,17 @@
+'use client'
 import { GetAllRdProjectsQuery } from '@/graphql/generated/graphql'
 import s from './RDPage.module.scss'
 import { PageTitle } from '../page-title/PageTitle'
 import Link from 'next/link'
 import { RDProject } from '../rd-project/RDProject'
+import { ReactLenis } from '@studio-freight/react-lenis'
 
 export const RDPage = ({ projects }: { projects: GetAllRdProjectsQuery }) => {
   if (!projects) return <></>
 
   return (
     <>
+      {/* <ReactLenis root> */}
       <div className={s.titleWrapper}>
         <PageTitle title="R&D" />
       </div>
@@ -26,6 +29,7 @@ export const RDPage = ({ projects }: { projects: GetAllRdProjectsQuery }) => {
           )
         })}
       </div>
+      {/* </ReactLenis> */}
     </>
   )
 }
