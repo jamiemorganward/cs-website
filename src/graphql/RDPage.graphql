@@ -20,9 +20,7 @@ fragment RDProject on RdProjectRecord {
   }
   flexibleContent {
     ...DoubleImage
-    ...TextTwoColumn
     ...TextSingle
     ...SingleImage
-    ...Quote
   }
 }

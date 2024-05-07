@@ -1,45 +1,24 @@
 @import '../../../styles/config';
 
 .wrapper {
-  @include grid-col(6);
+  @include large {
+    @include grid-col(6);
+  }
+
+  @include grid-col(8);
   margin: 0 auto;
 
+  @include tablet {
+    @include grid-col(12);
+  }
+
   .text-content {
-    max-width: 48rem;
     margin: 0 auto;
     padding-top: 27px;
     padding-bottom: 27px;
 
     p {
       padding-bottom: 1rem;
-    }
-  }
-
-  &.left {
-    @include grid-col(5);
-    margin-left: 0;
-    .text-content {
-      margin: 0;
-    }
-  }
-
-  &.right {
-    @include grid-col(5);
-    margin-right: 0;
-    .text-content {
-      margin: 0;
-    }
-  }
-
-  &.right,
-  &.left,
-  & {
-    @include tablet {
-      margin: 0;
-      @include grid-col(12);
-      .text-content {
-        margin: 0 auto;
-      }
     }
   }
 }
