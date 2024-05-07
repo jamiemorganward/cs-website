@@ -40,6 +40,7 @@ export const ModalAnimation = React.forwardRef<
       onComplete: () => {
         setAnimationComplete(true)
         open ? onEnter(null as any, true) : onExited(null as any, true)
+        innerRef.current?.focus({ preventScroll: true })
       }
     })
   }, [open])

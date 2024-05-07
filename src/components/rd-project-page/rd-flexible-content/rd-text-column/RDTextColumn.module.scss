@@ -1,0 +1,28 @@
+@import '@/styles/config';
+@import '../../../styles/config';
+
+.wrapper {
+  @include grid-col(6);
+  margin: 0 auto;
+
+  .text-content {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding-top: 27px;
+    padding-bottom: 27px;
+
+    p {
+      padding-bottom: 1rem;
+    }
+  }
+
+  & {
+    @include tablet {
+      margin: 0;
+      @include grid-col(12);
+      .text-content {
+        margin: 0 auto;
+      }
+    }
+  }
+}

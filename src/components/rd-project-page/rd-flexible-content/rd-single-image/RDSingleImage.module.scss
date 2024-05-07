@@ -1,0 +1,27 @@
+@import '@/styles/config';
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  height: 70%;
+
+  @include grid-col(8);
+  @include large {
+    @include grid-col(6);
+  }
+
+  @include tablet {
+    @include grid-col(12);
+  }
+}
+
+mux-player {
+  /* Hide all controls at once */
+  --controls: none;
+  width: 100%;
+  max-width: none;
+  max-height: 750px;
+  max-width: 1175px;
+}

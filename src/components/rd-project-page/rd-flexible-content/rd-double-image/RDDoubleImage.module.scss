@@ -1,0 +1,41 @@
+@import '@/styles/config';
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: center;
+
+  @include tablet {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  & .left {
+    @include grid-col(4);
+
+    @include large {
+      @include grid-col(3);
+    }
+  }
+
+  & .right {
+    @include grid-col(4);
+
+    @include large {
+      @include grid-col(3);
+    }
+  }
+
+  @include tablet {
+    & .left,
+    & .right {
+      width: 100%;
+      @include grid-offset-left(0);
+    }
+  }
+}
+.image {
+  width: 100%;
+  height: auto;
+}
