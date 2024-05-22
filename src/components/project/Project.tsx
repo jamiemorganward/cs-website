@@ -67,12 +67,14 @@ export const Project = ({
           )}
 
           {image && image?.responsiveImage && (
-            <div className={s.imageWrapper} style={{ backgroundColor: colour }}>
+            <div
+              className={`${s.imageWrapper} ${alignment === 'left' && s.left}
+            ${alignment === 'right' && s.right}
+            ${(alignment === 'fullwidth' || fullwidth) && s.fullWidth}`}
+              style={{ backgroundColor: colour }}
+            >
               <img
-                className={`${s.featuredImage}
-        ${alignment === 'left' && s.left}
-        ${alignment === 'right' && s.right}
-        ${(alignment === 'fullwidth' || fullwidth) && s.fullWidth}`}
+                className={`${s.featuredImage}`}
                 src={image.responsiveImage.src}
               />
             </div>
