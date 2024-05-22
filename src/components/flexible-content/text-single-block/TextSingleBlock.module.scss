@@ -21,4 +21,32 @@
       padding-bottom: 1rem;
     }
   }
+
+  &.left {
+    @include grid-col(5);
+    margin-left: 0;
+    .text-content {
+      margin: 0;
+    }
+  }
+
+  &.right {
+    @include grid-col(5);
+    margin-right: 0;
+    .text-content {
+      margin: 0;
+    }
+  }
+
+  &.right,
+  &.left,
+  & {
+    @include tablet {
+      margin: 0;
+      @include grid-col(12);
+      .text-content {
+        margin: 0 auto;
+      }
+    }
+  }
 }

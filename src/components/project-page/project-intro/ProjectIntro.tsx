@@ -50,13 +50,14 @@ export const ProjectIntro = ({
           <div className={s.row}>
             <div className={s.label}>Category</div>
             <div className={s.value}>
-              {multiCategory.map((cat, i) => {
-                if (i < multiCategory.length - 1) {
-                  return `${cat}, `
-                } else {
-                  return `${cat}`
-                }
-              })}
+              {multiCategory &&
+                multiCategory.map((cat, i) => {
+                  if (i < multiCategory.length - 1) {
+                    return `${cat}, `
+                  } else {
+                    return `${cat}`
+                  }
+                })}
             </div>
           </div>
           <div className={s.row}>

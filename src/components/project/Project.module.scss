@@ -74,28 +74,37 @@
   height: 85%;
   width: 100%;
   position: relative;
-}
 
-.featured-image {
-  width: 60%;
+  &.right {
+    align-self: flex-end;
+    width: 60%;
+  }
 
-  @include tablet {
+  &.left {
+    align-self: flex-start;
+    width: 60%;
+  }
+
+  &.full-width {
     width: 100%;
-    height: calc(100% - 58px);
-    object-fit: cover;
+  }
+
+  &.left,
+  &.right {
+    @include tablet {
+      width: 100%;
+    }
   }
 }
 
-.right {
-  align-self: flex-end;
-}
-
-.left {
-  align-self: flex-start;
-}
-
-.full-width {
+.featured-image {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  @include tablet {
+    height: calc(100% - 58px);
+  }
 }
 
 .video-wrapper {
