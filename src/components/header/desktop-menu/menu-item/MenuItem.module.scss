@@ -18,11 +18,11 @@
     // border: 1px solid rgba($grey, 1);
   }
 
-  & * {
+  * {
     // transition: all 0.35s ease-out;
   }
 
-  & .link-text {
+  .link-text {
     position: relative;
     bottom: 1px;
     // color: rgba($black, 0.4);
@@ -30,7 +30,7 @@
     overflow: hidden;
   }
 
-  & .link-hover-line {
+  .link-hover-line {
     width: 0%;
     height: 1px;
     background-color: $white;
@@ -54,7 +54,7 @@
     // color: rgba($black, 1);
   }
 
-  & .link-bg {
+  .link-bg {
     // backdrop-filter: blur(2px);
     display: block;
     position: absolute;
@@ -69,8 +69,11 @@
   &.active .link-bg {
     // background-color: rgba(#efefef, 0.7);
   }
-
-  & .submenu-pill {
+  .parent-wrapper {
+    overflow: hidden;
+    width: 0;
+  }
+  .submenu-pill {
     background-color: $black;
     color: $white;
     display: flex;
@@ -79,21 +82,28 @@
     padding: 0px 8px 3px 10px;
     border-radius: 20px;
     position: relative;
-    right: -9px;
     font-size: 12px;
     font-weight: 500;
     white-space: nowrap;
     z-index: 2;
+    margin-left: 15px;
+    transition: ease-in-out 0.25s;
+    cursor: pointer;
 
-    & .close {
+    &:hover {
+      background-color: $white;
+      color: $black;
+    }
+
+    .close {
       display: inline-block;
       width: 13px;
       height: 13px;
       position: relative;
-      top: 1px;
       margin-left: 0.5rem;
+      cursor: pointer;
 
-      & svg {
+      svg {
         width: 15px;
         height: 15px;
       }
@@ -106,11 +116,11 @@
 //   height: 28px;
 //   font-size: 12px;
 
-//   & .link-inner {
+//   .link-inner {
 //     bottom: 1px;
 //   }
 
-//   & .submenu-pill {
+//   .submenu-pill {
 //     padding: 0px 6px 3px 10px;
 //     font-size: 12px;
 //   }

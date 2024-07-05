@@ -202,6 +202,66 @@ export type CreatedAtFilter = {
   neq?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
+export type CustomWorkPageModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<CustomWorkPageModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<CustomWorkPageModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+};
+
+export enum CustomWorkPageModelOrderBy {
+  CreatedAtAsc = '_createdAt_ASC',
+  CreatedAtDesc = '_createdAt_DESC',
+  FirstPublishedAtAsc = '_firstPublishedAt_ASC',
+  FirstPublishedAtDesc = '_firstPublishedAt_DESC',
+  IsValidAsc = '_isValid_ASC',
+  IsValidDesc = '_isValid_DESC',
+  PublicationScheduledAtAsc = '_publicationScheduledAt_ASC',
+  PublicationScheduledAtDesc = '_publicationScheduledAt_DESC',
+  PublishedAtAsc = '_publishedAt_ASC',
+  PublishedAtDesc = '_publishedAt_DESC',
+  StatusAsc = '_status_ASC',
+  StatusDesc = '_status_DESC',
+  UnpublishingScheduledAtAsc = '_unpublishingScheduledAt_ASC',
+  UnpublishingScheduledAtDesc = '_unpublishingScheduledAt_DESC',
+  UpdatedAtAsc = '_updatedAt_ASC',
+  UpdatedAtDesc = '_updatedAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC'
+}
+
+/** Record of type Custom Work Page (custom_work_page) */
+export type CustomWorkPageRecord = RecordInterface & {
+  __typename?: 'CustomWorkPageRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+};
+
+
+/** Record of type Custom Work Page (custom_work_page) */
+export type CustomWorkPageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Block of type Double Media Block (double_image_block) */
 export type DoubleImageBlockRecord = RecordInterface & {
   __typename?: 'DoubleImageBlockRecord';
@@ -2407,6 +2467,8 @@ export type PublishedAtFilter = {
 export type Query = {
   __typename?: 'Query';
   /** Returns meta information regarding a record collection */
+  _allCustomWorkPagesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allPeopleMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allProjectsMeta: CollectionMetadata;
@@ -2419,6 +2481,8 @@ export type Query = {
   /** Returns the single instance record */
   aboutPage?: Maybe<AboutPageRecord>;
   /** Returns a collection of records */
+  allCustomWorkPages: Array<CustomWorkPageRecord>;
+  /** Returns a collection of records */
   allPeople: Array<PersonRecord>;
   /** Returns a collection of records */
   allProjects: Array<ProjectRecord>;
@@ -2430,6 +2494,8 @@ export type Query = {
   approachPage?: Maybe<ApproachPageRecord>;
   /** Returns the single instance record */
   contactPage?: Maybe<ContactPageRecord>;
+  /** Returns a specific record */
+  customWorkPage?: Maybe<CustomWorkPageRecord>;
   /** Returns the single instance record */
   homePage?: Maybe<HomePageRecord>;
   /** Returns the single instance record */
@@ -2446,6 +2512,13 @@ export type Query = {
   upload?: Maybe<FileField>;
   /** Returns the single instance record */
   workPage?: Maybe<WorkPageRecord>;
+};
+
+
+/** The query root for this schema */
+export type Query_AllCustomWorkPagesMetaArgs = {
+  filter?: InputMaybe<CustomWorkPageModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 
@@ -2488,6 +2561,17 @@ export type Query_SiteArgs = {
 export type QueryAboutPageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type QueryAllCustomWorkPagesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CustomWorkPageModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<CustomWorkPageModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
 
@@ -2546,6 +2630,15 @@ export type QueryApproachPageArgs = {
 export type QueryContactPageArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+export type QueryCustomWorkPageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CustomWorkPageModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<CustomWorkPageModelOrderBy>>>;
 };
 
 

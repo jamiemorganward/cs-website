@@ -213,9 +213,10 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
               </div>
             )
           })}
-          <div className={s.cursor} ref={cursorRef}>
+          {/* If we want to bring back the view project cursor */}
+          {/* <div className={s.cursor} ref={cursorRef}>
             <p>View Project</p>
-          </div>
+          </div> */}
         </div>
       </ReactLenis>
     </div>

@@ -2,7 +2,7 @@ import s from './MenuItem.module.scss'
 import { usePathname } from 'next/navigation'
 import CloseIcon from '../../../../assets/svgs/close.svg'
 import { PageInfoContext } from '@/lib/contexts/PageInfoContext'
-import { useContext, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import TransitionLink from '@/components/transition-link/TransitionLink'
@@ -27,8 +27,16 @@ export const MenuItem = ({
 
   const isActive = (link: string) => pathname.includes(link)
   const showPill = (link: string) => pathname.includes(`${link}/`)
-  const linkRef = useRef<HTMLAnchorElement | null>(null)
+  const linkRef = useRef<HTMLButtonElement | null>(null)
   const lineRef = useRef<HTMLSpanElement | null>(null)
+  const pillRef = useRef<HTMLDivElement | null>(null)
+  const [hovering, setHovering] = useState(false)
+
+  useEffect(() => {
+    if (hasSubMenuPill && showPill(link)) {
+      animateIn()
+    }
+  }, [])
 
   gsap.registerPlugin(useGSAP)
 
@@ -68,15 +76,34 @@ export const MenuItem = ({
     }
   }
 
+  const animateOut = () => {
+    if (!hasSubMenuPill || !showPill(link)) {
+      router.push(link)
+    } else if (hasSubMenuPill && showPill(link)) {
+      router.push(link)
+      gsap.to(pillRef.current, {
+        width: 0,
+        opacity: 0
+      })
+    }
+  }
+
+  const animateIn = () => {
+    gsap.to(pillRef.current, {
+      width: 'auto',
+      opacity: 1
+    })
+  }
+
   return (
-    <TransitionLink
+    <button
       onMouseEnter={() => !isActive(link) && hoverIn()}
       onMouseLeave={() => !isActive(link) && hoverOut()}
       className={`${s.link} ${sticky ? s.sticky : ''} ${
         isActive(link) ? s.active : ''
       }`}
-      href={link}
       ref={linkRef}
+      onClick={animateOut}
     >
       <div className={s.linkText}>
         {text}
@@ -84,14 +111,22 @@ export const MenuItem = ({
         {isActive(link) && <span className={s.linkActiveLine}></span>}
       </div>
       {hasSubMenuPill && showPill(link) && (
-        <span className={s.submenuPill}>
-          {subMenuText ? subMenuText : ctx.projectName ? ctx.projectName : ''}
-          <button className={s.close} onClick={() => router.back}>
-            <CloseIcon />
-          </button>
+        <span
+          className={s.parentWrapper}
+          ref={pillRef}
+          onMouseEnter={() => setHovering(true)}
+          onMouseLeave={() => setHovering(false)}
+        >
+          <span className={s.submenuPill}>
+            {subMenuText ? subMenuText : ctx.projectName ? ctx.projectName : ''}
+            <div className={s.close}>
+              <CloseIcon color={hovering ? '#17191a' : '#fff'} />
+            </div>
+          </span>
         </span>
       )}
+
       <span className={s.linkBg}></span>
-    </TransitionLink>
+    </button>
   )
 }
