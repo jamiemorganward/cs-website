@@ -31,12 +31,13 @@ export const MenuItem = ({
   const lineRef = useRef<HTMLSpanElement | null>(null)
   const pillRef = useRef<HTMLDivElement | null>(null)
   const [hovering, setHovering] = useState(false)
+  const [firstRender, setFirstRender] = useState(true)
 
   useEffect(() => {
-    if (hasSubMenuPill && showPill(link)) {
+    if (hasSubMenuPill) {
       animateIn()
     }
-  }, [])
+  }, [pathname])
 
   gsap.registerPlugin(useGSAP)
 
