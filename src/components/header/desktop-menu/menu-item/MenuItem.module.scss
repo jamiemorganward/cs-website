@@ -13,6 +13,7 @@
   transition: all 0.35s ease-out;
   position: relative;
   color: white !important;
+  cursor: pointer;
 
   &.active {
     // border: 1px solid rgba($grey, 1);
