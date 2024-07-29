@@ -5,11 +5,12 @@ import { PageTitle } from '../page-title/PageTitle'
 import { GetAllPeopleQuery } from '@/graphql/generated/graphql'
 import { PersonCard } from './person-card/PersonCard'
 import { ReactLenis, useLenis } from '@studio-freight/react-lenis'
+import { Parallax } from '../parallax/Parallax'
 
 export const PeoplePage = ({ data }: { data: GetAllPeopleQuery }) => {
   const margins = [
     { top: 0, right: 0, bottom: 0, left: 0 },
-    { top: 20, right: 0, bottom: 0, left: 0 },
+    { top: 10, right: 0, bottom: 0, left: 0 },
     { top: 8, right: 0, bottom: 0, left: 0 },
     { top: 0, right: 0, bottom: 0, left: 10 },
     { top: 6, right: 10, bottom: 0, left: 5 },
@@ -22,7 +23,11 @@ export const PeoplePage = ({ data }: { data: GetAllPeopleQuery }) => {
       <ReactLenis root>
         <div className={s.personCardWrapper}>
           {data.allPeople.map((person, i) => {
-            return <PersonCard key={i} person={person} margins={margins[i]} />
+            return (
+              <Parallax key={i} className="" id={'s'} speed={0.2 - i / 2}>
+                <PersonCard person={person} margins={margins[i]} />
+              </Parallax>
+            )
           })}
         </div>
       </ReactLenis>

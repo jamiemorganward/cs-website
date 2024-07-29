@@ -4,11 +4,11 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-
-  @include tablet {
-    max-width: 350px;
-    width: 45%;
-  }
+  width: 100%;
+  // @include tablet {
+  //   max-width: 350px;
+  //   width: 45%;
+  // }
 }
 
 .image-card {
@@ -18,7 +18,7 @@
   overflow: hidden;
   position: relative;
 
-  @include tablet {
+  @include mobile-l {
     width: 100%;
   }
 }

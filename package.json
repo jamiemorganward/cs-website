@@ -13,6 +13,7 @@
   "dependencies": {
     "@apollo/client": "^3.8.10",
     "@apollo/experimental-nextjs-app-support": "^0.6.0",
+    "@darkroom.engineering/hamo": "^0.6.45",
     "@gsap/react": "^2.1.0",
     "@mui/base": "^5.0.0-beta.40",
     "@mux/mux-player-react": "^2.4.1",

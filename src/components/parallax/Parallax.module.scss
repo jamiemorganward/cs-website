@@ -1,0 +1,7 @@
+@import '@/styles/config';
+
+.wrapper {
+  @include mobile-l {
+    width: 100%;
+  }
+}
