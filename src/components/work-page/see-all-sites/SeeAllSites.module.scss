@@ -1,0 +1,64 @@
+@import '../../../styles/config';
+
+.project-intro {
+  padding: 0 $side-gaps-desktop 30px;
+
+  @include tablet {
+    padding: 30px $side-gaps-tablet 30px;
+  }
+
+  @include mobile-l {
+    padding: 0 $side-gaps-mobile 30px;
+  }
+}
+
+.project-info {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+  .url {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 12px;
+    width: auto;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $black;
+  font-weight: 500;
+  font-size: 16px;
+  position: relative;
+  width: 122px;
+  transform: translateY(-12px);
+
+  @include mobile-l {
+    transform: translateY(0);
+  }
+
+  &:hover span {
+    text-decoration: underline;
+  }
+
+  & span {
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  & .animation-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    width: 100%;
+  }
+}

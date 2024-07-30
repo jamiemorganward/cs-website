@@ -1,0 +1,9 @@
+query getAllCustomWorkProjects($slug: String) {
+  customWorkPage(filter: { slug: { eq: $slug } }) {
+    slug
+    title
+    projects {
+      ...ProjectOnWorkPage
+    }
+  }
+}

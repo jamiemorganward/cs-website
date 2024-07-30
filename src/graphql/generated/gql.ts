@@ -15,6 +15,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 const documents = {
     "fragment Video on FileField {\n  video {\n    streamingUrl\n    mp4High: mp4Url(res: high)\n    mp4Med: mp4Url(res: medium)\n    mp4Low: mp4Url(res: low)\n    duration\n    framerate\n    thumbJpg: thumbnailUrl(format: jpg)\n    thumbPng: thumbnailUrl(format: png)\n    thumbGif: thumbnailUrl(format: gif)\n  }\n}\n\nfragment FeaturedMedia on FileField {\n  ...Video\n  ...Image\n}\n\nfragment Partner on PartnershipRecord {\n  client\n  featuredVideo\n  service\n  yearStarted\n}\n\nquery AboutPage {\n  aboutPage {\n    cardSection {\n      title\n      subtitle\n      textContent\n    }\n    longStandingPartnerships {\n      ...Partner\n    }\n  }\n}": types.VideoFragmentDoc,
     "query ApproachPage {\n  approachPage {\n    postProjectCards {\n      title\n      subtitle\n      textContent\n    }\n  }\n}": types.ApproachPageDocument,
+    "query getAllCustomWorkProjects($slug: String) {\n  customWorkPage(filter: {slug: {eq: $slug}}) {\n    slug\n    title\n    projects {\n      ...ProjectOnWorkPage\n    }\n  }\n}": types.GetAllCustomWorkProjectsDocument,
     "query SEO {\n  _site {\n    globalSeo {\n      siteName\n      titleSuffix\n      twitterAccount\n      fallbackSeo {\n        description\n        title\n        twitterCard\n      }\n      facebookPageUrl\n    }\n  }\n}": types.SeoDocument,
     "query HomePage {\n  homePage {\n    headline\n    headerLogo {\n      url\n    }\n  }\n}": types.HomePageDocument,
     "fragment Person on PersonRecord {\n  id\n  name\n  jobTitle\n  headshot {\n    ...Image\n    ...Video\n  }\n  inOfficeVideo {\n    ...Image\n    ...Video\n  }\n  outOfOfficeVideo {\n    ...Image\n    ...Video\n  }\n}\n\nquery GetAllPeople {\n  allPeople {\n    ...Person\n  }\n}": types.PersonFragmentDoc,
@@ -45,6 +46,10 @@ export function graphql(source: "fragment Video on FileField {\n  video {\n    s
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query ApproachPage {\n  approachPage {\n    postProjectCards {\n      title\n      subtitle\n      textContent\n    }\n  }\n}"): (typeof documents)["query ApproachPage {\n  approachPage {\n    postProjectCards {\n      title\n      subtitle\n      textContent\n    }\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query getAllCustomWorkProjects($slug: String) {\n  customWorkPage(filter: {slug: {eq: $slug}}) {\n    slug\n    title\n    projects {\n      ...ProjectOnWorkPage\n    }\n  }\n}"): (typeof documents)["query getAllCustomWorkProjects($slug: String) {\n  customWorkPage(filter: {slug: {eq: $slug}}) {\n    slug\n    title\n    projects {\n      ...ProjectOnWorkPage\n    }\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
