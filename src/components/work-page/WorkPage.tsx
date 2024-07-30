@@ -1,7 +1,9 @@
 'use client'
 import {
+  GetAllCustomWorkProjectsQuery,
   GetAllProjectsQuery,
-  ProjectOnWorkPageFragment
+  ProjectOnWorkPageFragment,
+  ProjectRecord
 } from '@/graphql/generated/graphql'
 import s from './WorkPage.module.scss'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
@@ -12,8 +14,15 @@ import { useWindowSize } from '@/utils/useWindowSize'
 import { ReactLenis, useLenis } from '@studio-freight/react-lenis'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import gsap from 'gsap'
+import { SeeAllSites } from './see-all-sites/SeeAllSites'
 
-export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
+export const WorkPage = ({
+  data,
+  title
+}: {
+  data: ProjectOnWorkPageFragment[]
+  title?: string
+}) => {
   const [categories, setAllCategories] = useState<string[]>([])
   const [localProjects, setLocalProjects] = useState<
     Array<ProjectOnWorkPageFragment>
@@ -29,13 +38,13 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
   // Creates the list of categories and sets a local state of projects
   const organise = () => {
     let tempCats: string[] = []
-    data.allProjects.map((project) => {
+    data.map((project) => {
       project.multiCategory?.map((cat: string) => {
         tempCats.push(`${cat}`)
       })
     })
     setAllCategories(tempCats)
-    setLocalProjects(data.allProjects)
+    setLocalProjects(data)
   }
 
   useEffect(() => {
@@ -58,7 +67,7 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
   useEffect(() => {
     const _projects: ProjectOnWorkPageFragment[] = []
 
-    data.allProjects.map((project) => {
+    data.map((project) => {
       project.multiCategory?.map((cat: string) => {
         if (cat && filters.includes(cat)) {
           if (!_projects.includes(project)) {
@@ -71,7 +80,7 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
     })
     setLocalProjects(_projects)
     if (filters.length < 1) {
-      setLocalProjects(data.allProjects)
+      setLocalProjects(data)
     }
   }, [filters])
 
@@ -155,9 +164,6 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
     }
   }
 
-  const hereWeGo = (e: any) => {
-    console.log(e)
-  }
   useLayoutEffect(() => {
     const container = containerRef.current
     const pageWrap = pageRef.current
@@ -183,15 +189,22 @@ export const WorkPage = ({ data }: { data: GetAllProjectsQuery }) => {
   return (
     <div ref={pageRef}>
       <div className={s.titleWrapper}>
-        <PageTitle title="Work" />
+        <PageTitle title={title ? title : 'Work'} />
       </div>
       <ReactLenis root>
-        <div className={s.filterSticky} ref={filterRef}>
-          <FilterBar
-            filterItems={categories}
-            filters={filters}
-            setFilters={(e: string) => addOrRemove(e)}
-          />
+        <div
+          className={`${!title ? s.filterSticky : s.filterStickyCustom}`}
+          ref={filterRef}
+        >
+          {!title ? (
+            <FilterBar
+              filterItems={categories}
+              filters={filters}
+              setFilters={(e: string) => addOrRemove(e)}
+            />
+          ) : (
+            <SeeAllSites />
+          )}
         </div>
         <div className={s.wrapperRef} ref={containerRef}>
           {localProjects.map((project: any, i: number) => {

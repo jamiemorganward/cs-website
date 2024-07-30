@@ -23,7 +23,7 @@ export default async function Page() {
 
   return (
     <Suspense fallback={<WorkPageFallBack />}>
-      <WorkPage data={data.data} />
+      <WorkPage data={data.data.allProjects} />
     </Suspense>
   )
 }
