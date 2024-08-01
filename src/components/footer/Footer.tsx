@@ -15,9 +15,9 @@ export const Footer = () => {
         <div className={s.logo}>
           <LogoText />
         </div>
-        <div className={s.menu}>
+        {/* <div className={s.menu}>
           <DesktopMenu />
-        </div>
+        </div> */}
       </div>
       <div className={s.interactiveBit}>
         <HeartCanvas />
