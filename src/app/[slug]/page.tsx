@@ -12,7 +12,7 @@ export default async function CustomPage({
   params: { slug: string }
 }) {
   const client = getClient()
-  console.log(params.slug)
+
   const data = await client.query<GetAllCustomWorkProjectsQuery>({
     query: GetAllCustomWorkProjectsDocument,
     variables: { slug: `${params.slug}` },

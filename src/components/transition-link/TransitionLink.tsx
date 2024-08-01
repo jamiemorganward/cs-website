@@ -22,7 +22,6 @@ export default function TransitionLink({
 
   const handleClick: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
     if (props.href !== pathname) {
-      console.log(e)
       e.preventDefault()
       animatePageOut(props.href, router)
       if (typeof props.onClick !== 'undefined') {

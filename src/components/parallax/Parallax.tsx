@@ -31,7 +31,7 @@ export const Parallax = ({
     const y = width * speed * 0.1
 
     const setY = gsap.quickSetter(target.current, 'y', 'px')
-    console.log('Reach')
+
     timeline.current = gsap.timeline({
       scrollTrigger: {
         id: id,
