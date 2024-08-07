@@ -78,6 +78,16 @@ const nextConfig = {
     })
 
     return config
+  },
+  async redirects() {
+    // rd redirect added for now
+    return [
+      {
+        source: '/rd',
+        destination: '/',
+        permanent: false
+      }
+    ]
   }
 }
 

@@ -11,15 +11,19 @@
   padding-bottom: 27px;
 }
 
+h1 {
+  margin-bottom: 0.5rem;
+}
+
 .quote {
-  font-size: 48px;
+  font-size: 36px;
   color: $black;
   font-weight: 600;
   line-height: 130%;
   text-transform: capitalize;
 
-  @include mobile-p {
-    font-size: 32px;
+  @include tablet {
+    font-size: 26px;
   }
   p {
     padding-bottom: 1rem;
