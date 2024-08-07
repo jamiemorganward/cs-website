@@ -16,18 +16,19 @@ export const PersonCard = ({
   margins: { top: number; right: number; bottom: number; left: number }
 }) => {
   const [isHover, setIsHover] = useState(false)
-  const [online, setOnline] = useState(false)
+  const [online, setOnline] = useState(true)
   const windowSize = useWindowSize()
   const circleRef = useRef<HTMLDivElement | null>(null)
 
-  useEffect(() => {
-    const currentTime = DateTime.now().toFormat('HH:mm')
-    const opening = DateTime.fromISO('08:00').toFormat('HH:mm')
-    const closing = DateTime.fromISO('17:30').toFormat('HH:mm')
-    if (currentTime > opening && currentTime < closing) {
-      setOnline(true)
-    }
-  }, [])
+  // TODO: Add this back and the mouse hover when we want to
+  // useEffect(() => {
+  //   const currentTime = DateTime.now().toFormat('HH:mm')
+  //   const opening = DateTime.fromISO('08:00').toFormat('HH:mm')
+  //   const closing = DateTime.fromISO('17:30').toFormat('HH:mm')
+  //   if (currentTime > opening && currentTime < closing) {
+  //     setOnline(true)
+  //   }
+  // }, [])
 
   useGSAP(() => {
     const tl = gsap.timeline({ repeat: -1, yoyo: true })
@@ -56,8 +57,8 @@ export const PersonCard = ({
     >
       <div
         className={s.imageCard}
-        onMouseEnter={() => setIsHover(true)}
-        onMouseLeave={() => setIsHover(false)}
+        // onMouseEnter={() => setIsHover(true)}
+        // onMouseLeave={() => setIsHover(false)}
       >
         {person.headshot && (
           <img

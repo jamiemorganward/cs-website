@@ -76,12 +76,13 @@ export const MobileMenu = ({
             >
               About
             </TransitionLink>
-            <TransitionLink
+            {/* Hidden for now */}
+            {/* <TransitionLink
               className={`${s.link} ${isActive('/rd') ? s.active : ''}`}
               href={'/rd'}
             >
               Playground
-            </TransitionLink>
+            </TransitionLink> */}
             <TransitionLink
               className={`${s.link} ${isActive('/contact') ? s.active : ''}`}
               href={'/contact'}

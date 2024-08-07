@@ -9,7 +9,8 @@ export const DesktopMenu = ({ sticky }: { sticky?: boolean | undefined }) => {
         <MenuItem text="People" link={'/people'} sticky={sticky} />
         <MenuItem text="Approach" link={'/approach'} sticky={sticky} />
         <MenuItem text="About" link={'/about'} sticky={sticky} />
-        <MenuItem text="Playground" link={'/rd'} sticky={sticky} />
+        {/* Hidden for now */}
+        {/* <MenuItem text="Playground" link={'/rd'} sticky={sticky} /> */}
         <MenuItem text="Contact" link={'/contact'} sticky={sticky} />
       </nav>
     </div>
