@@ -133,36 +133,31 @@ export const ApproachPageDesktop = ({
       </div>
 
       <div className={s.cardWrapper} ref={allCards}>
-        <div className={s.cardOneWrapper} ref={cardOne}>
-          <Card
-            title="Form"
-            titleRight="01"
-            textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
-            approach
-          >
-            <Lottie options={functionOptions} />
-          </Card>
-        </div>
-        <div className={s.cardTwoWrapper} ref={cardTwo}>
-          <Card
-            title="Fun"
-            titleRight="02"
-            textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
-            approach
-          >
-            <Lottie options={funOptions} />
-          </Card>
-        </div>
-        <div className={s.cardThreeWrapper} ref={cardThree}>
-          <Card
-            title="Function"
-            titleRight="03"
-            textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
-            approach
-          >
-            <Lottie options={formOptions} />
-          </Card>
-        </div>
+        {data?.fffCards.map((card, i) => {
+          return (
+            <div
+              className={`${
+                card.title === 'Form'
+                  ? s.cardOneWrapper
+                  : card.title === 'Function'
+                  ? s.cardTwoWrapper
+                  : s.cardThreeWrapper
+              }`}
+              ref={
+                card.title === 'Form'
+                  ? cardOne
+                  : card.title === 'Function'
+                  ? cardTwo
+                  : cardThree
+              }
+              key={i}
+            >
+              <Card approach card={card}>
+                <Lottie options={functionOptions} />
+              </Card>
+            </div>
+          )
+        })}
       </div>
       <div className={s.spacer}></div>
       <div className={s.spacerReveal}></div>
@@ -173,14 +168,7 @@ export const ApproachPageDesktop = ({
       >
         <div className={s.postProjectCards}>
           {data?.postProjectCards.map((card, i) => {
-            return (
-              <Card
-                key={i}
-                titleRight={`${card.subtitle}`}
-                title={`${card.title}`}
-                textContent={`${card.textContent}`}
-              ></Card>
-            )
+            return <Card key={i} card={card}></Card>
           })}
         </div>
       </div>

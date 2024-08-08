@@ -27,14 +27,19 @@ fragment Partner on PartnershipRecord {
     hex
   }
 }
+fragment CardSection on CardRecord {
+  title
+  subtitle
+  textContent {
+    value
+  }
+}
 
 query AboutPage {
   aboutPage {
     blurb
     cardSection {
-      title
-      subtitle
-      textContent
+      ...CardSection
     }
     longStandingPartnerships {
       ...Partner

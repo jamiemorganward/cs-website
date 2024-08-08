@@ -1,18 +1,16 @@
 import React, { ReactNode } from 'react'
 import s from './Card.module.scss'
+import { StructuredText } from 'react-datocms'
+import { CardSectionFragment } from '@/graphql/generated/graphql'
 
 export const Card = ({
-  title,
-  titleRight,
-  textContent,
+  card,
   children,
   approach,
   aspectRatio = true,
   minHeight
 }: {
-  title: string
-  titleRight?: string
-  textContent: string
+  card: CardSectionFragment
   children?: ReactNode
   approach?: boolean
   aspectRatio?: boolean
@@ -27,15 +25,13 @@ export const Card = ({
       }}
     >
       <div className={s.titleWrapper}>
-        <h2 className={s.cardTitle}>{title}</h2>
+        <h2 className={s.cardTitle}>{card.title}</h2>
         {/* {titleRight && <h2 className={s.titleRight}>{titleRight}</h2>} */}
       </div>
       {children && <div className={s.contentWrapper}>{children}</div>}
+
       <div className={s.textContentWrapper}>
-        <p
-          className={s.textContent}
-          dangerouslySetInnerHTML={{ __html: textContent }}
-        ></p>
+        <StructuredText data={card.textContent?.value} />
       </div>
     </div>
   )

@@ -47,23 +47,27 @@ export const ProjectIntro = ({
             <div className={s.label}>Client</div>
             <div className={s.value}>{client}</div>
           </div>
-          <div className={s.row}>
-            <div className={s.label}>Category</div>
-            <div className={s.value}>
-              {multiCategory &&
-                multiCategory.map((cat, i) => {
-                  if (i < multiCategory.length - 1) {
-                    return `${cat}, `
-                  } else {
-                    return `${cat}`
-                  }
-                })}
+          {multiCategory && (
+            <div className={s.row}>
+              <div className={s.label}>Category</div>
+              <div className={s.value}>
+                {multiCategory &&
+                  multiCategory.map((cat, i) => {
+                    if (i < multiCategory.length - 1) {
+                      return `${cat}, `
+                    } else {
+                      return `${cat}`
+                    }
+                  })}
+              </div>
             </div>
-          </div>
-          <div className={s.row}>
-            <div className={s.label}>Service</div>
-            <div className={s.value}>{service}</div>
-          </div>
+          )}
+          {service && (
+            <div className={s.row}>
+              <div className={s.label}>Service</div>
+              <div className={s.value}>{service}</div>
+            </div>
+          )}
           {platform && (
             <div className={s.row}>
               <div className={s.label}>Platform</div>
