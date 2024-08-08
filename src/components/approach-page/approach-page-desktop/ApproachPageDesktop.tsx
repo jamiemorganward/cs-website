@@ -139,21 +139,29 @@ export const ApproachPageDesktop = ({
               className={`${
                 card.title === 'Form'
                   ? s.cardOneWrapper
-                  : card.title === 'Function'
+                  : card.title === 'Fun'
                   ? s.cardTwoWrapper
                   : s.cardThreeWrapper
               }`}
               ref={
                 card.title === 'Form'
                   ? cardOne
-                  : card.title === 'Function'
+                  : card.title === 'Fun'
                   ? cardTwo
                   : cardThree
               }
               key={i}
             >
               <Card approach card={card}>
-                <Lottie options={functionOptions} />
+                <Lottie
+                  options={
+                    card.title === 'Form'
+                      ? formOptions
+                      : card.title === 'Fun'
+                      ? funOptions
+                      : functionOptions
+                  }
+                />
               </Card>
             </div>
           )
