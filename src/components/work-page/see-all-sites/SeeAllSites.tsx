@@ -9,7 +9,7 @@ export const SeeAllSites = () => {
   const [isStopped, setIsStopped] = useState(true)
 
   const animOptions = {
-    loop: true,
+    loop: false,
     autoplay: false,
     animationData: View,
     rendererSettings: {

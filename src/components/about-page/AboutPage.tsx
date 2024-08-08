@@ -41,6 +41,9 @@ export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
         <PageTitle title="About" />
       </div>
       <ReactLenis root>
+        <div className={s.blurbSection}>
+          <h1 className={s.blurb}>{data.blurb}</h1>
+        </div>
         <div className={s.cardSection}>
           {data.cardSection &&
             data.cardSection.map((card, i) => {
@@ -75,7 +78,8 @@ export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
                     // image={partner.featuredImage}
                     video={partner.featuredVideo}
                     noLink
-                    fullwidth
+                    alignment={partner.alignment || 'fullwidth'}
+                    colour={partner.themeColour?.hex}
                   />
                 </div>
               )

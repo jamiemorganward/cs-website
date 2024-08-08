@@ -67,14 +67,14 @@ export const PersonCard = ({
             src={person.headshot.responsiveImage?.src}
           />
         )}
-        {online && person.inOfficeVideo && (
+        {/* {online && person.inOfficeVideo && (
           <MuxPlayer
             autoPlay="any"
             loop
             className={s.video}
             src={person.inOfficeVideo.video?.streamingUrl}
           />
-        )}
+        )} */}
         {!online && person.outOfOfficeVideo && (
           <MuxPlayer
             autoPlay="any"

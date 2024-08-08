@@ -21,8 +21,7 @@ export const Project = ({
   noLine,
   noLink,
   colour,
-  video,
-  fullwidth
+  video
 }: {
   slug?: string
   name: string
@@ -37,7 +36,6 @@ export const Project = ({
   noLine?: boolean
   noLink?: boolean
   colour?: string
-  fullwidth?: boolean
 }) => {
   const windowSize = useWindowSize()
 
@@ -70,7 +68,7 @@ export const Project = ({
             <div
               className={`${s.imageWrapper} ${alignment === 'left' && s.left}
             ${alignment === 'right' && s.right}
-            ${(alignment === 'fullwidth' || fullwidth) && s.fullWidth}`}
+            ${alignment === 'fullwidth' && s.fullWidth}`}
               style={{ backgroundColor: colour }}
             >
               <img
@@ -82,7 +80,7 @@ export const Project = ({
 
           {video && (
             <div
-              className={`${s.videoWrapper} ${fullwidth ? s.fullWidth : ''}`}
+              className={`${s.videoWrapper}`}
               style={{ backgroundColor: colour }}
             >
               <video width="100%" height="100%" autoPlay loop muted>
@@ -124,7 +122,7 @@ export const Project = ({
 
           {video && (
             <div
-              className={`${s.videoWrapper} ${fullwidth ? s.fullWidth : ''}`}
+              className={`${s.videoWrapper}`}
               style={{ backgroundColor: colour }}
             >
               <video width="100%" height="100%" autoPlay loop muted>
