@@ -68,6 +68,9 @@ export const ApproachPageMobile = ({
       <div className={s.headerWrapper}>
         <PageTitle title="Approach" />
       </div>
+      <div className={s.blurbSection}>
+        <h1 className={s.blurb}>{data?.blurb}</h1>
+      </div>
       <div className={s.cardWrapper}>
         {data?.fffCards.map((card, i) => {
           return (
@@ -81,7 +84,7 @@ export const ApproachPageMobile = ({
               }`}
               key={i}
             >
-              <Card approach card={card}>
+              <Card card={card}>
                 <Lottie
                   options={
                     card.title === 'Form'

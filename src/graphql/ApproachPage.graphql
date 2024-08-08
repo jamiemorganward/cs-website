@@ -1,5 +1,6 @@
 query ApproachPage {
   approachPage {
+    blurb
     postProjectCards {
       ...CardSection
     }

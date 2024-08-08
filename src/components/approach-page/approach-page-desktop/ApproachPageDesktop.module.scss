@@ -4,17 +4,44 @@
   position: relative;
 }
 
+.blurb {
+  color: #000;
+  padding-top: 20rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  max-width: 1000px;
+
+  @include tablet {
+    padding-top: 3rem;
+  }
+
+  @include mobile-p {
+    padding: 2rem 1rem 0 1rem;
+  }
+
+  .blurb-text {
+    font-size: 32px;
+    color: $black;
+    font-weight: 600;
+    line-height: 130%;
+
+    @include tablet {
+      font-size: 26px;
+    }
+  }
+}
+
 .spacer {
   height: 5000px;
 
   @media screen and (max-width: 1600px) {
-    height: 4900px;
+    height: 4150px;
   }
 }
 
 .card-wrapper {
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -59,14 +86,14 @@
   z-index: 4;
   position: relative;
   overflow: hidden;
-  background-image: url('../../../assets/svgs/post-project-text/post-project.svg');
+  background-image: url('../../../assets/svgs/our-process-text/our-process.svg');
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position-y: 11rem;
   background-position-x: 3rem;
 
   @include tablet {
-    background-image: url('../../../assets/svgs/post-project-text/post-project-medium.svg');
+    background-image: url('../../../assets/svgs/our-process-text/our-process-medium.svg');
     background-position-y: 12.5rem;
   }
 }
@@ -94,15 +121,13 @@
   padding-right: 3rem;
   padding-bottom: 16rem;
 
-  @media screen and (max-width: 1349px) {
-    flex-wrap: wrap;
-    padding-top: 28rem;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
+  @media screen and (max-width: 1400px) {
+    gap: 1.5rem;
+  }
+
+  @media screen and (max-width: 1368px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 }
 

@@ -21,6 +21,7 @@ export const ApproachPageDesktop = ({
 
   const pageRef = useRef<HTMLDivElement | null>(null)
   const textRef = useRef<HTMLDivElement | null>(null)
+  const blurbRef = useRef<HTMLDivElement | null>(null)
   const cardOne = useRef<HTMLDivElement | null>(null)
   const cardTwo = useRef<HTMLDivElement | null>(null)
   const cardThree = useRef<HTMLDivElement | null>(null)
@@ -55,11 +56,27 @@ export const ApproachPageDesktop = ({
 
   useGSAP(() => {
     const tl = gsap.timeline()
-
-    tl.to(allCards.current, {
-      yPercent: -20
+    tl.to(blurbRef.current, {
+      filter: 'blur(12px)',
+      opacity: 0
     })
+
     tl.to(textRef.current, { filter: 'blur(12px)' }, '>-0.25')
+    tl.to(
+      allCards.current,
+      {
+        yPercent: -80
+      },
+      '>-0.25'
+    )
+    tl.to(
+      allCards.current,
+      {
+        yPercent: -80
+      },
+      '>-1'
+    )
+
     tl.to(cardTwo.current, { rotate: 10, translateX: '15px' }, '>-0.25')
     tl.to(cardThree.current, { rotate: -10, translateX: '-15px' }, '>-0.5')
     tl.to(cardOne.current, { scale: 1.1 }, '>-0.5')
@@ -98,7 +115,7 @@ export const ApproachPageDesktop = ({
     tl.to(textRef.current, { filter: 'blur(0px)' }, '<')
 
     ScrollTrigger.create({
-      trigger: allCards.current,
+      trigger: blurbRef.current,
       animation: tl,
       start: 'top top',
       end: '+=6000',
@@ -131,7 +148,9 @@ export const ApproachPageDesktop = ({
       <div className={s.titleWrapper} ref={textRef}>
         <PageTitle title="Approach" animate={false} />
       </div>
-
+      <div className={s.blurb} ref={blurbRef}>
+        <h1 className={s.blurbText}>{data?.blurb}</h1>
+      </div>
       <div className={s.cardWrapper} ref={allCards}>
         {data?.fffCards.map((card, i) => {
           return (
