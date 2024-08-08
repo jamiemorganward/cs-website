@@ -69,33 +69,24 @@ export const ApproachPageMobile = ({
         <PageTitle title="Approach" />
       </div>
       <div className={s.cardWrapper}>
-        <div className={s.cardOneWrapper}>
-          <Card
-            title="Form"
-            titleRight="01"
-            textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
-          >
-            <Lottie options={functionOptions} />
-          </Card>
-        </div>
-        <div className={s.cardTwoWrapper}>
-          <Card
-            title="Fun"
-            titleRight="02"
-            textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
-          >
-            <Lottie options={funOptions} />
-          </Card>
-        </div>
-        <div className={s.cardThreeWrapper}>
-          <Card
-            title="Function"
-            titleRight="03"
-            textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
-          >
-            <Lottie options={formOptions} />
-          </Card>
-        </div>
+        {data?.fffCards.map((card, i) => {
+          return (
+            <div
+              className={`${
+                card.title === 'Form'
+                  ? s.cardOneWrapper
+                  : card.title === 'Function'
+                  ? s.cardTwoWrapper
+                  : s.cardThreeWrapper
+              }`}
+              key={i}
+            >
+              <Card approach card={card}>
+                <Lottie options={functionOptions} />
+              </Card>
+            </div>
+          )
+        })}
       </div>
       <div
         className={s.postProjectWrapper}
@@ -109,37 +100,11 @@ export const ApproachPageMobile = ({
               ? '7.5rem'
               : '6.75rem'
         }}
-        // Saving for later if needed
-        // isTop && windowSize.width > 600
-        // ? '5.5rem'
-        // : isTop && windowSize.width < 478
-        // ? '2.85rem'
-        // : isTop && windowSize.width < 600
-        // ? '3.75rem'
-        // :
       >
         <div className={s.postProjectCards}>
-          <Card
-            titleRight="04"
-            title="Long Term Partnership"
-            textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
-            minHeight={550}
-            aspectRatio={false}
-          ></Card>
-          <Card
-            titleRight="05"
-            title="On-going Project Support"
-            textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
-            minHeight={550}
-            aspectRatio={false}
-          ></Card>
-          <Card
-            titleRight="06"
-            title="Growth Support"
-            textContent="No effort to create an effective website needs to come at the expense of aesthetics. The opposite is actually true. Building beautiful websites and applications is a crucial component in creating a successful experience for users."
-            minHeight={550}
-            aspectRatio={false}
-          ></Card>
+          {data?.postProjectCards.map((card, i) => {
+            return <Card key={i} card={card}></Card>
+          })}
         </div>
       </div>
     </div>
