@@ -6,15 +6,16 @@ import { GetAllPeopleQuery } from '@/graphql/generated/graphql'
 import { PersonCard } from './person-card/PersonCard'
 import { ReactLenis, useLenis } from '@studio-freight/react-lenis'
 import { Parallax } from '../parallax/Parallax'
+import { EmailSelection } from '../about-page/email-selection/EmailSelection'
 
 export const PeoplePage = ({ data }: { data: GetAllPeopleQuery }) => {
   const margins = [
     { top: 0, right: 0, bottom: 0, left: 0 },
     { top: 10, right: 0, bottom: 0, left: 0 },
     { top: 8, right: 0, bottom: 0, left: 0 },
-    { top: 0, right: 0, bottom: 0, left: 10 },
-    { top: 6, right: 10, bottom: 0, left: 5 },
-    { top: 0, right: 14, bottom: 0, left: 16 }
+    { top: 10, right: 0, bottom: 0, left: 10 },
+    { top: 12, right: 10, bottom: 0, left: 5 },
+    { top: -5, right: 0, bottom: 0, left: 35 }
   ]
 
   return (
@@ -30,6 +31,7 @@ export const PeoplePage = ({ data }: { data: GetAllPeopleQuery }) => {
             )
           })}
         </div>
+        <EmailSelection />
       </ReactLenis>
     </div>
   )

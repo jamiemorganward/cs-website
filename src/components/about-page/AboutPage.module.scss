@@ -1,9 +1,35 @@
 @import '@/styles/config';
 
+.blurb-section {
+  padding-top: 5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  max-width: 1000px;
+
+  @include tablet {
+    padding-top: 3rem;
+  }
+
+  @include mobile-p {
+    padding: 2rem 1rem 0 1rem;
+  }
+}
+
+.blurb {
+  font-size: 32px;
+  color: $black;
+  font-weight: 600;
+  line-height: 130%;
+
+  @include tablet {
+    font-size: 26px;
+  }
+}
+
 .card-section {
   display: flex;
   gap: 3rem;
-  padding: 6rem 2rem 0 2rem;
+  padding: 5rem 2rem 0 2rem;
 
   @include tablet {
     padding: 4rem 2rem 0 2rem;

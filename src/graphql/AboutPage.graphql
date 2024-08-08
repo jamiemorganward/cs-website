@@ -22,10 +22,15 @@ fragment Partner on PartnershipRecord {
   featuredVideo
   service
   yearStarted
+  alignment
+  themeColour {
+    hex
+  }
 }
 
 query AboutPage {
   aboutPage {
+    blurb
     cardSection {
       title
       subtitle
