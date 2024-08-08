@@ -1,9 +1,10 @@
 query ApproachPage {
   approachPage {
     postProjectCards {
-      title
-      subtitle
-      textContent
+      ...CardSection
+    }
+    fffCards {
+      ...CardSection
     }
   }
 }

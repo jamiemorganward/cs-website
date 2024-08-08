@@ -48,11 +48,7 @@ export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
           {data.cardSection &&
             data.cardSection.map((card, i) => {
               return (
-                <Card
-                  key={i}
-                  title={`${card.title}`}
-                  textContent={`${card.textContent}`}
-                >
+                <Card key={i} card={card}>
                   <div className={s.cardSpacer}></div>
                 </Card>
               )

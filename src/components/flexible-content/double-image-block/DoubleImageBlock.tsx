@@ -64,11 +64,13 @@ export const DoubleImageBlock = ({
                   : undefined
             }}
           >
-            <img
-              src={data.imageRight?.responsiveImage?.src}
-              alt={`${data.imageRight?.responsiveImage?.alt}`}
-              className={s.image}
-            />
+            {data.imageRight && (
+              <img
+                src={data.imageRight?.responsiveImage?.src}
+                alt={`${data.imageRight?.responsiveImage?.alt}`}
+                className={s.image}
+              />
+            )}
             {data.videoRight && (
               <video width="100%" height="100%" autoPlay loop muted>
                 <source src={data.videoRight} />
