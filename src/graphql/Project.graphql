@@ -12,7 +12,6 @@ query GetLatestProject {
 
 fragment ProjectOnWorkPage on ProjectRecord {
   ...ProjectThumb
-  category
   multiCategory
   client
   slug
@@ -31,7 +30,6 @@ fragment ProjectOnWorkPage on ProjectRecord {
 fragment ProjectThumb on ProjectRecord {
   projectName
   projectUrl
-  category
   multiCategory
   featuredImage {
     ...Image
@@ -53,7 +51,6 @@ fragment Image on FileField {
 }
 
 fragment Project on ProjectRecord {
-  category
   multiCategory
   client
   id
