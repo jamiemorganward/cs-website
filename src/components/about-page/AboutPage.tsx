@@ -7,6 +7,7 @@ import { AboutPageQuery } from '@/graphql/generated/graphql'
 import { Card } from '../card/Card'
 import { Project } from '../project/Project'
 import { ReactLenis } from '@studio-freight/react-lenis'
+import { ImageScroll } from '../image-scroll/ImageScroll'
 
 export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
   const partnershipsRef = useRef<HTMLDivElement | null>(null)
@@ -47,11 +48,7 @@ export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
         <div className={s.cardSection}>
           {data.cardSection &&
             data.cardSection.map((card, i) => {
-              return (
-                <Card key={i} card={card}>
-                  <div className={s.cardSpacer}></div>
-                </Card>
-              )
+              return <Card key={i} card={card}></Card>
             })}
         </div>
         <div className={s.partnerships} ref={partnershipsRef}>
@@ -71,7 +68,6 @@ export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
                     client={`${partner.client}`}
                     service={`${partner.service}`}
                     year={`${partner.yearStarted}`}
-                    // image={partner.featuredImage}
                     video={partner.featuredVideo}
                     noLink
                     alignment={partner.alignment || 'fullwidth'}
@@ -81,6 +77,15 @@ export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
               )
             })}
         </div>
+        <div className={s.partnerships}>
+          <h2 className={s.partnershipTitle}>Our Services</h2>
+        </div>
+        <div className={s.servicesCardWrapper}>
+          {data.ourServices.map((card, i) => {
+            return <Card key={i} card={card}></Card>
+          })}
+        </div>
+        <ImageScroll image={data.officeImage?.responsiveImage?.src} />
         <EmailSelection />
       </ReactLenis>
     </div>

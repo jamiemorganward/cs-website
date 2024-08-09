@@ -44,5 +44,11 @@ query AboutPage {
     longStandingPartnerships {
       ...Partner
     }
+    ourServices {
+      ...CardSection
+    }
+    officeImage {
+      ...Image
+    }
   }
 }

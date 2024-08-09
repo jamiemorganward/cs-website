@@ -62,6 +62,9 @@
 
   @include tablet {
     top: 1rem;
+    h2 {
+      padding-bottom: 0;
+    }
   }
 }
 
@@ -73,4 +76,30 @@
   // &:first-child {
   //   top: 0;
   // }
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+  color: $black;
+}
+.services-card-wrapper {
+  display: flex;
+  gap: 3rem;
+  padding: 0 2rem 4rem 2rem;
+
+  @media screen and (max-width: 1400px) {
+    gap: 1.5rem;
+  }
+
+  @media screen and (max-width: 1368px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  @include tablet {
+    padding: 2rem;
+  }
+  @media screen and (max-width: 880px) {
+    grid-template-columns: 1fr;
+  }
 }
