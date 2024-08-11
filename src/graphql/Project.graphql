@@ -64,6 +64,10 @@ fragment Project on ProjectRecord {
   themeColour {
     hex
   }
+  openGraphImage {
+    ...Image
+  }
+  metaDescription
   featuredImage {
     ...Image
     ...Video
