@@ -11,6 +11,7 @@ import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/all'
 import { ApproachPageQuery } from '@/graphql/generated/graphql'
+import { useWindowSize } from '@/utils/useWindowSize'
 
 export const ApproachPageDesktop = ({
   data
@@ -28,6 +29,7 @@ export const ApproachPageDesktop = ({
   const allCards = useRef<HTMLDivElement | null>(null)
   const postProRef = useRef<HTMLDivElement | null>(null)
   const [isTop, setIsTop] = useState(false)
+  const { height, width } = useWindowSize()
 
   const functionOptions = {
     loop: true,
@@ -55,6 +57,7 @@ export const ApproachPageDesktop = ({
   }
 
   useGSAP(() => {
+    if (!width) return
     const tl = gsap.timeline()
     tl.to(blurbRef.current, {
       filter: 'blur(12px)',
@@ -65,14 +68,14 @@ export const ApproachPageDesktop = ({
     tl.to(
       allCards.current,
       {
-        yPercent: -80
+        yPercent: width > 1600 ? -60 : -80
       },
       '>-0.25'
     )
     tl.to(
       allCards.current,
       {
-        yPercent: -80
+        yPercent: width > 1600 ? -60 : -80
       },
       '>-1'
     )
@@ -121,9 +124,10 @@ export const ApproachPageDesktop = ({
       end: '+=6000',
       scrub: 0,
       pin: allCards.current,
-      pinSpacing: false
+      pinSpacing: false,
+      markers: true
     })
-  }, [])
+  }, [width])
 
   useEffect(() => {
     const elementWatcher = (e: Event) => {
