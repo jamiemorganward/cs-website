@@ -2,8 +2,8 @@ import s from './MobileMenu.module.scss'
 import { usePathname } from 'next/navigation'
 import { client } from '@/lib/datocms'
 import {
-  GetLatestProjectDocument,
-  ProjectThumbFragment
+  FeaturedProjectFragment,
+  HomePageDocument
 } from '@/graphql/generated/graphql'
 import { useEffect, useState } from 'react'
 import TransitionLink from '@/components/transition-link/TransitionLink'
@@ -17,18 +17,21 @@ export const MobileMenu = ({
 }) => {
   const pathname = usePathname()
 
-  const [latestProject, setLatestProject] = useState<ProjectThumbFragment>()
+  const [featuredProject, setFeaturedProject] =
+    useState<FeaturedProjectFragment>()
   const [isCopied, setIsCopied] = useState(false)
 
-  const getLatestProject = async () => {
+  const getFeaturedProject = async () => {
     const data = await client.query({
-      query: GetLatestProjectDocument
+      query: HomePageDocument
     })
-    setLatestProject(data.data.allProjects[0])
+    if (data.data.homePage?.featuredProject) {
+      setFeaturedProject(data.data.homePage?.featuredProject)
+    }
   }
 
   useEffect(() => {
-    getLatestProject()
+    getFeaturedProject()
   }, [])
 
   useEffect(() => {
@@ -42,8 +45,6 @@ export const MobileMenu = ({
   }, [isCopied])
 
   const isActive = (href: string) => pathname === href
-
-  console.log(latestProject)
 
   if (!open) return <></>
 
@@ -90,13 +91,14 @@ export const MobileMenu = ({
           </nav>
         </div>
         <div className={s.bottomSection}>
-          {latestProject && (
-            <a className={s.latest} href={`${latestProject.projectUrl}`}>
+          {featuredProject && featuredProject.openGraphImage && (
+            <a className={s.latest} href={`/work/${featuredProject.slug}`}>
               <div className={s.projectThumb}>
                 <img
-                  src={`${latestProject.featuredImage?.responsiveImage?.src}`}
+                  src={`${featuredProject.openGraphImage?.responsiveImage?.src}`}
+                  alt={`${featuredProject.openGraphImage.responsiveImage?.alt}`}
                 />
-                <span>Latest Project</span>
+                <span>Featured Project</span>
               </div>
             </a>
           )}

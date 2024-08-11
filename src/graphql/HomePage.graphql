@@ -1,8 +1,19 @@
+fragment FeaturedProject on ProjectRecord {
+  projectName
+  slug
+  openGraphImage {
+    ...Image
+  }
+}
+
 query HomePage {
   homePage {
     headline
     headerLogo {
       url
+    }
+    featuredProject {
+      ...FeaturedProject
     }
   }
 }
