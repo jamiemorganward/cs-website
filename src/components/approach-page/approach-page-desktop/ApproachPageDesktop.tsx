@@ -124,8 +124,7 @@ export const ApproachPageDesktop = ({
       end: '+=6000',
       scrub: 0,
       pin: allCards.current,
-      pinSpacing: false,
-      markers: true
+      pinSpacing: false
     })
   }, [width])
 
