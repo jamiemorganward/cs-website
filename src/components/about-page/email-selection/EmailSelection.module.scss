@@ -11,13 +11,15 @@
   cursor: none;
   position: relative;
 }
-
+.text-wrapper {
+  display: block;
+  width: fit-content;
+}
 .email {
   font-size: 88.5px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  text-decoration-line: underline;
 
   @include tablet {
     font-size: 66px;
@@ -26,6 +28,16 @@
   @include mobile-l {
     font-size: 36px;
     z-index: 3;
+  }
+}
+.underline {
+  height: 5px;
+  width: 100%;
+  background-color: $black;
+  display: flex;
+
+  @include tablet {
+    height: 3px;
   }
 }
 .cursor {
@@ -75,7 +87,6 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  text-decoration-line: underline;
 
   z-index: 2;
 

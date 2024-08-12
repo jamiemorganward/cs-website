@@ -161,8 +161,10 @@ export const EmailSelection = () => {
       <div className={s.cursor} ref={cursorRef}>
         <p> {isCopied ? 'Copied!' : 'Hold To Copy'}</p>
       </div>
-      <p className={s.email}>hello@clicksuite.co.nz</p>
-
+      <div className={s.textWrapper}>
+        <p className={s.email}>hello@clicksuite.co.nz</p>
+        <span className={s.underline}></span>
+      </div>
       <div className={s.mobileCopied} ref={mobileCopied}>
         <Copied fill={backgroundColour} height="50" width="50" />
       </div>

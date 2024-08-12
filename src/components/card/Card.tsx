@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react'
 import s from './Card.module.scss'
 import { StructuredText } from 'react-datocms'
 import { CardSectionFragment } from '@/graphql/generated/graphql'
+import { useWindowSize } from '@/utils/useWindowSize'
 
 export const Card = ({
   card,
@@ -16,11 +17,14 @@ export const Card = ({
   aspectRatio?: boolean
   minHeight?: number
 }) => {
+  const { width } = useWindowSize()
+
+  if (!width) return <></>
   return (
     <div
       className={`${s.card} ${approach ? s.approach : ''}`}
       style={{
-        aspectRatio: aspectRatio ? '0.83/1' : '',
+        aspectRatio: aspectRatio && width > 767 ? '0.83/1' : '',
         minHeight: minHeight ? `${minHeight}px` : 'none'
       }}
     >
