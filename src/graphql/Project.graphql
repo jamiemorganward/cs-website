@@ -10,6 +10,19 @@ query GetLatestProject {
   }
 }
 
+query GetProjectList {
+  allProjects {
+    ...NextProject
+  }
+}
+
+fragment NextProject on ProjectRecord {
+  client
+  slug
+  year
+  id
+}
+
 fragment ProjectOnWorkPage on ProjectRecord {
   ...ProjectThumb
   multiCategory
