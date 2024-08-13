@@ -30,6 +30,7 @@ export const ProjectPage = ({
   )
   const contentRef = useRef<HTMLDivElement | null>(null)
   const nextRef = useRef<HTMLDivElement | null>(null)
+  const spacerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     ctx.setProjectName(`${data.project?.client}`)
@@ -56,13 +57,21 @@ export const ProjectPage = ({
   useGSAP(() => {
     const tl = gsap.timeline()
 
+    tl.to(contentRef.current, {
+      position: 'fixed',
+      paddingBottom: contentRef.current?.clientHeight
+    })
+    // tl.to(spacerRef.current, {
+    //   height: contentRef.current?.clientHeight,
+    //   position: 'fixed'
+    // })
+
     ScrollTrigger.create({
       trigger: contentRef.current,
       animation: tl,
       start: 'bottom bottom',
       end: '+=1000',
       scrub: 0,
-      pin: nextRef.current,
       pinSpacing: false,
       markers: true
     })
@@ -71,6 +80,7 @@ export const ProjectPage = ({
   return (
     <>
       <ReactLenis root>
+        <div ref={spacerRef}></div>
         <main ref={contentRef}>
           <FadeInAnimation delay={0}>
             <ProjectIntro
