@@ -52,7 +52,6 @@ export const Project = ({
             <div className={`${s.projectInfoWrapper} ${s.tickerTape}`}>
               <Marquee pauseOnHover autoFill>
                 <div className={s.client}>{client}</div>
-                <div className={s.service}>{}</div>
                 <div className={s.projectName}>{year}</div>
               </Marquee>
             </div>
@@ -96,7 +95,6 @@ export const Project = ({
             <div className={`${s.projectInfoWrapper} ${s.tickerTape}`}>
               <Marquee pauseOnHover autoFill>
                 <div className={s.client}>{client}</div>
-                <div className={s.service}>{shortDescription}</div>
                 <div className={s.projectName}>{year}</div>
               </Marquee>
             </div>
