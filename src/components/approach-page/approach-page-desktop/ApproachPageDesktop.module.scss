@@ -49,7 +49,6 @@
 }
 
 .title-wrapper {
-  top: 8rem;
   position: fixed;
 }
 
@@ -89,7 +88,7 @@
   background-image: url('../../../assets/svgs/our-process-text/our-process.svg');
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-position-y: 11rem;
+  background-position-y: 7.5rem;
   background-position-x: 3rem;
 
   @include tablet {
