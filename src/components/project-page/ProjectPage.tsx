@@ -14,6 +14,7 @@ import { NextProjectHolder } from './next-project-holder/NextProjectHolder'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/all'
 import gsap from 'gsap'
+import { useWindowSize } from '@/utils/useWindowSize'
 
 export const ProjectPage = ({
   data,
@@ -31,6 +32,7 @@ export const ProjectPage = ({
   const contentRef = useRef<HTMLDivElement | null>(null)
   const nextRef = useRef<HTMLDivElement | null>(null)
   const spacerRef = useRef<HTMLDivElement | null>(null)
+  const size = useWindowSize()
 
   useEffect(() => {
     ctx.setProjectName(`${data.project?.client}`)
@@ -59,18 +61,17 @@ export const ProjectPage = ({
 
     tl.to(contentRef.current, {
       position: 'fixed',
-      paddingBottom: contentRef.current?.clientHeight
+      bottom: 0
     })
-    // tl.to(spacerRef.current, {
-    //   height: contentRef.current?.clientHeight,
-    //   position: 'fixed'
-    // })
+    tl.to(spacerRef.current, {
+      height: `${contentRef.current?.clientHeight}px`
+    })
 
     ScrollTrigger.create({
       trigger: contentRef.current,
       animation: tl,
       start: 'bottom bottom',
-      end: '+=1000',
+      end: `+=800px`,
       scrub: 0,
       pinSpacing: false,
       markers: true
@@ -80,7 +81,7 @@ export const ProjectPage = ({
   return (
     <>
       <ReactLenis root>
-        <div ref={spacerRef}></div>
+        {/* <div ref={spacerRef}></div> */}
         <main ref={contentRef}>
           <FadeInAnimation delay={0}>
             <ProjectIntro
