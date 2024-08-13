@@ -19,7 +19,7 @@
   }
 
   &.open.mobile {
-    height: 100svh;
+    height: 100dvh;
     mix-blend-mode: normal;
   }
 
@@ -38,7 +38,7 @@
   position: fixed;
   z-index: 10;
   &.open {
-    height: 100svh;
+    height: 100dvh;
   }
 }
 // somehow this seemed necessary to not break the layout, when the wrapper is fixed... weird
