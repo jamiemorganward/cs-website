@@ -66,7 +66,7 @@ export const AboutPage = ({ data }: { data: AboutPageQuery['aboutPage'] }) => {
                     key={i}
                     name={`${partner.client}`}
                     client={`${partner.client}`}
-                    service={`${partner.service}`}
+                    shortDescription={`${partner.service}`}
                     year={`${partner.yearStarted}`}
                     video={partner.featuredVideo}
                     noLink
