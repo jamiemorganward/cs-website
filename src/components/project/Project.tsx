@@ -12,7 +12,7 @@ export const Project = ({
   slug,
   name,
   client,
-  service,
+  shortDescription,
   alignment,
   projectUrl,
   year,
@@ -26,7 +26,7 @@ export const Project = ({
   slug?: string
   name: string
   client: string
-  service: string
+  shortDescription: string
   alignment?: string
   image?: FeaturedMediaFragment
   video?: string
@@ -52,14 +52,14 @@ export const Project = ({
             <div className={`${s.projectInfoWrapper} ${s.tickerTape}`}>
               <Marquee pauseOnHover autoFill>
                 <div className={s.client}>{client}</div>
-                <div className={s.service}>{service}</div>
+                <div className={s.service}>{}</div>
                 <div className={s.projectName}>{year}</div>
               </Marquee>
             </div>
           ) : (
             <div className={`${s.projectInfoWrapper}`}>
               <div className={s.client}>{client}</div>
-              <div className={s.service}>{service}</div>
+              <div className={s.service}>{shortDescription}</div>
               <div className={s.projectName}>{year}</div>
             </div>
           )}
@@ -96,14 +96,14 @@ export const Project = ({
             <div className={`${s.projectInfoWrapper} ${s.tickerTape}`}>
               <Marquee pauseOnHover autoFill>
                 <div className={s.client}>{client}</div>
-                <div className={s.service}>{service}</div>
+                <div className={s.service}>{shortDescription}</div>
                 <div className={s.projectName}>{year}</div>
               </Marquee>
             </div>
           ) : (
             <div className={`${s.projectInfoWrapper}`}>
               <div className={s.client}>{client}</div>
-              <div className={s.service}>{service}</div>
+              <div className={s.service}>{shortDescription}</div>
               <div className={s.projectName}>{year}</div>
             </div>
           )}

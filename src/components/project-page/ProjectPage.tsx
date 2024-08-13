@@ -25,11 +25,11 @@ export const ProjectPage = ({ data }: { data: GetProjectQuery }) => {
         <main>
           <FadeInAnimation delay={0}>
             <ProjectIntro
-              title={`${data.project?.projectName}`}
+              title={`${data.project?.projectHeadline}`}
               client={`${data.project?.client}`}
               multiCategory={data.project?.multiCategory}
-              service={`${data.project?.service}`}
-              platform={`${data.project?.platform}`}
+              description={`${data.project?.projectDescription}`}
+              ourRole={`${data.project?.ourRole}`}
               link={`${data.project?.projectUrl}`}
               year={`${data.project?.year}`}
             />
