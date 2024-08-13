@@ -40,7 +40,6 @@ export const ContactPage = () => {
             <UnderlineAnimation>
               <a href="https://www.instagram.com/clicksuitenz/">Instagram</a>
             </UnderlineAnimation>
-            <br></br>
             <UnderlineAnimation>
               <a href="https://www.linkedin.com/company/click-suite/">
                 LinkedIn
