@@ -101,10 +101,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-
-  @include tablet {
-    height: calc(100% - 58px);
-  }
 }
 
 .video-wrapper {

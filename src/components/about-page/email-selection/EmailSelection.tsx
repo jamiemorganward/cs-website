@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import s from './EmailSelection.module.scss'
-import Copied from '@/assets/svgs/cursors/copied.svg'
 import gsap from 'gsap'
 import { useWindowSize } from '@/utils/useWindowSize'
 
@@ -150,34 +149,53 @@ export const EmailSelection = () => {
     }
   }, [containerRef, cursorRef])
 
+  if (!windowSize.width) return <></>
+
   return (
-    <div
-      className={`${s.emailSelection} ${isCopied && s.copiedEmailSelection}`}
-      onClick={() => setIsCopied(true)}
-      onMouseDown={() => tl.play()}
-      onMouseUp={() => tl.reverse()}
-      ref={containerRef}
-    >
-      <div className={s.cursor} ref={cursorRef}>
-        <p> {isCopied ? 'Copied!' : 'Hold To Copy'}</p>
-      </div>
-      <div className={s.textWrapper}>
-        <p className={s.email}>hello@clicksuite.co.nz</p>
-        <span className={s.underline}></span>
-      </div>
-      <div className={s.mobileCopied} ref={mobileCopied}>
-        <Copied fill={backgroundColour} height="50" width="50" />
-      </div>
-      <div
-        className={s.circle}
-        ref={circleRef}
-        style={{ backgroundColor: backgroundColour }}
-        onClick={backItUp}
-      >
-        <p className={s.copied} ref={copiedRef}>
-          Copied!
-        </p>
-      </div>
-    </div>
+    <>
+      {windowSize.width >= 767 ? (
+        <div
+          className={`${s.emailSelection} ${
+            isCopied && s.copiedEmailSelection
+          }`}
+          onClick={() => setIsCopied(true)}
+          onMouseDown={() => tl.play()}
+          onMouseUp={() => tl.reverse()}
+          ref={containerRef}
+        >
+          <div className={s.cursor} ref={cursorRef}>
+            <p> {isCopied ? 'Copied!' : 'Hold To Copy'}</p>
+          </div>
+          <div className={s.textWrapper}>
+            <p className={s.email}>hello@clicksuite.co.nz</p>
+            <span className={s.underline}></span>
+          </div>
+
+          <div
+            className={s.circle}
+            ref={circleRef}
+            style={{ backgroundColor: backgroundColour }}
+            onClick={backItUp}
+          >
+            <p className={s.copied} ref={copiedRef}>
+              Copied!
+            </p>
+          </div>
+        </div>
+      ) : (
+        <div className={s.emailSelection}>
+          {!isCopied ? (
+            <div className={s.textWrapper} onClick={() => setIsCopied(true)}>
+              <p className={s.email}>hello@clicksuite.co.nz</p>
+              <span className={s.underline}></span>
+            </div>
+          ) : (
+            <div className={s.textWrapper}>
+              <p className={s.email}>Copied!</p>
+            </div>
+          )}
+        </div>
+      )}
+    </>
   )
 }

@@ -8,6 +8,7 @@ import Form from '@/lottie-files/form.json'
 import { PageTitle } from '@/components/page-title/PageTitle'
 import { useWindowSize } from '@/utils/useWindowSize'
 import { ApproachPageQuery } from '@/graphql/generated/graphql'
+import MobileProcessText from '@/assets/svgs/our-process-text/our-process-small.svg'
 
 export const ApproachPageMobile = ({
   data
@@ -112,6 +113,11 @@ export const ApproachPageMobile = ({
               : '6.75rem'
         }}
       >
+        {windowSize.width <= 600 && (
+          <div className={s.mobileProcessText}>
+            <MobileProcessText />
+          </div>
+        )}
         <div className={s.postProjectCards}>
           {data?.postProjectCards.map((card, i) => {
             return <Card key={i} card={card}></Card>

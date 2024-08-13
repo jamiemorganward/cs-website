@@ -7,6 +7,10 @@
   align-items: center;
   gap: 2rem;
   margin-bottom: 18rem;
+
+  @media screen and (max-width: 600px) {
+    margin-bottom: 6rem;
+  }
 }
 
 .blurb-section {
@@ -37,13 +41,12 @@
     background-position-x: 2rem;
   }
   @media screen and (max-width: 600px) {
-    background-image: url('../../../assets/svgs/our-process-text/our-process-small.svg');
-    background-position-y: 8.5rem;
+    background-image: none;
   }
+}
 
-  @include mobile-p {
-    background-position-x: 1rem;
-  }
+.mobile-process-text {
+  padding-top: 6rem;
 }
 
 .post-project-title {
@@ -65,7 +68,7 @@
     grid-template-columns: 1fr;
   }
   @media screen and (max-width: 600px) {
-    padding-top: 20rem;
+    padding-top: 6rem;
   }
 }
 
