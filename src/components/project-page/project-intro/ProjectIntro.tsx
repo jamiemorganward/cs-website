@@ -7,10 +7,9 @@ import { useState } from 'react'
 interface ProjectInfoTypes {
   title: string
   client: string
-
   multiCategory: string[]
-  service: string
-  platform: string
+  description: string
+  ourRole: string
   link: string
   year: string
 }
@@ -18,10 +17,9 @@ interface ProjectInfoTypes {
 export const ProjectIntro = ({
   title,
   client,
-
   multiCategory,
-  service,
-  platform,
+  description,
+  ourRole,
   link,
   year
 }: ProjectInfoTypes) => {
@@ -47,31 +45,22 @@ export const ProjectIntro = ({
             <div className={s.label}>Client</div>
             <div className={s.value}>{client}</div>
           </div>
-          {multiCategory && (
+          {description && (
             <div className={s.row}>
-              <div className={s.label}>Category</div>
-              <div className={s.value}>
-                {multiCategory &&
-                  multiCategory.map((cat, i) => {
-                    if (i < multiCategory.length - 1) {
-                      return `${cat}, `
-                    } else {
-                      return `${cat}`
-                    }
-                  })}
-              </div>
+              <div className={s.label}>Project</div>
+              <div className={s.value}>{description}</div>
             </div>
           )}
-          {service && (
+          {year && (
             <div className={s.row}>
-              <div className={s.label}>Service</div>
-              <div className={s.value}>{service}</div>
+              <div className={s.label}>Year</div>
+              <div className={s.value}>{year}</div>
             </div>
           )}
-          {platform && (
+          {ourRole && (
             <div className={s.row}>
-              <div className={s.label}>Platform</div>
-              <div className={s.value}>{platform}</div>
+              <div className={s.label}>Our Role</div>
+              <div className={s.value}>{ourRole}</div>
             </div>
           )}
         </div>

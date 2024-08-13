@@ -29,7 +29,7 @@ fragment ProjectOnWorkPage on ProjectRecord {
   client
   slug
   year
-  service
+  projectDescription
   featuredImage {
     ...Image
   }
@@ -41,7 +41,7 @@ fragment ProjectOnWorkPage on ProjectRecord {
 }
 
 fragment ProjectThumb on ProjectRecord {
-  projectName
+  projectHeadline
   projectUrl
   multiCategory
   featuredImage {
@@ -68,11 +68,11 @@ fragment Project on ProjectRecord {
   client
   id
   slug
-  platform
-  projectName
+  ourRole
+  projectHeadline
   projectUrl
   year
-  service
+  projectDescription
   alignment
   themeColour {
     hex

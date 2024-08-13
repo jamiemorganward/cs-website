@@ -31,8 +31,8 @@
 
 .project-info-wrapper {
   width: 100%;
-  display: grid;
-  grid-template-columns: 40% 1fr max-content;
+  display: flex;
+  justify-content: space-between;
   border-top: 1px solid #0000000a;
 
   @include tablet {
@@ -67,6 +67,11 @@
     @include mobile-p {
       margin: 1rem 2rem;
     }
+  }
+  .service {
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 

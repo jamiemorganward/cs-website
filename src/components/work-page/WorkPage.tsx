@@ -212,8 +212,8 @@ export const WorkPage = ({
               <div key={i} className={s.projectOuterWrapper}>
                 <Project
                   noLine
-                  name={project.projectName}
-                  service={project.service}
+                  name={project.projectHeadline}
+                  shortDescription={project.projectDescription}
                   client={project.client}
                   image={project.featuredImage}
                   video={project.featuredVideo}
