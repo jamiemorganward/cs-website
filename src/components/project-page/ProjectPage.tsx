@@ -31,9 +31,6 @@ export const ProjectPage = ({
   )
   const contentRef = useRef<HTMLDivElement | null>(null)
   const nextRef = useRef<HTMLDivElement | null>(null)
-  const spacerRef = useRef<HTMLDivElement | null>(null)
-
-  const size = useWindowSize()
 
   useEffect(() => {
     ctx.setProjectName(`${data.project?.client}`)
@@ -57,47 +54,30 @@ export const ProjectPage = ({
   }, [data.project])
 
   useGSAP(() => {
-    const tl = gsap.timeline()
+    const tl = gsap.timeline({})
 
-    tl.to(contentRef.current, {
-      position: 'fixed',
-      bottom: 0
-    })
-    tl.set(spacerRef.current, {
-      height: `${contentRef.current?.clientHeight}px`
-    })
-
-    // tl.to(
-    //   nextRef.current,
-    //   {
-    //     yPercent: -200,
-    //     xPercent: 500,
-    //     duration: 2
-    //   },
-    //   '<+=1'
-    // )
+    tl.to(contentRef.current, { filter: 'blur(8px)', duration: 1 }, '<')
+    tl.to(contentRef.current, { backgroundColor: 'rgba(0,0,0,0.2)' }, '<')
 
     ScrollTrigger.create({
       trigger: contentRef.current,
       animation: tl,
       start: 'bottom bottom',
-      end: `+=800px`,
+      end: () => `+=${window.innerHeight * 0.8}`,
       scrub: 0,
-      pinSpacing: false,
-      markers: true
+      pin: contentRef.current,
+      pinSpacing: false
     })
   }, [])
 
   return (
     <>
       <ReactLenis root>
-        {/* <div ref={spacerRef}></div> */}
-        <main ref={contentRef}>
+        <main ref={contentRef} className={s.mainWrapper}>
           <FadeInAnimation delay={0}>
             <ProjectIntro
               title={`${data.project?.projectHeadline}`}
               client={`${data.project?.client}`}
-              multiCategory={data.project?.multiCategory}
               description={`${data.project?.projectDescription}`}
               ourRole={`${data.project?.ourRole}`}
               link={`${data.project?.projectUrl}`}
@@ -117,7 +97,7 @@ export const ProjectPage = ({
             })}
           </div>
         </main>
-        <div className={s.placeholder} ref={spacerRef}></div>
+
         <div className={s.nextWrapper} ref={nextRef}>
           {nextProject && <NextProjectHolder project={nextProject} />}
         </div>

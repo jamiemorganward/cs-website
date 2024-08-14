@@ -21,6 +21,13 @@ fragment NextProject on ProjectRecord {
   slug
   year
   id
+  projectHeadline
+  projectDescription
+  ourRole
+  projectUrl
+  openGraphImage {
+    ...Image
+  }
 }
 
 fragment ProjectOnWorkPage on ProjectRecord {

@@ -7,7 +7,6 @@ import { useState } from 'react'
 interface ProjectInfoTypes {
   title: string
   client: string
-  multiCategory: string[]
   description: string
   ourRole: string
   link: string
@@ -17,7 +16,6 @@ interface ProjectInfoTypes {
 export const ProjectIntro = ({
   title,
   client,
-  multiCategory,
   description,
   ourRole,
   link,
