@@ -32,12 +32,12 @@ export const ProjectPage = ({
   const contentRef = useRef<HTMLDivElement | null>(null)
   const nextRef = useRef<HTMLDivElement | null>(null)
   const spacerRef = useRef<HTMLDivElement | null>(null)
+
   const size = useWindowSize()
 
   useEffect(() => {
     ctx.setProjectName(`${data.project?.client}`)
     return () => {
-      // isUnmounted
       ctx.setProjectName('')
     }
   }, [data])
@@ -63,9 +63,19 @@ export const ProjectPage = ({
       position: 'fixed',
       bottom: 0
     })
-    tl.to(spacerRef.current, {
+    tl.set(spacerRef.current, {
       height: `${contentRef.current?.clientHeight}px`
     })
+
+    // tl.to(
+    //   nextRef.current,
+    //   {
+    //     yPercent: -200,
+    //     xPercent: 500,
+    //     duration: 2
+    //   },
+    //   '<+=1'
+    // )
 
     ScrollTrigger.create({
       trigger: contentRef.current,
@@ -107,6 +117,7 @@ export const ProjectPage = ({
             })}
           </div>
         </main>
+        <div className={s.placeholder} ref={spacerRef}></div>
         <div className={s.nextWrapper} ref={nextRef}>
           {nextProject && <NextProjectHolder project={nextProject} />}
         </div>
