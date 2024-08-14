@@ -31,6 +31,7 @@ export const ProjectPage = ({
   )
   const contentRef = useRef<HTMLDivElement | null>(null)
   const nextRef = useRef<HTMLDivElement | null>(null)
+  const windowSize = useWindowSize()
 
   useEffect(() => {
     ctx.setProjectName(`${data.project?.client}`)

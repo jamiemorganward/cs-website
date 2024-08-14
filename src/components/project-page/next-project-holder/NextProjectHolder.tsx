@@ -96,10 +96,12 @@ export const NextProjectHolder = ({
     })
 
     container?.addEventListener('mousemove', (e) => onMove(e))
+    container?.addEventListener('mouseenter', (e) => onMove(e))
     container?.addEventListener('mouseleave', (e) => onLeave(e))
 
     return () => {
       container.removeEventListener('mousemove', onMove)
+      container.removeEventListener('mouseenter', onMove)
       container.removeEventListener('mouseleave', onLeave)
     }
   }, [windowSize.width])
