@@ -8,7 +8,12 @@ import { usePathname, useRouter } from 'next/navigation'
 export const Footer = () => {
   const pathname = usePathname()
 
-  if (pathname === '/' || pathname === '/approach') return <></>
+  if (
+    pathname === '/' ||
+    pathname === '/approach' ||
+    pathname.includes('/work/')
+  )
+    return <></>
   return (
     <div className={s.footer}>
       <div className={s.topSection}>

@@ -1,6 +1,9 @@
 import { ProjectPage } from '@/components/project-page/ProjectPage'
 import {
+  GetAllProjectsDocument,
   GetProjectDocument,
+  GetProjectListDocument,
+  GetProjectListQuery,
   GetProjectQuery,
   GetProjectQueryVariables
 } from '@/graphql/generated/graphql'
@@ -46,7 +49,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
       }
     }
   })
+  const allProjects = await client.query<GetProjectListQuery>({
+    query: GetProjectListDocument
+  })
 
   // To do: pass on data.data.project and figure out typing issue
-  return <ProjectPage data={data.data} />
+  return (
+    <ProjectPage data={data.data} projects={allProjects.data.allProjects} />
+  )
 }
