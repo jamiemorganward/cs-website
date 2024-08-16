@@ -15,6 +15,7 @@ import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/all'
 import gsap from 'gsap'
 import { useWindowSize } from '@/utils/useWindowSize'
+import { usePathname, useRouter } from 'next/navigation'
 
 export const ProjectPage = ({
   data,
@@ -23,7 +24,7 @@ export const ProjectPage = ({
   data: GetProjectQuery
   projects: NextProjectFragment[]
 }) => {
-  gsap.registerPlugin(ScrollTrigger)
+  gsap.registerPlugin(useGSAP, ScrollTrigger)
 
   const ctx = useContext(PageInfoContext)
   const [nextProject, setNextProject] = useState<NextProjectFragment | null>(
@@ -39,20 +40,28 @@ export const ProjectPage = ({
       ctx.setProjectName('')
     }
   }, [data])
+
   // To do: pass on data.data.project and figure out typing issue
 
   const sortProjects = () => {
     if (!data.project) return
     projects.map((project, i) => {
-      if (project.id === data?.project?.id) {
+      if (project.id === data?.project?.id && i < projects.length - 1) {
         setNextProject(projects[i + 1])
+      } else if (
+        project.id === data?.project?.id &&
+        i === projects.length - 1
+      ) {
+        setNextProject(projects[0])
       }
     })
   }
 
   useEffect(() => {
     sortProjects()
-  }, [data.project])
+  }, [data])
+
+  const route = usePathname()
 
   useGSAP(() => {
     const tl = gsap.timeline({})
@@ -61,14 +70,30 @@ export const ProjectPage = ({
     tl.to(contentRef.current, { backgroundColor: 'rgba(0,0,0,0.2)' }, '<')
 
     ScrollTrigger.create({
-      trigger: contentRef.current,
+      trigger: nextRef.current,
       animation: tl,
-      start: 'bottom bottom',
+      start: 'top bottom',
       end: () => `+=${window.innerHeight * 0.8}`,
       scrub: 0,
       pin: contentRef.current,
       pinSpacing: false
     })
+  })
+
+  useEffect(() => {
+    if (contentRef.current) {
+      const observer = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+          ScrollTrigger.refresh()
+        }
+      })
+
+      observer.observe(contentRef.current)
+
+      return () => {
+        observer.disconnect()
+      }
+    }
   }, [])
 
   return (
@@ -96,6 +121,7 @@ export const ProjectPage = ({
                 </FadeInAnimation>
               )
             })}
+            <div className={s.spacer}></div>
           </div>
         </main>
 

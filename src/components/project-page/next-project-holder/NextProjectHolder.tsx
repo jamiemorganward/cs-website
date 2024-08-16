@@ -15,7 +15,7 @@ export const NextProjectHolder = ({
 }) => {
   const windowSize = useWindowSize()
   // Animation for card scroll in
-  gsap.registerPlugin(ScrollTrigger)
+  gsap.registerPlugin(useGSAP, ScrollTrigger)
   const cardRef = useRef<HTMLDivElement | null>(null)
 
   useGSAP(() => {
@@ -28,11 +28,11 @@ export const NextProjectHolder = ({
     ScrollTrigger.create({
       trigger: cardRef.current,
       animation: tl,
-      start: 'top bottom',
-      end: () => `+=${window.innerHeight * 0.8 - 4 * 13}px`,
+      start: 'clamp(top bottom)',
+      end: () => `clamp(+=${window.innerHeight * 0.8 - 4 * 13}px)`,
       scrub: 0
     })
-  }, [windowSize?.width])
+  }, [windowSize?.width, windowSize?.height])
 
   // Cursor animation logic
 
@@ -86,7 +86,6 @@ export const NextProjectHolder = ({
 
   useEffect(() => {
     const container = cardRef.current
-    console.log(container, cursorRef.current)
 
     if (!container || !cursorRef.current) return
 
@@ -109,7 +108,7 @@ export const NextProjectHolder = ({
   if (!windowSize.width) return <></>
 
   return (
-    <Link href={`/work/${project.slug}`} className={s.nextProjectHolder}>
+    <Link href={`/work${project.slug}`} className={s.nextProjectHolder}>
       <div className={s.card} ref={cardRef}>
         <div className={s.cursor} ref={cursorRef}>
           <p>Next Project</p>
