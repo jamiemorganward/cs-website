@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import s from './HomePage.module.scss'
 import { LampShade } from '../lamp-shade/LampShade'
 import { HomeLoading } from '../home-loading/HomeLoading'
+import { LampShadeExperiment } from '../lamp-shade-experiment/LampShadeExperiment'
 
 export const HomePage = () => {
   // TODO: all the work for loading page is here but half of it is probably unnecessary
@@ -24,6 +25,6 @@ export const HomePage = () => {
   //     clearInterval(currentTimer.current)
   //   }
   // }, [percentage])
-  return <LampShade />
+  return <LampShadeExperiment />
   // else return <HomeLoading percentage={percentage} />
 }

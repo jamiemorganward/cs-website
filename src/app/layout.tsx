@@ -40,7 +40,7 @@ export default function RootLayout({
         <PageInfoContextProvider>
           <Header />
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </PageInfoContextProvider>
         {/* TODO: This transition element still needs some thought */}
         <div
